@@ -16,6 +16,8 @@ class ApiKey {
   static const authorization = "Authorization";
 
   // user info
+  static const id = "id";
+  static const user = "user";
   static const firstName = "first_name";
   static const lastName = "last_name";
   static const address = "address";
@@ -23,7 +25,7 @@ class ApiKey {
   static const password = "password";
   static const passwordConfir = "password_confirmation";
   static const gender = "gender";
-  static const token = "token";
+  static const token = "access_token";
 // erorr
   static const error = "error";
 }

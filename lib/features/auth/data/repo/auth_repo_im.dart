@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:sharecars/core/errors/excptions.dart';
 import 'package:sharecars/core/errors/filuar.dart';
@@ -16,6 +15,7 @@ class AuthRepoIm extends AuthRepo {
   Future<Either<Filuar, UserModel>> login(String email, String password) async {
     try {
       final response = await authRemoteDataSource.login(email, password);
+      // to do cach the token
       return right(response);
     } on ServerExpcptions catch (e) {
       return left(e.erroe);
@@ -34,6 +34,29 @@ class AuthRepoIm extends AuthRepo {
     try {
       final response = await authRemoteDataSource.singin(firstName, lastName,
           gender, email, address, password, verfiyPassword);
+
+      // to do cach the token and user
+      return right(response);
+    } on ServerExpcptions catch (e) {
+      return left(e.erroe);
+    }
+  }
+
+  @override
+  Future<Either<Filuar, dynamic>> forgetPassword(String email) async {
+    try {
+      final response = await authRemoteDataSource.forgetPassword(email);
+
+      return right(response);
+    } on ServerExpcptions catch (e) {
+      return left(e.erroe);
+    }
+  }
+
+  @override
+  Future<Either<Filuar, dynamic>> logout() async {
+    try {
+      final response = await authRemoteDataSource.logout();
       return right(response);
     } on ServerExpcptions catch (e) {
       return left(e.erroe);

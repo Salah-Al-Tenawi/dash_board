@@ -13,6 +13,7 @@ abstract class AuthRepo {
       String verfiyPassword);
 
   Future<Either<Filuar, UserModel>> login(String email, String password);
-// to do return type
+  Future<Either<Filuar, dynamic>> logout();
+  Future<Either<Filuar, dynamic>> forgetPassword(String email);
   
 }

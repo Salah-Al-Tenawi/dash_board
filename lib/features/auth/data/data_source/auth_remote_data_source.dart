@@ -12,11 +12,12 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> login(String email, String password);
   Future<UserModel> singin(String firstName, String lastName, String gender,
       String email, String address, String password, String verfiyPassword);
+  Future forgetPassword(String email);
+  Future logout();
 }
 
 class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
   AuthRemoteDataSourceIM({required super.api});
-
 
   @override
   Future<UserModel> login(String email, String password) async {
@@ -44,5 +45,22 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
       ApiKey.address: address,
     });
     return UserModel.fromjson(response);
+  }
+
+// to do
+  @override
+  Future<String> logout() async {
+    final response = await api.post(ApiEndPoint.logout, header: {
+      // "Authorization":
+      //     "Bearer ${token from cach}"
+    });
+    return response;
+  }
+
+  @override
+  Future forgetPassword(String email) async {
+    final response =
+        await api.post(ApiEndPoint.forgetPassword, data: {ApiKey.email: email});
+    return response;
   }
 }
