@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sharecars/core/them/color_app.dart';
+import 'package:sharecars/core/them/my_colors.dart';
 
 // ignore: must_be_immutable
 class CustomTextformfild extends StatelessWidget {
-  TextEditingController ?controller = TextEditingController();
+  TextEditingController? controller = TextEditingController();
   String? Function(String?)? validator;
   void Function(String)? onFieldSubmitted;
   String title;
@@ -21,7 +21,7 @@ class CustomTextformfild extends StatelessWidget {
       this.height,
       this.width,
       required this.title,
-       this.controller,
+      this.controller,
       this.icon,
       this.suffix,
       this.onFieldSubmitted,
@@ -35,28 +35,30 @@ class CustomTextformfild extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-      child: TextFormField( 
-        
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      child: TextFormField(
         onFieldSubmitted: onFieldSubmitted,
         keyboardType: keyboardType,
         obscureText: scureText == null || scureText == false ? false : true,
         validator: validator,
         controller: controller,
         decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: MyColors.newrskey)),
             hintText: hint,
             suffix: suffix,
-            fillColor: ColorApp.primaryColor,
+            fillColor: MyColors.beige,
             labelText: title,
-            labelStyle:const TextStyle(
+            labelStyle: const TextStyle(
               fontSize: 14,
-              color: ColorApp.primaryColor,
+              color: MyColors.blackColor,
             ),
-            filled: true,
+            filled: false,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
             ),
-            prefixIcon: icon),
+            prefixIcon: icon,
+            prefixIconColor: MyColors.newgrey),
       ),
     );
   }

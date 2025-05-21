@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sharecars/core/constant/imagesUrl.dart';
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
 
@@ -6,13 +7,8 @@ class SplashViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Column( 
       children: [  
-        Image.asset(Imageurl.logo)
+        Image.asset(ImagesUrl.appLogo)
       ],
     );
   }
-}
-class Imageurl { 
-static const String imagerout = "assets/images/";
-static const String logo = "$imagerout logo.png";    
-
 }

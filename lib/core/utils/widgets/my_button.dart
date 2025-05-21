@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sharecars/core/them/color_app.dart';
+import 'package:sharecars/core/them/my_colors.dart';
 
 class MyButton extends StatelessWidget {
   void Function()? onPressed;
@@ -29,12 +29,12 @@ class MyButton extends StatelessWidget {
           ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
           : null,
       onPressed: onPressed,
-      splashColor: splashcolor ?? ColorApp.primaryColor,
+      splashColor: splashcolor ?? MyColors.greyTextColor,
       minWidth: width ?? 100.h,
       height: height ?? 40.h,
       color: color,
-      child: child,
       elevation: 20,
+      child: child,
       
     );
   }
