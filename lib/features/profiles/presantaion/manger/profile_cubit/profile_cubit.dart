@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sharecars/core/utils/enum/profile_mode.dart';
+import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/features/profiles/data/model/profile_model.dart';
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 

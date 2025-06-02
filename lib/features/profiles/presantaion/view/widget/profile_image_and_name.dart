@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/utils/enum/profile_mode.dart';
+import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/functions/show_image.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';

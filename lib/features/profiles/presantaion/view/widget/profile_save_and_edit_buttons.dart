@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/utils/enum/profile_mode.dart';
+import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 
