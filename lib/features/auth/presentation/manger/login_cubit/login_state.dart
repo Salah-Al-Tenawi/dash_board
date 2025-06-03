@@ -22,4 +22,3 @@ class LoginError extends LoginState {
 class LoginNavigateToSignup extends LoginState {}
 
 class LoginNavigationToForgetPassword extends LoginState {}
-

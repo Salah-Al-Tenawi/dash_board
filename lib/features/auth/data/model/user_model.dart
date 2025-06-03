@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:sharecars/core/api/api_end_points.dart';
 part 'user_model.g.dart';
 
-@HiveType(typeId: 0) 
+@HiveType(typeId: 0)
 class UserModel {
   @HiveField(0)
   final int id;
@@ -25,15 +25,14 @@ class UserModel {
 
   @HiveField(6)
   final String token;
-  const UserModel({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.gender,
-    required this.address,
-    required this.token
-  });
+  const UserModel(
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.gender,
+      required this.address,
+      required this.token});
 
   factory UserModel.fromjson(Map<String, dynamic> json) {
     return UserModel(
@@ -42,8 +41,7 @@ class UserModel {
         lastName: json[ApiKey.user][ApiKey.lastName],
         email: json[ApiKey.user][ApiKey.email],
         gender: json[ApiKey.user][ApiKey.gender],
-        address: json[ApiKey.user][ApiKey.address] ,
-        token: json[ApiKey.token]
-        );
+        address: json[ApiKey.user][ApiKey.address],
+        token: json[ApiKey.token]);
   }
 }

@@ -6,7 +6,7 @@ sealed class AuthState extends Equatable {
   @override
   List<Object> get props => [];
 
- final bool isloading;
+  final bool isloading;
 }
 
 final class AuthInitial extends AuthState {
@@ -14,5 +14,5 @@ final class AuthInitial extends AuthState {
 }
 
 final class LodaingState extends AuthState {
-const  LodaingState(super.isloading);
+  const LodaingState(super.isloading);
 }

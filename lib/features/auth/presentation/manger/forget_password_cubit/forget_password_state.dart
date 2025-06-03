@@ -12,10 +12,9 @@ final class ForgetPasswordInitial extends ForgetPasswordState {}
 final class ForgetPasswordLoading extends ForgetPasswordState {}
 
 final class ForgetPasswordErorr extends ForgetPasswordState {
-   final String message;
+  final String message;
 
   const ForgetPasswordErorr({required this.message});
 }
-final class ForgetPasswordSuccsess extends ForgetPasswordState {
- 
-}
+
+final class ForgetPasswordSuccsess extends ForgetPasswordState {}

@@ -44,5 +44,4 @@ List<GetPage<dynamic>> appRoute = [
             create: (context) => ProfileCubit(ProfileRepoIm()),
             child: const Profile(),
           )),
-  
 ];

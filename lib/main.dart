@@ -9,12 +9,12 @@ import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/service/locator_ser.dart';
 import 'package:sharecars/core/them/them_app.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
   locatorService();
- await HiveService.init();
+  await HiveService.init();
   runApp(const ShareCars());
 }
 

@@ -8,7 +8,6 @@ class TextFieldsSingin extends StatelessWidget {
   final TextEditingController email;
   final TextEditingController password;
   final TextEditingController passwordConfirm;
-  
 
   const TextFieldsSingin({
     super.key,
@@ -17,7 +16,6 @@ class TextFieldsSingin extends StatelessWidget {
     required this.email,
     required this.password,
     required this.passwordConfirm,
-
   });
 
   @override

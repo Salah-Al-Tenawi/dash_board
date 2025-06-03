@@ -35,7 +35,6 @@ class MyButton extends StatelessWidget {
       color: color,
       elevation: 20,
       child: child,
-      
     );
   }
 }

@@ -40,7 +40,7 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
       ApiKey.lastName: lastName,
       ApiKey.email: email,
       ApiKey.password: password,
-      ApiKey.passwordConfir: verfiyPassword,
+      ApiKey.passwordConfirm: verfiyPassword,
       ApiKey.gender: gender,
       ApiKey.address: address,
     });

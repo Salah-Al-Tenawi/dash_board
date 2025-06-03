@@ -3,8 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sharecars/core/them/text_app.dart';
 
 class ProfileRating extends StatelessWidget {
-  final String reviewsCount;
-  final String tripsCount;
+  final int reviewsCount;
+  final int tripsCount;
   const ProfileRating(
       {super.key, required this.reviewsCount, required this.tripsCount});
 

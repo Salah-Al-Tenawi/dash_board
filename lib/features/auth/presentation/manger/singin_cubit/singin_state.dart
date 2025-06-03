@@ -31,5 +31,4 @@ final class SinginChangeAddress extends SinginState {
   final String address;
 
   const SinginChangeAddress({required this.address});
-  
 }

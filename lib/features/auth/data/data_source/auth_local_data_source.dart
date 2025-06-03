@@ -28,6 +28,6 @@ class AuthLocalDataSourceIm extends AuthLocalDataSource {
 
   @override
   Future clearUser() async {
-   await HiveBoxes.authBox.delete(HiveKeys.user);
+    await HiveBoxes.authBox.delete(HiveKeys.user);
   }
 }

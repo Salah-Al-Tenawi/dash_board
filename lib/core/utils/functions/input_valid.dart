@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 inputvaild(String val, String? type, int? max, int? min) {
@@ -11,8 +10,6 @@ inputvaild(String val, String? type, int? max, int? min) {
       return "اسم المستخدم غير صالح";
     }
   }
-  
-  
 
   if (type == "email") {
     if (!GetUtils.isEmail(val)) {
@@ -63,8 +60,6 @@ inputvaild(String val, String? type, int? max, int? min) {
     }
   }
 }
-
-
 
 bool isValidUsername(String username) {
   // تعبير منتظم للتحقق من أن الاسم يحتوي فقط على الأحرف العربية أو الإنجليزية

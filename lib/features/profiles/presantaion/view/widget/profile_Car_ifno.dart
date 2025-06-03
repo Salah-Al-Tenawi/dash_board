@@ -7,20 +7,15 @@ import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/functions/show_image.dart';
 import 'package:sharecars/core/utils/widgets/cutom_list_tile.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_edit_info_car.dart';
 
 class ProfileCarIfno extends StatelessWidget {
-  final String? image;
-  final String name;
-  final String color;
-  final String seats;
+  final CarEntity car;
   const ProfileCarIfno({
     super.key,
-    required this.image,
-    required this.name,
-    required this.color,
-    required this.seats,
+    required this.car,
   });
 
   @override
@@ -39,21 +34,21 @@ class ProfileCarIfno extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         child: MyButton(
                           onPressed: () {
-                            image != null
-                                ? openImage(image!)
+                            car.image != null
+                                ? openImage(car.image!)
                                 : openImage(ImagesUrl.defualtCar);
                           },
                           child: CircleAvatar(
                             backgroundColor: MyColors.newrskey,
                             maxRadius: 30,
-                            backgroundImage: image == null
+                            backgroundImage: car.image == null
                                 ? const AssetImage(ImagesUrl.defualtCar)
-                                : NetworkImage(image!),
+                                : NetworkImage(car.image!),
                           ),
                         ),
                       ),
                       Text(
-                        name,
+                        car.type,
                         style: font12boldRamadi,
                       ),
                     ],
@@ -70,7 +65,7 @@ class ProfileCarIfno extends StatelessWidget {
                             color: MyColors.newrskey,
                           ),
                           subtitle: Text(
-                            color,
+                            car.color,
                             style:
                                 const TextStyle(color: MyColors.greyTextColor),
                           ),
@@ -86,7 +81,7 @@ class ProfileCarIfno extends StatelessWidget {
                             color: MyColors.newrskey,
                           ),
                           subtitle: Text(
-                            seats,
+                            "${car.seats}",
                             style: fontdefualtGreyText,
                           ),
                         ),
@@ -98,10 +93,7 @@ class ProfileCarIfno extends StatelessWidget {
 
             case ProfileMode.myEdit:
               ProfileEditINfoCar(
-                name: name,
-                color: color,
-                image: image,
-                seats: seats,
+                car: car,
               );
           }
         }

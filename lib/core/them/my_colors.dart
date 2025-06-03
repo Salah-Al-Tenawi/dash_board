@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class MyColors {
   // Blue shades
-  
+
   static const Color newgrey = Color(0xFFaec0c2);
   static const Color newramadi = Color(0xFF3d444b);
 
   static const Color newrskey = Color(0xFF098698);
-
-  
 
   static const Color bluedark = Color(0xFF0D1B2A);
   static const Color blueColor = Color(0xFF356899);
@@ -18,7 +16,7 @@ class MyColors {
   static const Color cornflowerBlue = Color(0xFF264653);
   static const Color indigoDye = Color(0xFF00416A);
   static const Color steelBlue = Color(0xFF4682B4);
-    static const Color lightPurple = Color(0xFFA78BFA);
+  static const Color lightPurple = Color(0xFFA78BFA);
 
   // Beige / earth tones
   static const Color beige = Color(0xFFF5F5DC);
@@ -31,7 +29,7 @@ class MyColors {
   static const Color greyTextColor = Color(0xFF95969D);
   static const Color greyTextField = Color(0xFFD9D9D9);
   static const Color textDark = Color(0xFF1B263B);
-  static const greyTextfildColor =  Color(0xffD9D9D9);
+  static const greyTextfildColor = Color(0xffD9D9D9);
   // Green shades
   static const Color mintGreen = Color(0xFF00C78C);
   static const Color actionGreen = Color(0xFF5EFF8D);

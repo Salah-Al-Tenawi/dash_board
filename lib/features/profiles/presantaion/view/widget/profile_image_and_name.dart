@@ -46,9 +46,8 @@ class ProfileImageAndName extends StatelessWidget {
                 return MyButton(
                   splashcolor: Colors.white,
                   onPressed: () {
-
-                    openImage(imageurl == null? ImagesUrl.profileImage:imageurl!);
-                    
+                    openImage(
+                        imageurl == null ? ImagesUrl.profileImage : imageurl!);
                   },
                   child: CircleAvatar(
                     backgroundColor: MyColors.newrskey,
@@ -99,7 +98,7 @@ class ProfileImageAndName extends StatelessWidget {
 
                 case ProfileMode.myView:
                 case ProfileMode.otherView:
-                  return  Text(
+                  return Text(
                     name,
                     style: const TextStyle(
                         fontSize: 15,

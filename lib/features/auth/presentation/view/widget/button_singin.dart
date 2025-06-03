@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'package:sharecars/core/utils/functions/show_my_snackbar.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/auth/presentation/manger/singin_cubit/singin_cubit.dart';
 import 'package:lottie/lottie.dart';
-
 
 class ButtonSingin extends StatelessWidget {
   const ButtonSingin({
@@ -32,7 +30,7 @@ class ButtonSingin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<SinginCubit>();  
+    final cubit = context.watch<SinginCubit>();
 
     return BlocConsumer<SinginCubit, SinginState>(
       listener: (context, state) {
@@ -44,10 +42,10 @@ class ButtonSingin extends StatelessWidget {
       },
       builder: (context, state) {
         return state is SinginLoading
-            ?  LottieBuilder.asset(
-                      ImagesUrl.loadinglottie,
-                      height: 80,
-                    )
+            ? LottieBuilder.asset(
+                ImagesUrl.loadinglottie,
+                height: 80,
+              )
             : MyButton(
                 onPressed: () {
                   final fname = firstname.text.trim();

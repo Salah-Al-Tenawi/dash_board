@@ -37,7 +37,7 @@ class AuthRepoIm extends AuthRepo {
     try {
       final user = await authRemoteDataSource.singin(firstName, lastName,
           gender, email, address, password, verfiyPassword);
-authLocalDataSourceIm.saveUser(user);
+      authLocalDataSourceIm.saveUser(user);
       return right(user);
     } on ServerExpcptions catch (e) {
       return left(e.erroe);
@@ -58,7 +58,7 @@ authLocalDataSourceIm.saveUser(user);
   @override
   Future<Either<Filuar, dynamic>> logout() async {
     try {
-      final response = await authRemoteDataSource.logout(); 
+      final response = await authRemoteDataSource.logout();
       authLocalDataSourceIm.clearUser();
       return right(response);
     } on ServerExpcptions catch (e) {

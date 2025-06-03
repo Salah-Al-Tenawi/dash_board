@@ -1,4 +1,3 @@
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
 
@@ -34,12 +33,11 @@ class HiveService {
   }
 }
 
-
 class HiveKeys {
   static const String user = "user";
 }
 
-class HiveBoxes { 
+class HiveBoxes {
   // صندوق بيانات تسجيل الدخول (مثل UserModel, token)
   static const String authBoxName = 'authBox';
   static Box get authBox => Hive.box(authBoxName);

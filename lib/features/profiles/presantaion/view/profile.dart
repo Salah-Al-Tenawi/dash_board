@@ -9,6 +9,7 @@ import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
 import 'package:sharecars/features/profiles/data/model/profile_model.dart';
+import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
 
@@ -20,7 +21,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  late Future<ProfileModel> _loadProfileFuture;
+  late Future<ProfileEntity> _loadProfileFuture;
   late ProfileCubit _profileCubit;
 
   @override
@@ -28,6 +29,7 @@ class _ProfileState extends State<Profile> {
     super.initState();
     _profileCubit = context.read<ProfileCubit>();
     final userId = Get.arguments as int;
+
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
@@ -36,7 +38,7 @@ class _ProfileState extends State<Profile> {
     return currentUser?.id;
   }
 
-  Future<ProfileModel> _fetchProfileData(int userId) async {
+  Future<ProfileEntity> _fetchProfileData(int userId) async {
     final currentUserid = getCurrentUserID();
     if (userId == currentUserid) {
       return await _profileCubit.showMyProfile();
@@ -48,7 +50,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<ProfileModel>(
+      body: FutureBuilder<ProfileEntity>(
         future: _loadProfileFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -94,7 +96,7 @@ class _ProfileState extends State<Profile> {
             );
           }
           return ProfileBody(
-            profileModel: snapshot.data!,
+            profileEntity: snapshot.data!,
           );
         },
       ),

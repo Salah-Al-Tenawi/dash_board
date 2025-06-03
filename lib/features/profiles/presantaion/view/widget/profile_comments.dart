@@ -7,10 +7,10 @@ import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_app.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
-import 'package:sharecars/features/profiles/data/model/comment_model.dart';
+import 'package:sharecars/features/profiles/domain/entity/comment_entity.dart';
 
 class ProfileComments extends StatelessWidget {
-  final List<CommentModel>? feadBack;
+  final List<CommentEntity>? feadBack;
   const ProfileComments({super.key, required this.feadBack});
 
   @override
@@ -33,8 +33,8 @@ class ProfileComments extends StatelessWidget {
 }
 
 class Comment extends StatelessWidget {
-  final CommentModel? commentModel;
-  const Comment({super.key, this.commentModel});
+  final CommentEntity? commentEntity;
+  const Comment({super.key, this.commentEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +53,19 @@ class Comment extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  commentModel!.userName,
+                  commentEntity!.authorName,
                   style: font12boldRamadi,
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  commentModel!.message,
+                  commentEntity!.text,
                   style: font10boldRamadi,
                   textDirection: TextDirection.rtl,
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    commentModel!.date,
+                    commentEntity!.createdAt,
                     style: const TextStyle(
                         fontSize: 6.2,
                         fontWeight: FontWeight.bold,
@@ -78,13 +78,13 @@ class Comment extends StatelessWidget {
           SizedBox(width: 10.w),
           MyButton(
             onPressed: () {
-              Get.toNamed(RouteName.profile ,arguments: commentModel!.userID);
+              Get.toNamed(RouteName.profile, arguments: commentEntity!.iduser);
             },
             child: CircleAvatar(
               maxRadius: 25,
               backgroundColor: MyColors.newrskey,
-              backgroundImage: commentModel?.imageurl != null
-                  ? NetworkImage(commentModel!.imageurl!)
+              backgroundImage: commentEntity?.authorPhoto != null
+                  ? NetworkImage(commentEntity!.authorPhoto!)
                   : const AssetImage(ImagesUrl.profileImage),
             ),
           ),

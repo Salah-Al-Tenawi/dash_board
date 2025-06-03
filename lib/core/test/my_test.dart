@@ -14,13 +14,13 @@ class _TestWidgetState extends State<MyTest> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-       const Text("login"),
+        const Text("login"),
         MyButton(
           onPressed: () {},
           width: 100,
           height: 50,
           color: Colors.blueAccent,
-          child:const Icon(Icons.grain_outlined),
+          child: const Icon(Icons.grain_outlined),
         )
       ],
     );

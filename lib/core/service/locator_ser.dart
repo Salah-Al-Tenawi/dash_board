@@ -10,10 +10,11 @@ locatorService() {
   getit.registerSingleton<DioConSumer>(DioConSumer());
   getit.registerSingleton<AuthRemoteDataSourceIM>(
       AuthRemoteDataSourceIM(api: getit.get<DioConSumer>()));
-
+  getit.registerSingleton<AuthLocalDataSourceIm>(AuthLocalDataSourceIm());
   getit.registerSingleton<AuthRepoIm>(
-      AuthRepoIm(
+    AuthRepoIm(
       authRemoteDataSource: getit.get<AuthRemoteDataSourceIM>(),
       authLocalDataSourceIm: getit.get<AuthLocalDataSourceIm>(),
-    ),);
+    ),
+  );
 }

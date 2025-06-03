@@ -5,19 +5,12 @@ import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_app.dart';
 import 'package:sharecars/core/utils/widgets/cutom_list_tile.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 
 class ProfileEditINfoCar extends StatefulWidget {
-  final String? image;
-  final String name;
-  final String color;
-  final String seats;
-
+  final CarEntity car;
   const ProfileEditINfoCar({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.color,
-    required this.seats,
+    super.key, required this.car,
   });
 
   @override
@@ -32,9 +25,9 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
   @override
   void initState() {
     super.initState();
-    carName = TextEditingController(text: widget.name);
-    colorCar = TextEditingController(text: widget.color);
-    seatsCar = TextEditingController(text: widget.seats);
+    carName = TextEditingController(text: widget.car.type);
+    colorCar = TextEditingController(text: widget.car.color);
+    seatsCar = TextEditingController(text: widget.car.seats as String);
   }
 
   @override
@@ -65,9 +58,9 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                 child: CircleAvatar(
                   backgroundColor: MyColors.newrskey,
                   maxRadius: 30,
-                  backgroundImage: widget.image == null
+                  backgroundImage: widget.car.image == null
                       ? const AssetImage(ImagesUrl.defualtCar)
-                      : NetworkImage(widget.image!) as ImageProvider,
+                      : NetworkImage(widget.car.image!) as ImageProvider,
                 ),
               ),
             ),

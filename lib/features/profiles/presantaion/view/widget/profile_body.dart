@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/text_app.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/features/profiles/data/model/profile_model.dart';
+import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_Car_ifno.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_contact_me.dart';
@@ -14,9 +15,9 @@ import 'package:sharecars/features/profiles/presantaion/view/widget/profile_rati
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_save_and_edit_buttons.dart';
 
 class ProfileBody extends StatefulWidget {
-  final ProfileModel profileModel;
+  final ProfileEntity profileEntity;
 
-  const ProfileBody({super.key, required this.profileModel});
+  const ProfileBody({super.key, required this.profileEntity});
 
   @override
   State<ProfileBody> createState() => _ProfileBodyState();
@@ -41,8 +42,8 @@ class _ProfileBodyState extends State<ProfileBody> {
                 child: Column(children: [
                   const ProfileSaveAndEditButtons(),
                   ProfileImageAndName(
-                    name: widget.profileModel.name,
-                    imageurl: widget.profileModel.imageUrl,
+                    name: widget.profileEntity.fullname,
+                    imageurl: widget.profileEntity.profilePhoto,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -51,28 +52,23 @@ class _ProfileBodyState extends State<ProfileBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ProfileRating(
-                          reviewsCount: widget.profileModel.reviewsCount,
-                          tripsCount: widget.profileModel.tripsCount,
+                          reviewsCount: widget.profileEntity.numberRating ,
+                          tripsCount: widget.profileEntity.numberOfides,
                         ),
-                        Text(widget.profileModel.address,
+                        Text(widget.profileEntity.address,
                             style: font13boldNewRamadi),
                         const ProfileContactMe()
                       ]),
                   ProfileHintline(
-                    hintLine: widget.profileModel.hintline,
+                    hintLine: widget.profileEntity.description,
                     controllerAboutme: controllerEditAboutMe,
                   ),
                   const Divider(
                     endIndent: 100,
                     indent: 100,
                   ),
-                  widget.profileModel.carName != null &&
-                          widget.profileModel.carColor != null
-                      ? ProfileCarIfno(
-                          name: widget.profileModel.name,
-                          image: widget.profileModel.imageUrl,
-                          color: widget.profileModel.carColor!,
-                          seats: widget.profileModel.carSeats!,
+                  widget.profileEntity.car!= null
+                      ? ProfileCarIfno(car:widget.profileEntity.car! ,
                         )
                       : const SizedBox(),
                   const Divider(
@@ -93,7 +89,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                     ),
                   ),
                   ProfileComments(
-                    feadBack: widget.profileModel.comments,
+                    feadBack: widget.profileEntity.comments,
                   ),
                 ])),
           ),

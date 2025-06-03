@@ -6,8 +6,7 @@ import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 
 part 'profile_state.dart';
 
-class ProfileCubit extends Cubit<ProfileState> { 
-
+class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepoIm profileRepoIm;
 
   ProfileCubit(this.profileRepoIm) : super(ProfileInitialState());
@@ -44,21 +43,18 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void saveMyProfile() async {
-    if(state is ProfileloadedState){ 
-      
-    }
-
+    if (state is ProfileloadedState) {}
 
     emit(ProfileLoadingState());
     // to do
     final response = await profileRepoIm.updateProfile(1);
     response.fold((error) {
       emit(ProfileErorrState(message: error.message));
-    }, (profileModel) { 
-      emit(ProfileloadedState(  ProfileMode.myEdit, profileModel:profileModel,));
+    }, (profileModel) {
+      emit(ProfileloadedState(
+        ProfileMode.myEdit,
+        profileModel: profileModel,
+      ));
     });
-  } 
-
-
-  
+  }
 }

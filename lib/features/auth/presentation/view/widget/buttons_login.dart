@@ -66,7 +66,8 @@ class ColumnButtonsLogin extends StatelessWidget {
                         onPressed: () {
                           context.read<LoginCubit>().emitgotoSingin();
                         },
-                        child: const Text("إنشاء حساب", style: font14normalblue),
+                        child:
+                            const Text("إنشاء حساب", style: font14normalblue),
                       ),
                       const Text("ليس لديك حساب بالفعل ؟"),
                     ],

@@ -9,7 +9,6 @@ class CricularDecoration extends StatelessWidget {
   CricularDecoration(
       {super.key, required this.heghit, required this.width, this.color});
 
-  
   @override
   Widget build(BuildContext context) {
     return ClipPath(

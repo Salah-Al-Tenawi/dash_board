@@ -5,7 +5,6 @@ class ThemApp {
   static ThemeData darkThem = ThemeData.dark();
 }
 
-
 // final ThemeData lightTheme = ThemeData(
 //   brightness: Brightness.light,
 

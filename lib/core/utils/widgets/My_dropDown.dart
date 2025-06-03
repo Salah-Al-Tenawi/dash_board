@@ -6,11 +6,11 @@ import 'package:sharecars/core/them/my_colors.dart';
 
 class MyDropdown extends StatelessWidget {
   final String title;
-final String? selectedValue;
+  final String? selectedValue;
   final List<String> options;
   final String? Function(String?)? validator;
   final Widget? icon;
-  final  Function(String?) onChanged;
+  final Function(String?) onChanged;
 
   const MyDropdown({
     super.key,
