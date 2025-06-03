@@ -5,12 +5,16 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sharecars/core/route/route_app.dart';
 import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/service/cubit_observer.dart';
+import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/service/locator_ser.dart';
 import 'package:sharecars/core/them/them_app.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
   Bloc.observer = MyBlocObserver();
   locatorService();
+ await HiveService.init();
   runApp(const ShareCars());
 }
 
