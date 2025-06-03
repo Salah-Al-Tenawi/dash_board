@@ -5,7 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
+import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/auth/data/model/user_model.dart';
 import 'package:sharecars/features/profiles/data/model/profile_model.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
@@ -29,11 +31,15 @@ class _ProfileState extends State<Profile> {
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
-  Future<ProfileModel> _fetchProfileData(int userId) async { 
-    // to do 
-    // replace " 1 " by me ID from cach
-    if (userId == 1) {
-      return await _profileCubit.showMyProfile(); 
+  int? getCurrentUserID() {
+    final currentUser = HiveBoxes.authBox.get(HiveKeys.user) as UserModel?;
+    return currentUser?.id;
+  }
+
+  Future<ProfileModel> _fetchProfileData(int userId) async {
+    final currentUserid = getCurrentUserID();
+    if (userId == currentUserid) {
+      return await _profileCubit.showMyProfile();
     } else {
       return await _profileCubit.showOtherProfile(userId);
     }
@@ -61,7 +67,6 @@ class _ProfileState extends State<Profile> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 
                   Text(
                     'حدث خطأ: ${snapshot.error}',
                     style: TextStyle(
@@ -72,7 +77,6 @@ class _ProfileState extends State<Profile> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20.h),
-
                   MyButton(
                     onPressed: () {
                       setState(() {

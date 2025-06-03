@@ -32,7 +32,7 @@ class ButtonSingin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<SinginCubit>(); // 👈 يراقب التغييرات تلقائيًا
+    final cubit = context.watch<SinginCubit>();  
 
     return BlocConsumer<SinginCubit, SinginState>(
       listener: (context, state) {
