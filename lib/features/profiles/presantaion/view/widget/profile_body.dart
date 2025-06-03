@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/text_app.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
-import 'package:sharecars/features/profiles/data/model/profile_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_Car_ifno.dart';

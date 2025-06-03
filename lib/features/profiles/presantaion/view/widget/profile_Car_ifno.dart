@@ -87,7 +87,75 @@ class ProfileCarIfno extends StatelessWidget {
                         ),
                       )
                     ],
-                  )
+                  ) ,
+                 Row(
+  children: [
+    Expanded(
+      child: CustomListTile(
+        title: "الراديو",
+        titleTextStyle: font15BoldRamadi,
+        iconleading: const Icon(Icons.radio, size: 20, color: MyColors.newrskey),
+        subtitle: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: car.hasRadio ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                car.hasRadio ? Icons.check : Icons.close,
+                size: 16,
+                color: car.hasRadio ? Colors.green : Colors.red,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                car.hasRadio ? "متاح" : "غير متاح",
+                style: TextStyle(
+                  color: car.hasRadio ? Colors.green : Colors.red,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    Expanded(
+      child: CustomListTile(
+        title: "التدخين",
+        titleTextStyle: font15BoldRamadi,
+        iconleading: const Icon(Icons.smoking_rooms, size: 20, color: MyColors.newrskey),
+        subtitle: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: car.allowsSmoking==true ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                car.allowsSmoking ? Icons.check : Icons.close,
+                size: 16,
+                color: car.allowsSmoking==true ? Colors.green : Colors.red,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                car.allowsSmoking ? "مسموح" : "ممنوع",
+                style: TextStyle(
+                  color: car.allowsSmoking ? Colors.green : Colors.red,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  ],
+)
                 ],
               );
 

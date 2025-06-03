@@ -8,7 +8,6 @@ import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
-import 'package:sharecars/features/profiles/data/model/profile_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
