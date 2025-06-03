@@ -18,7 +18,7 @@ class AuthRepoIm extends AuthRepo {
   Future<Either<Filuar, UserModel>> login(String email, String password) async {
     try {
       final user = await authRemoteDataSource.login(email, password);
-      authLocalDataSourceIm.saveUser(user);
+      
       return right(user);
     } on ServerExpcptions catch (e) {
       return left(e.erroe);
@@ -37,7 +37,7 @@ class AuthRepoIm extends AuthRepo {
     try {
       final user = await authRemoteDataSource.singin(firstName, lastName,
           gender, email, address, password, verfiyPassword);
-      authLocalDataSourceIm.saveUser(user);
+      
       return right(user);
     } on ServerExpcptions catch (e) {
       return left(e.erroe);

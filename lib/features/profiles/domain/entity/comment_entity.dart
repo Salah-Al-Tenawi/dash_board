@@ -1,5 +1,5 @@
 class CommentEntity {
-  final String iduser;
+  final int iduser;
   final String text;
   final String authorName;
   final String? authorPhoto;

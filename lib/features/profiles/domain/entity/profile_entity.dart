@@ -1,6 +1,6 @@
+import 'package:sharecars/features/profiles/data/model/documents_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 import 'package:sharecars/features/profiles/domain/entity/comment_entity.dart';
-import 'package:sharecars/features/profiles/domain/entity/documents_entity.dart';
 
 class ProfileEntity {
   final String fullname;
@@ -14,7 +14,7 @@ class ProfileEntity {
   final String gender;
   CarEntity? car;
   List<CommentEntity>? comments;
-  DocumentsEntity documents;
+  DocumentsModel ?documents;
 
   ProfileEntity({
     required this.fullname,

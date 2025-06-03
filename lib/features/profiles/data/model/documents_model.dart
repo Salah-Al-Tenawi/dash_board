@@ -1,6 +1,6 @@
 import 'package:sharecars/core/api/api_end_points.dart';
 
-class DocumentsModel {
+class DocumentsModel  {
   final String? faceIdPic;
   final String ?backIdPic;
   final String? licensePic;

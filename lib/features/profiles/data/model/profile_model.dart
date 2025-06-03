@@ -2,15 +2,16 @@ import 'package:sharecars/core/api/api_end_points.dart';
 import 'package:sharecars/features/profiles/data/model/car_model.dart';
 import 'package:sharecars/features/profiles/data/model/comment_model.dart';
 import 'package:sharecars/features/profiles/data/model/documents_model.dart';
+import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 
-class ProfileModel {
+class ProfileModel extends ProfileEntity {
   final bool success;
   final ProfileData data;
 
   ProfileModel({
     required this.success,
     required this.data,
-  });
+  }) : super(fullname: data.fullName, profilePhoto: data.profilePhoto, rate: data.rate, verification: data.verificationStatus, address: data.address, gender: data.gender, description: data.description, car: data.car, comments: data.comments, documents: data.documents, numberRating: data.numberRating, numberOfides: data.numberOfRides);
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(

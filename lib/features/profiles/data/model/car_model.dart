@@ -1,21 +1,22 @@
 import 'package:sharecars/core/api/api_end_points.dart';
+import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 
-class CarModel {
-  final String? typeOfCar;
-  final String? colorOfCar;
-  final int? numberOfSeats;
+class CarModel extends CarEntity{
+  final String typeOfCar;
+  final String colorOfCar;
+  final int numberOfSeats;
   final String? carPic;
-  final bool? radio;
-  final bool? smoking;
+  final bool radio;
+  final bool smoking;
 
   CarModel({
-    this.typeOfCar,
-    this.colorOfCar,
-    this.numberOfSeats,
+    required this.typeOfCar,
+    required this.colorOfCar,
+    required this.numberOfSeats,
     this.carPic,
-    this.radio,
-    this.smoking,
-  });
+    required this.radio,
+    required this.smoking,
+  }) : super(type: typeOfCar, color: colorOfCar, seats: numberOfSeats, image: carPic, hasRadio: radio, allowsSmoking: smoking);
 
   factory CarModel.fromJson(Map<String, dynamic> json) {
     return CarModel(

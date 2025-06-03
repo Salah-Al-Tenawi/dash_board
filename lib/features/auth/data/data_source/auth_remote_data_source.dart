@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:sharecars/core/api/api_end_points.dart';
 import 'package:sharecars/core/api/dio_consumer.dart';
+import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
 
 abstract class AuthRemoteDataSource {
@@ -23,6 +24,7 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
   Future<UserModel> login(String email, String password) async {
     final response = await api.post(ApiEndPoint.login,
         data: {ApiKey.email: email, ApiKey.password: password});
+    HiveBoxes.authBox.put(HiveKeys.user, response);
     return UserModel.fromjson(response);
   }
 
@@ -44,6 +46,7 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
       ApiKey.gender: gender,
       ApiKey.address: address,
     });
+    HiveBoxes.authBox.put(HiveKeys.user, response);
     return UserModel.fromjson(response);
   }
 
