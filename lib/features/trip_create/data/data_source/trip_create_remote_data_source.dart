@@ -1,6 +1,5 @@
 import 'package:sharecars/core/api/api_consumer.dart';
 import 'package:sharecars/core/api/api_end_points.dart';
-import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_model.dart';
 
 class TripCreateRemoteDataSource {

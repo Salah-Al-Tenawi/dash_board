@@ -21,7 +21,7 @@ class AuthRepoIm extends AuthRepo {
       
       return right(user);
     } on ServerExpcptions catch (e) {
-      return left(e.erroe);
+      return left(e.error);
     }
   }
 
@@ -40,7 +40,7 @@ class AuthRepoIm extends AuthRepo {
       
       return right(user);
     } on ServerExpcptions catch (e) {
-      return left(e.erroe);
+      return left(e.error);
     }
   }
 
@@ -51,7 +51,7 @@ class AuthRepoIm extends AuthRepo {
 
       return right(response);
     } on ServerExpcptions catch (e) {
-      return left(e.erroe);
+      return left(e.error);
     }
   }
 
@@ -62,7 +62,7 @@ class AuthRepoIm extends AuthRepo {
       authLocalDataSourceIm.clearUser();
       return right(response);
     } on ServerExpcptions catch (e) {
-      return left(e.erroe);
+      return left(e.error);
     }
   }
 }
