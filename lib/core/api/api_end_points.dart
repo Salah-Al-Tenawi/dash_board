@@ -1,13 +1,23 @@
 class ApiEndPoint {
   static const baserUrl =
-      "https://dashboard.render.com/web/srv-d0gbp5a4d50c73fmctq0/api/";
+      "localhost:8000/api/";
   // auth
   static const login = "$baserUrl login";
   static const singin = "$baserUrl signup";
   static const logout = "$baserUrl logout";
   static const forgetPassword = "$baserUrl forgot-password";
   static const resetPassword = "$baserUrl reset-password";
+static const profile = "$baserUrl profile"; 
+static const comments = "$baserUrl comments";  
+static const verifypassenger = "$profile /verify/passenger";  
+static const verifydriver = "$profile /verify/driver";  
+static const rateUser = "$profile /rate";  
 
+
+
+// http://localhost:8000/api/profile/verify/passenger
+// http://localhost:8000/api/profile/3/comments
+// localhost:8000/api/profile/2/rate
   // storage
 }
 class ApiKey {

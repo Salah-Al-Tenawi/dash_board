@@ -17,7 +17,7 @@ final class ProfileErorrState extends ProfileState {
 }
 
 final class ProfileloadedState extends ProfileState {
-  final ProfileModel profileModel;
+  final ProfileEntity profileEntity;
   final ProfileMode mode;
-  const ProfileloadedState(this.mode, {required this.profileModel});
+  const ProfileloadedState(this.mode, {required this.profileEntity});
 }
