@@ -1,25 +1,26 @@
 class ApiEndPoint {
-  static const baserUrl =
-      "localhost:8000/api/";
+  static const baserUrl = "localhost:8000/api/";
   // auth
   static const login = "$baserUrl login";
   static const singin = "$baserUrl signup";
   static const logout = "$baserUrl logout";
   static const forgetPassword = "$baserUrl forgot-password";
   static const resetPassword = "$baserUrl reset-password";
-static const profile = "$baserUrl profile"; 
-static const comments = "$baserUrl comments";  
-static const verifypassenger = "$profile /verify/passenger";  
-static const verifydriver = "$profile /verify/driver";  
-static const rateUser = "$profile /rate";  
+  static const profile = "$baserUrl profile";
+  static const comments = "$baserUrl comments";
+  static const verifypassenger = "$profile /verify/passenger";
+  static const verifydriver = "$profile /verify/driver";
+  static const rateUser = "$profile /rate";
 
-
+//  trips endpoint
+  static const rides = "$baserUrl rides";
 
 // http://localhost:8000/api/profile/verify/passenger
 // http://localhost:8000/api/profile/3/comments
 // localhost:8000/api/profile/2/rate
   // storage
 }
+
 class ApiKey {
   // Authorization
   static const authorization = "Authorization";
@@ -44,7 +45,7 @@ class ApiKey {
   static const description = "description";
   static const verificationStatus = "verification_status";
   static const numberOfRides = "number_of_rides";
-  //toDo edit the key 
+  //toDo edit the key
   //toDo don't forget this
   //ToDo show me salah
   static const rate = "rate";
@@ -58,7 +59,7 @@ class ApiKey {
   static const radio = "radio";
   static const smoking = "smoking";
 
-    // Documents
+  // Documents
   static const documents = "documents";
   static const faceIdPic = "face_id_pic";
   static const backIdPic = "back_id_pic";
@@ -66,10 +67,28 @@ class ApiKey {
   static const mechanicCardPic = "mechanic_card_pic";
 
   // Comments
-  
+
   static const name = "name";
   static const comments = "comments";
   static const comment = "comment";
   static const commenter = "commenter";
   static const createdAt = "created_at";
+
+  // rides
+  static const pickupAddress = "pickup_address";
+  static const destinationAddress = "destination_address";
+  
+  static const departureTime = "departure_time";
+
+  static const availableSeats = "available_seats";
+  static const pricePerSeat = "price_per_seat";
+  
+  // {
+//     "pickup_address": "Al-Zabadani, Rif Dimashq, Syria",
+//     "destination_address": "Damascus, Syria",
+//     "departure_time": "2026-03-20T08:00:00Z",
+//     "available_seats": 3,
+//     "price_per_seat": 15.50,
+//     "vehicle_type": "Sedan"
+// }
 }

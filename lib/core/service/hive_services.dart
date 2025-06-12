@@ -13,6 +13,7 @@ class HiveService {
     await Future.wait([
       Hive.openBox(HiveBoxes.authBoxName),
       Hive.openBox(HiveBoxes.profileBoxName),
+      Hive.openBox(HiveBoxes.tripBoxName),
     ]);
   }
 
@@ -35,6 +36,8 @@ class HiveService {
 
 class HiveKeys {
   static const String user = "user";
+  static const String profile = "profile";
+  static const String trip = "trip";
 }
 
 class HiveBoxes {
@@ -45,4 +48,7 @@ class HiveBoxes {
   // صندوق بيانات الملف الشخصي (مثل صورة، معلومات إضافية)
   static const String profileBoxName = 'profileBox';
   static Box get profileBox => Hive.box(profileBoxName);
+
+  static const String tripBoxName = 'tripBox';
+  static Box get tripBox => Hive.box(tripBoxName);
 }

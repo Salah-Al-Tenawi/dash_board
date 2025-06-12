@@ -119,8 +119,8 @@ class _MyTestState extends State<MyTest> {
                       (currentRouteIndex + 1) % allRoutes.length;
                 });
               },
-              child: const Icon(Icons.swap_horiz),
               tooltip: 'Switch Route',
+              child: const Icon(Icons.swap_horiz),
             )
           : null,
       bottomNavigationBar: (startLocation != null && endLocation != null)
