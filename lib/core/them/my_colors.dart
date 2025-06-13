@@ -5,8 +5,9 @@ class MyColors {
 
   static const Color newgrey = Color(0xFFaec0c2);
   static const Color newramadi = Color(0xFF3d444b);
-
   static const Color newrskey = Color(0xFF098698);
+  static const Color lightRskey = Color(0xFF5FBBC8);
+
 
   static const Color bluedark = Color(0xFF0D1B2A);
   static const Color blueColor = Color(0xFF356899);

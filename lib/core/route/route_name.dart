@@ -7,5 +7,10 @@ class RouteName {
   static const profile = "/profile";
 
   static const updateprofile = "/updateprofile";
-  static const home = "/home";
+  static const home = "/home"; 
+  //trip 
+  static const tripSelectSourceAndDistOnMap = "/TripSelectSourceAndDistOnMap"; 
+  
+  static const tripDateAndSeats = "/TripDateAndSeats"; 
+  
 }

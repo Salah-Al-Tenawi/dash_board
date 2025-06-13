@@ -31,3 +31,5 @@ const TextStyle font12boldnewramadi = TextStyle(
     fontSize: 12, fontWeight: FontWeight.bold, color: MyColors.newramadi);
 
 const TextStyle fontdefualtGreyText = TextStyle(color: MyColors.greyTextColor);
+const TextStyle font13boldGreyText = TextStyle(color: MyColors.greyTextColor , fontSize: 13 ,fontWeight: FontWeight.bold);
+const TextStyle font13boldwhite = TextStyle(color: Colors.white, fontSize: 13 ,fontWeight: FontWeight.bold);

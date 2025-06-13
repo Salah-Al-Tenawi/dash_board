@@ -7,5 +7,5 @@ class TripFrom {
   final double ?price;
   final String ?numberPhone;
 
-  TripFrom({required this.source, required this.dest, required this.path, required this.date, required this.numberSeats, required this.price, required this.numberPhone});
+  TripFrom({ this.source,  this.dest,  this.path,  this.date,  this.numberSeats,  this.price,  this.numberPhone});
 }
