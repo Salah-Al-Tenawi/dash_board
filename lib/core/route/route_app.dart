@@ -51,7 +51,7 @@ List<GetPage<dynamic>> appRoute = [
 
   GetPage(
       name: RouteName.tripSelectSourceAndDistOnMap,
-      page: () => const TripSelectSourceAndDistOnMap()),
+      page: () => const TripSelectSourceAndDistOnMap() ),
 
   GetPage(
       name: RouteName.tripDateAndSeats,

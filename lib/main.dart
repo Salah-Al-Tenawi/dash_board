@@ -27,8 +27,8 @@ class ShareCars extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       child: GetMaterialApp(
-        title: "state mangment with cubit but navigation by getx",
-        initialRoute: RouteName.tripSelectSourceAndDistOnMap,
+        title: "state mangment with cubit and navigation by getx",
+        initialRoute: RouteName.tripDateAndSeats,
         getPages: appRoute,
         theme: ThemApp.lightThem,
         debugShowCheckedModeBanner: false,

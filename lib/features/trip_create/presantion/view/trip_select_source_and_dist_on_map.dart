@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_app.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
@@ -29,7 +31,7 @@ class _TripSelectSourceAndDestOnMapState
       body: SafeArea(
           child: Padding(
         padding:
-            EdgeInsetsGeometry.symmetric(horizontal: 30.w, vertical: 100.w),
+            EdgeInsetsGeometry.symmetric(horizontal: 30.h, vertical: 100.w),
         child: Column(
           children: [
             const Text("حدد موقع انطلاق و وجهة الرحلة و المسار على الخريطة"),
@@ -75,8 +77,11 @@ class _TripSelectSourceAndDestOnMapState
             Padding(
               padding: EdgeInsetsGeometry.only(left: 160.w),
               child: MyButton(
-                onPressed: () { 
-                  
+                onPressed: () {
+                  Get.toNamed(
+                    RouteName.tripDateAndSeats, 
+                    arguments: tripFrom
+                  );
                 },
                 color: MyColors.newramadi,
                 width: 130.w,
