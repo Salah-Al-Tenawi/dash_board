@@ -24,7 +24,7 @@ class _TripSelectBookingTypeState extends State<TripSelectBookingType> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(top: 50.h ,bottom: 50),
+      padding: EdgeInsets.only(top: 30.h, bottom: 40),
       child: ToggleButtons(
         isSelected: [_reservationType == 0, _reservationType == 1],
         onPressed: (index) {
