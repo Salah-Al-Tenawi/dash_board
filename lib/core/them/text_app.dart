@@ -24,6 +24,10 @@ const TextStyle font10NormalGrey = TextStyle(
   color: Colors.grey,
 );
 
+const TextStyle font11NormalGrey = TextStyle(
+  fontSize: 11,
+  color: Colors.grey,
+);
 const TextStyle font13boldbluedark = TextStyle(
     fontSize: 13, fontWeight: FontWeight.bold, color: MyColors.bluedark);
 
@@ -39,3 +43,6 @@ const TextStyle font14boldblueblack = TextStyle(
     fontSize: 14, fontWeight: FontWeight.bold, color: MyColors.bluedark);
 const TextStyle font20normalsky =
     TextStyle(fontSize: 50, color: MyColors.newrskey);
+
+const TextStyle font25boldgreen =
+    TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25);

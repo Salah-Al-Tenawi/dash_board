@@ -79,7 +79,7 @@ class _TripSelectSourceAndDestOnMapState
               child: MyButton(
                 onPressed: () {
                   Get.toNamed(
-                    RouteName.tripDateAndSeats, 
+                    RouteName.tripSelectDateAndSeats, 
                     arguments: tripFrom
                   );
                 },

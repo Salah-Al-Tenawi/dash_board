@@ -6,8 +6,8 @@ import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_app.dart';
 
 class TripDateShow extends StatelessWidget {
-  final String day;
-  final String hour;
+  final String ?day;
+  final String ?hour;
   const TripDateShow({
     super.key,
     required this.day,
@@ -36,7 +36,7 @@ class TripDateShow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(day, style: font14boldblueblack),
+              Text(day ??"2025 - x - xx", style: font14boldblueblack),
               SizedBox(
                 width: 37.w,
               ),
@@ -47,7 +47,7 @@ class TripDateShow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(hour, style: font14boldblueblack),
+              Text(hour ?? "xx : xx xm" , style: font14boldblueblack),
               SizedBox(
                 width: 50.w,
               ),

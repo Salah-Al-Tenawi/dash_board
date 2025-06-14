@@ -11,6 +11,7 @@ class RouteName {
   //trip 
   static const tripSelectSourceAndDistOnMap = "/TripSelectSourceAndDistOnMap"; 
   
-  static const tripDateAndSeats = "/TripDateAndSeats"; 
+  static const tripSelectDateAndSeats = "/tripSelectDateAndSeats"; 
+  static const tripSelectPriceAndBookingType = "/tripSelectPriceAndBookingType"; 
   
 }
