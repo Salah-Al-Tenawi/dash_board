@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/them/text_app.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/functions/show_my_snackbar.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/auth/presentation/manger/login_cubit/login_cubit.dart';

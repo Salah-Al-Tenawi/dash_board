@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/them/text_app.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/widgets/cutom_list_tile.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';

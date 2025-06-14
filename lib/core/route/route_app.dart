@@ -14,6 +14,7 @@ import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
 import 'package:sharecars/features/splash_view/presentaion/view/splash_view.dart';
+import 'package:sharecars/features/trip_create/presantion/view/trip_add_number_phone.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_and_seats.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
@@ -48,7 +49,8 @@ List<GetPage<dynamic>> appRoute = [
             child: const Profile(),
           )),
 
-  // trips
+  // trips create 
+  // Todo add bloc provider 
 
   GetPage(
       name: RouteName.tripSelectSourceAndDistOnMap,
@@ -63,6 +65,10 @@ List<GetPage<dynamic>> appRoute = [
       name: RouteName.tripSelectPriceAndBookingType,
       page: () => const TripSelectPriceAndBookingType()), 
 
+
+  GetPage(
+      name: RouteName.tripAddNumberPhone,
+      page: () => const TripAddNumberPhone()), 
 
 
 

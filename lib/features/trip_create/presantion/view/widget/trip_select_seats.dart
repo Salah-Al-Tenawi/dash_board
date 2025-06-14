@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/them/text_app.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_from.dart';
 
 class TripSelectSeats extends StatelessWidget {

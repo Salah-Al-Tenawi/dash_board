@@ -11,7 +11,6 @@ import 'package:sharecars/core/them/them_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   Bloc.observer = MyBlocObserver();
   locatorService();
   await HiveService.init();
@@ -28,7 +27,7 @@ class ShareCars extends StatelessWidget {
       minTextAdapt: true,
       child: GetMaterialApp(
         title: "state mangment with cubit and navigation by getx",
-        initialRoute: RouteName.tripSelectDateAndSeats,
+        initialRoute: RouteName.tripSelectSourceAndDistOnMap,
         getPages: appRoute,
         theme: ThemApp.lightThem,
         debugShowCheckedModeBanner: false,

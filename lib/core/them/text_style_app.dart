@@ -46,3 +46,14 @@ const TextStyle font20normalsky =
 
 const TextStyle font25boldgreen =
     TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25);
+
+const font18boldramdi = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: MyColors.newramadi,
+);
+
+const font13normaldgrey = TextStyle(
+  fontSize: 14,
+  color: Colors.grey,
+);

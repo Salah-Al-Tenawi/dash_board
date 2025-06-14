@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:sharecars/core/them/text_app.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
 
 class ProfileRating extends StatelessWidget {
   final int reviewsCount;

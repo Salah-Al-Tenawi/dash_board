@@ -6,7 +6,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:sharecars/core/constant/const_text.dart';
 import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
-import 'package:sharecars/core/them/text_app.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_from.dart';
 import 'package:sharecars/features/trip_create/presantion/view/widget/trip_select_booking_type.dart';
@@ -70,7 +70,7 @@ class _TripSelectPriceAndBookingTypeState
                 padding: EdgeInsetsGeometry.only(left: 160.w),
                 child: MyButton(
                   onPressed: () {
-                    // Get.toNamed(RouteName.tripSelectPriceAndBookingType, arguments: tripFrom);
+                    Get.toNamed(RouteName.tripAddNumberPhone, arguments: tripFrom);
                   },
                   color: MyColors.newramadi,
                   width: 130.w,
