@@ -39,16 +39,13 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
                 "تم إنشاء الرحلة بنجاح ",
                 style: font18boldramdi,
               ),
-              SizedBox(
-                height: 30.h,
-              ),
-              const FaIcon(
-                FontAwesomeIcons.circleCheck,
-                size: 150,
-                color: MyColors.newrskey,
-              ),
-              SizedBox(
-                height: 100.h,
+              Padding(
+                padding: EdgeInsets.only(top: 30.h, bottom: 100.h),
+                child: const FaIcon(
+                  FontAwesomeIcons.circleCheck,
+                  size: 150,
+                  color: MyColors.newrskey,
+                ),
               ),
               const Text(
                 "هل ترغب بإنشاء رحلة عودة من الوجهة الحالية ",
