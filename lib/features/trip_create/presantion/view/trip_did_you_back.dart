@@ -67,7 +67,7 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
                         )
                             .animate()
                             .fadeIn(duration: 500.ms)
-                            .move(begin: Offset(-50, 0), end: Offset.zero))
+                            .move(begin: const Offset(-50, 0), end: Offset.zero))
               ],
             ),
           ),
