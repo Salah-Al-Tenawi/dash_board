@@ -22,7 +22,11 @@ class _TripSelectSourceAndDestOnMapState
   @override
   void initState() {
     super.initState();
-    tripFrom = TripFrom();
+    try {
+      tripFrom = Get.arguments as TripFrom;
+    } catch (e) {
+      tripFrom = TripFrom();
+    }
   }
 
   @override
@@ -78,10 +82,8 @@ class _TripSelectSourceAndDestOnMapState
               padding: EdgeInsetsGeometry.only(left: 160.w),
               child: MyButton(
                 onPressed: () {
-                  Get.toNamed(
-                    RouteName.tripSelectDateAndSeats, 
-                    arguments: tripFrom
-                  );
+                  Get.toNamed(RouteName.tripSelectDateAndSeats,
+                      arguments: tripFrom);
                 },
                 color: MyColors.newramadi,
                 width: 130.w,

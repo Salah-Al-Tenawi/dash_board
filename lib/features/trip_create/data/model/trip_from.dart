@@ -8,6 +8,7 @@ class TripFrom {
   double recomandedPrice;
   String? numberPhone;
   int bookingType;
+  bool reverseTripRoute ;
 
   TripFrom(
       {this.source,
@@ -17,6 +18,7 @@ class TripFrom {
       this.numberSeats = 0,
       this.price = 0,
       this.recomandedPrice = 0,
-      this.numberPhone,
+      this.numberPhone, 
+      this.reverseTripRoute =false,
       this.bookingType = 0});
 }

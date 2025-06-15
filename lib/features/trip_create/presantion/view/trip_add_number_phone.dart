@@ -24,7 +24,11 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
   @override
   void initState() {
     super.initState();
+
     tripFrom = Get.arguments as TripFrom;
+    if (tripFrom.numberPhone != null) {
+      _phoneController.text = tripFrom.numberPhone!;
+    }
   }
 
   @override
@@ -96,8 +100,10 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           tripFrom.numberPhone = _phoneController.text;
-                          Get.toNamed(RouteName.tripDidYouBack,
-                              arguments: tripFrom);
+                          Get.toNamed(RouteName.tripDidYouBack, 
+                              arguments: tripFrom ,
+                               
+                               );
                           setState(() {
                             _isValid = true;
                           });
