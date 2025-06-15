@@ -70,9 +70,9 @@ List<GetPage<dynamic>> appRoute = [
       name: RouteName.tripAddNumberPhone,
       page: () => const TripAddNumberPhone()),
 
-  GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()) ,
+  GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()),
 
-  // home 
-  
-  GetPage(name: RouteName.home, page: () => const Home()) 
+  // home
+
+  GetPage(name: RouteName.home, page: () => const Home())
 ];
