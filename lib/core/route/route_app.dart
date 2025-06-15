@@ -10,6 +10,7 @@ import 'package:sharecars/features/auth/presentation/manger/singin_cubit/singin_
 import 'package:sharecars/features/auth/presentation/view/forget_password.dart';
 import 'package:sharecars/features/auth/presentation/view/login.dart';
 import 'package:sharecars/features/auth/presentation/view/singin.dart';
+import 'package:sharecars/features/home/preantion/view/home.dart';
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
@@ -18,6 +19,7 @@ import 'package:sharecars/features/trip_create/presantion/view/trip_add_number_p
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_and_seats.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
+import 'package:sharecars/features/trip_create/presantion/view/trip_did_you_back.dart';
 
 List<GetPage<dynamic>> appRoute = [
   GetPage(name: RouteName.splashView, page: () => const SplashView()),
@@ -49,28 +51,28 @@ List<GetPage<dynamic>> appRoute = [
             child: const Profile(),
           )),
 
-  // trips create 
-  // Todo add bloc provider 
+  // trips create
+  // Todo add bloc provider
 
   GetPage(
       name: RouteName.tripSelectSourceAndDistOnMap,
-      page: () => const TripSelectSourceAndDistOnMap() ),
+      page: () => const TripSelectSourceAndDistOnMap()),
 
   GetPage(
       name: RouteName.tripSelectDateAndSeats,
-      page: () => const TripSelectDateAndSeats()), 
-
+      page: () => const TripSelectDateAndSeats()),
 
   GetPage(
       name: RouteName.tripSelectPriceAndBookingType,
-      page: () => const TripSelectPriceAndBookingType()), 
-
+      page: () => const TripSelectPriceAndBookingType()),
 
   GetPage(
       name: RouteName.tripAddNumberPhone,
-      page: () => const TripAddNumberPhone()), 
+      page: () => const TripAddNumberPhone()),
 
+  GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()) ,
 
-
-
+  // home 
+  
+  GetPage(name: RouteName.home, page: () => const Home()) 
 ];

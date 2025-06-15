@@ -10,6 +10,9 @@ const TextStyle font10boldRamadi = TextStyle(
 
 const TextStyle font12boldRamadi = TextStyle(
     fontSize: 12, fontWeight: FontWeight.bold, color: MyColors.newramadi);
+
+const TextStyle font12boldsky = TextStyle(
+    fontSize: 12, fontWeight: FontWeight.bold, color: MyColors.newgrey);
 const TextStyle font15BoldRamadi = TextStyle(
     fontSize: 15, fontWeight: FontWeight.bold, color: MyColors.newramadi);
 

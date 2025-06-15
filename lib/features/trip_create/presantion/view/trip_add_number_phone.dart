@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/functions/input_valid.dart';
@@ -95,6 +96,8 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           tripFrom.numberPhone = _phoneController.text;
+                          Get.toNamed(RouteName.tripDidYouBack,
+                              arguments: tripFrom);
                           setState(() {
                             _isValid = true;
                           });

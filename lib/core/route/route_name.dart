@@ -16,4 +16,5 @@ class RouteName {
   static const tripSelectDateAndSeats = "/tripSelectDateAndSeats";
   static const tripSelectPriceAndBookingType = "/tripSelectPriceAndBookingType";
   static const tripAddNumberPhone = "/tripAddNumberPhone";
+  static const tripDidYouBack = "/TripDidYouBack";
 }
