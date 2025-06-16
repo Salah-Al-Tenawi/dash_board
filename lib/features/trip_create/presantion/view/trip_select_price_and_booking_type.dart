@@ -52,7 +52,7 @@ class _TripSelectPriceAndBookingTypeState
               Text(recomandedprice, style: font25boldgreen),
               TripSelectPrice(tripFrom: tripFrom),
               const Divider(
-                color: MyColors.newramadi,
+                color: MyColors.primaryText,
                 endIndent: 100,
                 indent: 100,
                 thickness: 0.3,
@@ -70,13 +70,14 @@ class _TripSelectPriceAndBookingTypeState
                 padding: EdgeInsetsGeometry.only(left: 160.w),
                 child: MyButton(
                   onPressed: () {
-                    Get.toNamed(RouteName.tripAddNumberPhone, arguments: tripFrom);
+                    Get.toNamed(RouteName.tripAddNumberPhone,
+                        arguments: tripFrom);
                   },
-                  color: MyColors.newramadi,
+                  color: MyColors.primaryText,
                   width: 130.w,
                   height: 50.h,
                   borderRadius: true,
-                  splashcolor: MyColors.newrskey,
+                  splashcolor: MyColors.primary,
                   child: const Text(
                     "التالي",
                     style: font13boldwhite,

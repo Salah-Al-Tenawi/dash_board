@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
               CricularDecoration(
                 heghit: 100,
                 width: 120,
-                color: MyColors.newrskey,
+                color: MyColors.primary,
               ),
               SizedBox(
                 height: 80.h,

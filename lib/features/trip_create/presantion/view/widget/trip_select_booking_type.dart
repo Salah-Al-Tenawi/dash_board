@@ -35,7 +35,7 @@ class _TripSelectBookingTypeState extends State<TripSelectBookingType> {
         selectedBorderColor: Colors.transparent,
         fillColor: Colors.transparent,
         color: Colors.grey,
-        selectedColor: MyColors.newrskey,
+        selectedColor: MyColors.primary,
         borderRadius: BorderRadius.circular(10),
         children: [
           Padding(

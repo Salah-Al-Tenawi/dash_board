@@ -72,8 +72,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               }
                             },
                             borderRadius: true,
-                            color: MyColors.newramadi,
-                            splashcolor: MyColors.newrskey,
+                            color: MyColors.primaryText,
+                            splashcolor: MyColors.primary,
                             width: 140.w,
                             child: const Text(
                               "تأكيد",

@@ -10,7 +10,8 @@ import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 class ProfileEditINfoCar extends StatefulWidget {
   final CarEntity car;
   const ProfileEditINfoCar({
-    super.key, required this.car,
+    super.key,
+    required this.car,
   });
 
   @override
@@ -56,7 +57,7 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                   }
                 },
                 child: CircleAvatar(
-                  backgroundColor: MyColors.newrskey,
+                  backgroundColor: MyColors.primary,
                   maxRadius: 30,
                   backgroundImage: widget.car.image == null
                       ? const AssetImage(ImagesUrl.defualtCar)
@@ -71,7 +72,7 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                 iconleading: const Icon(
                   Icons.directions_car,
                   size: 20,
-                  color: MyColors.newrskey,
+                  color: MyColors.primary,
                 ),
                 subtitle: TextFormField(
                   controller: carName,
@@ -92,7 +93,7 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                 iconleading: const Icon(
                   Icons.color_lens,
                   size: 20,
-                  color: MyColors.newrskey,
+                  color: MyColors.primary,
                 ),
                 subtitle: TextFormField(
                   controller: colorCar,
@@ -109,7 +110,7 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                 iconleading: const Icon(
                   Icons.chair,
                   size: 20,
-                  color: MyColors.newrskey,
+                  color: MyColors.primary,
                 ),
                 subtitle: TextFormField(
                   controller: seatsCar,

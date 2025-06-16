@@ -67,11 +67,11 @@ class TripSelectAndSeatsState extends State<TripSelectDateAndSeats> {
               width: 100.w,
               height: 30.h,
               child: const FaIcon(FontAwesomeIcons.calendarDays,
-                  size: 60, color: MyColors.newrskey),
+                  size: 60, color: MyColors.primary),
             ),
             TripDateShow(day: formattedDate, hour: formattedTime),
             const Divider(
-              color: MyColors.newramadi,
+              color: MyColors.primaryText,
               endIndent: 50,
               indent: 50,
               thickness: 0.3,
@@ -90,11 +90,11 @@ class TripSelectAndSeatsState extends State<TripSelectDateAndSeats> {
                   Get.toNamed(RouteName.tripSelectPriceAndBookingType,
                       arguments: tripFrom);
                 },
-                color: MyColors.newramadi,
+                color: MyColors.primaryText,
                 width: 130.w,
                 height: 50.h,
                 borderRadius: true,
-                splashcolor: MyColors.newrskey,
+                splashcolor: MyColors.primary,
                 child: const Text(
                   "التالي",
                   style: font13boldwhite,

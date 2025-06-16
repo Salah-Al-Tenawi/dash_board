@@ -23,10 +23,10 @@ class _HomeState extends State<Home> {
   ];
 
   final List<Color> _activeColors = [
-    MyColors.newrskey,
-    MyColors.newgrey,
-    MyColors.newrskey,
-    MyColors.newgrey,
+    MyColors.primary,
+    MyColors.primaryBackground,
+    MyColors.primary,
+    MyColors.primaryBackground,
   ];
 
   @override
@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: MyColors.newgrey, width: 0.2),
+          border: Border.all(color: MyColors.primaryBackground, width: 0.2),
           borderRadius: BorderRadius.circular(24.0),
           boxShadow: const [
             BoxShadow(
@@ -106,8 +106,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  
 
   @override
   void dispose() {

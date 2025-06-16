@@ -29,7 +29,7 @@ class MyDropdown extends StatelessWidget {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: MyColors.newrskey)),
+              borderSide: BorderSide(color: MyColors.primary)),
           labelText: title,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),

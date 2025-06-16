@@ -51,8 +51,8 @@ class _TripDidYouBackTextAndButtonsState
               Get.toNamed(RouteName.tripSelectSourceAndDistOnMap,
                   arguments: widget.tripFrom);
             },
-            color: MyColors.newrskey,
-            splashcolor: MyColors.newramadi,
+            color: MyColors.primary,
+            splashcolor: MyColors.primaryText,
             width: 120.w,
             height: 50,
             borderRadius: true,
@@ -65,8 +65,8 @@ class _TripDidYouBackTextAndButtonsState
             onPressed: () {
               Get.offAllNamed(RouteName.home);
             },
-            color: MyColors.newramadi,
-            splashcolor: MyColors.newramadi,
+            color: MyColors.primaryText,
+            splashcolor: MyColors.primaryText,
             width: 120.w,
             height: 50,
             borderRadius: true,

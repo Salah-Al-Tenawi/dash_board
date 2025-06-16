@@ -44,7 +44,7 @@ class CustomTextformfild extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
             focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: MyColors.newrskey)),
+                borderSide: BorderSide(color: MyColors.primary)),
             hintText: hint,
             suffix: suffix,
             fillColor: MyColors.beige,
@@ -58,7 +58,7 @@ class CustomTextformfild extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             prefixIcon: icon,
-            prefixIconColor: MyColors.newgrey),
+            prefixIconColor: MyColors.primaryBackground),
       ),
     );
   }

@@ -31,7 +31,7 @@ class TripSelectPrice extends StatelessWidget {
             icon: const FaIcon(
               FontAwesomeIcons.plus,
               size: 40,
-              color: MyColors.newramadi,
+              color: MyColors.primaryText,
             ),
           ),
           Text(
@@ -45,7 +45,7 @@ class TripSelectPrice extends StatelessWidget {
               }
             },
             icon: const FaIcon(FontAwesomeIcons.minus,
-                size: 40, color: MyColors.newramadi),
+                size: 40, color: MyColors.primaryText),
           ),
         ],
       ),

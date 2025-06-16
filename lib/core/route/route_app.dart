@@ -11,6 +11,8 @@ import 'package:sharecars/features/auth/presentation/view/forget_password.dart';
 import 'package:sharecars/features/auth/presentation/view/login.dart';
 import 'package:sharecars/features/auth/presentation/view/singin.dart';
 import 'package:sharecars/features/home/preantion/view/home.dart';
+import 'package:sharecars/features/maps/ghraph_hopper.dart';
+import 'package:sharecars/features/maps/ors_map.dart';
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
@@ -50,10 +52,17 @@ List<GetPage<dynamic>> appRoute = [
             create: (context) => ProfileCubit(ProfileRepoIm()),
             child: const Profile(),
           )),
+  // map 
+  
+  GetPage(
+      name: RouteName.orsmap,
+      page: () => const OrsMaps()),
+  GetPage(
+      name: RouteName.ghraphHoppermap,
+      page: () => const GhraphHopperMap()),
 
   // trips create
   // Todo add bloc provider
-
   GetPage(
       name: RouteName.tripSelectSourceAndDistOnMap,
       page: () => const TripSelectSourceAndDistOnMap()),

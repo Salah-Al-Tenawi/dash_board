@@ -49,7 +49,7 @@ class _TripSelectSourceAndDestOnMapState
             ),
             MyButton(
               onPressed: () {},
-              color: MyColors.newrskey,
+              color: MyColors.primary,
               width: 200.w,
               height: 60.h,
               child: const Text(
@@ -62,12 +62,12 @@ class _TripSelectSourceAndDestOnMapState
               child: const FaIcon(
                 FontAwesomeIcons.route,
                 size: 40,
-                color: MyColors.newramadi,
+                color: MyColors.primaryText,
               ),
             ),
             MyButton(
               onPressed: () {},
-              color: MyColors.newrskey,
+              color: MyColors.primary,
               width: 200.w,
               height: 60.h,
               child: const Text(
@@ -85,11 +85,11 @@ class _TripSelectSourceAndDestOnMapState
                   Get.toNamed(RouteName.tripSelectDateAndSeats,
                       arguments: tripFrom);
                 },
-                color: MyColors.newramadi,
+                color: MyColors.primaryText,
                 width: 130.w,
                 height: 50.h,
                 borderRadius: true,
-                splashcolor: MyColors.newrskey,
+                splashcolor: MyColors.primary,
                 child: const Text(
                   "التالي",
                   style: font13boldwhite,

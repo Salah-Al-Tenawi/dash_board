@@ -6,8 +6,8 @@ import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 
 class TripDateShow extends StatelessWidget {
-  final String ?day;
-  final String ?hour;
+  final String? day;
+  final String? hour;
   const TripDateShow({
     super.key,
     required this.day,
@@ -19,15 +19,15 @@ class TripDateShow extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 30.h, bottom: 40.h),
       decoration: BoxDecoration(
-          color: MyColors.newgrey,
+          color: MyColors.primaryBackground,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: MyColors.newramadi, width: 0.2),
+          border: Border.all(color: MyColors.primaryText, width: 0.2),
           boxShadow: const [
             BoxShadow(
                 spreadRadius: 1,
                 blurRadius: 1,
                 offset: Offset(7, 7),
-                color: MyColors.newramadi)
+                color: MyColors.primaryText)
           ]),
       height: 100,
       child: Column(
@@ -36,23 +36,23 @@ class TripDateShow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(day ??"2025 - x - xx", style: font14boldblueblack),
+              Text(day ?? "2025 - x - xx", style: font14boldblueblack),
               SizedBox(
                 width: 37.w,
               ),
               const FaIcon(FontAwesomeIcons.calendarDay,
-                  size: 14, color: MyColors.newrskey),
+                  size: 14, color: MyColors.primary),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(hour ?? "xx : xx xm" , style: font14boldblueblack),
+              Text(hour ?? "xx : xx xm", style: font14boldblueblack),
               SizedBox(
                 width: 50.w,
               ),
               const FaIcon(FontAwesomeIcons.clock,
-                  size: 15, color: MyColors.newrskey),
+                  size: 15, color: MyColors.primary),
             ],
           ),
         ],

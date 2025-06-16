@@ -1,4 +1,4 @@
-import 'package:sharecars/features/trip_create/presantion/view/trip_add_number_phone.dart';
+
 
 class RouteName {
   static const test = "/test";
@@ -10,9 +10,13 @@ class RouteName {
 
   static const updateprofile = "/updateprofile";
   static const home = "/home";
+// map
+  static const orsmap = "/orsmap"; 
+  static const ghraphHoppermap = "/ghraphHoppermap"; 
+  
+
   //trip  create
   static const tripSelectSourceAndDistOnMap = "/TripSelectSourceAndDistOnMap";
-
   static const tripSelectDateAndSeats = "/tripSelectDateAndSeats";
   static const tripSelectPriceAndBookingType = "/tripSelectPriceAndBookingType";
   static const tripAddNumberPhone = "/tripAddNumberPhone";

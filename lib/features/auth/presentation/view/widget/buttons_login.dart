@@ -52,7 +52,7 @@ class ColumnButtonsLogin extends StatelessWidget {
                       }
                     },
                     borderRadius: true,
-                    color: MyColors.newramadi,
+                    color: MyColors.primaryText,
                     width: 140.w,
                     child: const Text(
                       "انطلق",

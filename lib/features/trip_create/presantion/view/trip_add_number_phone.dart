@@ -47,7 +47,7 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                   const FaIcon(
                     FontAwesomeIcons.mobileScreen,
                     size: 50,
-                    color: MyColors.newrskey,
+                    color: MyColors.primary,
                   ),
                   SizedBox(
                     height: 50.h,
@@ -69,14 +69,14 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                         suffixIcon: _isValid
                             ? const Icon(
                                 Icons.check_circle,
-                                color: MyColors.newramadi,
+                                color: MyColors.primaryText,
                               )
                             : const Icon(
                                 Icons.check_circle,
                                 color: Colors.red,
                               ),
                         prefixIcon:
-                            const Icon(Icons.phone, color: MyColors.newrskey),
+                            const Icon(Icons.phone, color: MyColors.primary),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -91,7 +91,7 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: MyColors.newramadi,
+                        backgroundColor: MyColors.primaryText,
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -100,10 +100,10 @@ class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           tripFrom.numberPhone = _phoneController.text;
-                          Get.toNamed(RouteName.tripDidYouBack, 
-                              arguments: tripFrom ,
-                               
-                               );
+                          Get.toNamed(
+                            RouteName.tripDidYouBack,
+                            arguments: tripFrom,
+                          );
                           setState(() {
                             _isValid = true;
                           });

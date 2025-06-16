@@ -1,26 +1,27 @@
+
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
+class GhraphHopperMap extends StatefulWidget { 
+  
 
-class Maps extends StatefulWidget {
-  const Maps({super.key});
+  const GhraphHopperMap({super.key});
 
   @override
-  State<Maps> createState() => _MapsState();
+  State<GhraphHopperMap> createState() => _GhraphHopperMapState();
 }
 
-class _MapsState extends State<Maps> {
+class _GhraphHopperMapState extends State<GhraphHopperMap> {
+  final String ghrapHopperApiKey = "a387f47a-e76a-492a-8e1f-275d1d3be3f3"; 
   LatLng? startLocation;
   LatLng? endLocation;
   List<List<LatLng>> allRoutes = [];
   int currentRouteIndex = 0;
   List<Map<String, dynamic>> routeInfos = [];
-
-  final String orsApiKey = '5b3ce3597851110001cf62486bcd547ddd63409a97d65b9fc6b02ccd';
-
-  void _handleTap(LatLng point) async {
+ void _handleTap(LatLng point) async {
     setState(() {
       if (startLocation == null) {
         startLocation = point;
@@ -36,81 +37,60 @@ class _MapsState extends State<Maps> {
     });
 
     if (startLocation != null && endLocation != null) {
-      await fetchRoute();
+      await fetchGraphHopperRoute ();
     }
   }
+ Future<void> fetchGraphHopperRoute() async {
+  final url = Uri.parse(
+    "https://graphhopper.com/api/1/route"
+    "?point=${startLocation!.latitude},${startLocation!.longitude}"
+    "&point=${endLocation!.latitude},${endLocation!.longitude}"
+    "&vehicle=car"
+    "&locale=en"
+    "&points_encoded=false"
+    "&alternative_route.max_paths=3"
+    "&alternative_route.max_weight_factor=1.6"
+    "&alternative_route.max_share_factor=0.8"
+    "&key=$ghrapHopperApiKey",
+  );
 
-  Future<void> fetchRoute() async {
-    final url = Uri.parse(
-        "https://api.openrouteservice.org/v2/directions/driving-car/geojson");
+  try {
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final paths = data['paths'] as List;
 
-    final body = jsonEncode({
-      "coordinates": [
-        [startLocation!.longitude, startLocation!.latitude],
-        [endLocation!.longitude, endLocation!.latitude]
-      ],
-      "alternative_routes": {
-        "target_count": 3,
-        "share_factor": 0.6
-      }
-    });
+      setState(() {
+        allRoutes = [];
+        routeInfos = [];
 
-    try {
-      final response = await http.post(
-        url,
-        headers: {
-          'Authorization': orsApiKey,
-          'Content-Type': 'application/json',
-        },
-        body: body,
-      );
+        for (var path in paths) {
+          final points = path['points']['coordinates'] as List;
+          final latLngList = points.map((p) => LatLng(p[1], p[0])).toList();
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        final features = data['features'] as List;
+          allRoutes.add(latLngList);
+          routeInfos.add({
+            "distance": path['distance'],
+            "duration": path['time'] / 1000, // seconds
+          });
+        }
 
-        setState(() {
-          allRoutes = [];
-          routeInfos = [];
-
-          for (var feature in features) {
-            final coords = feature['geometry']['coordinates'] as List;
-            final latLngList = coords.map((c) => LatLng(c[1], c[0])).toList();
-            allRoutes.add(latLngList);
-
-            final props = feature['properties']['summary'];
-            routeInfos.add({
-              "distance": props['distance'],
-              "duration": props['duration'],
-            });
-          }
-          currentRouteIndex = 0;
-        });
-      } else {
-        debugPrint("Failed to fetch route: ${response.statusCode}");
-        debugPrint("Response body: ${response.body}");
-      }
-    } catch (e) {
-      debugPrint("Error fetching route: $e");
+        currentRouteIndex = 0;
+      });
+    } else {
+      debugPrint("Failed to fetch route: ${response.statusCode}");
+      debugPrint("Body: ${response.body}");
     }
+  } catch (e) {
+    debugPrint("Error fetching route: $e");
   }
+}
 
-  void _printRouteDetails() {
-    if (allRoutes.isEmpty || currentRouteIndex >= allRoutes.length) return;
-
-    final currentRoute = allRoutes[currentRouteIndex];
-    debugPrint("Start Location: ${startLocation!.latitude}, ${startLocation!.longitude}");
-    debugPrint("End Location: ${endLocation!.latitude}, ${endLocation!.longitude}");
-    debugPrint("Route Points Count: ${currentRoute.length}");
-    for (int i = 0; i < currentRoute.length; i++) {
-      debugPrint("Point $i: ${currentRoute[i].latitude}, ${currentRoute[i].longitude}");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Route Planner")),
+      appBar: AppBar(centerTitle: true, title: const Text("الخريطة")),
       floatingActionButton: allRoutes.length > 1
           ? FloatingActionButton(
               onPressed: () {
@@ -127,7 +107,8 @@ class _MapsState extends State<Maps> {
           ? Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (routeInfos.isNotEmpty && currentRouteIndex < routeInfos.length)
+                if (routeInfos.isNotEmpty &&
+                    currentRouteIndex < routeInfos.length)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -137,13 +118,6 @@ class _MapsState extends State<Maps> {
                           fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: _printRouteDetails,
-                    child: const Text("Print Route Details"),
-                  ),
-                ),
               ],
             )
           : null,
@@ -174,8 +148,8 @@ class _MapsState extends State<Maps> {
                 point: endLocation!,
                 width: 40,
                 height: 40,
-                child: const Icon(Icons.location_pin,
-                    color: Colors.red, size: 40),
+                child:
+                    const Icon(Icons.location_pin, color: Colors.red, size: 40),
               ),
             ]),
           if (allRoutes.isNotEmpty)
@@ -193,3 +167,8 @@ class _MapsState extends State<Maps> {
     );
   }
 }
+
+
+
+
+

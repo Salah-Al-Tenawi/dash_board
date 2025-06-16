@@ -36,7 +36,7 @@ class ProfileImageAndName extends StatelessWidget {
                     }
                   },
                   child: const CircleAvatar(
-                    backgroundColor: MyColors.newrskey,
+                    backgroundColor: MyColors.primary,
                     maxRadius: 45,
                     backgroundImage: AssetImage(ImagesUrl.profileImage),
                   ),
@@ -50,17 +50,18 @@ class ProfileImageAndName extends StatelessWidget {
                         imageurl == null ? ImagesUrl.profileImage : imageurl!);
                   },
                   child: CircleAvatar(
-                    backgroundColor: MyColors.newrskey,
-                    maxRadius: 45,
+                    backgroundColor: MyColors.primary,
+                    maxRadius: 45, 
+                    
                     backgroundImage: imageurl == null
-                        ? const AssetImage(ImagesUrl.profileImage)
-                        : NetworkImage(imageurl!),
+                        ? const AssetImage(ImagesUrl.profileImage) 
+                        : NetworkImage(imageurl!) as ImageProvider,
                   ),
                 );
 
               default:
                 return const CircleAvatar(
-                  backgroundColor: MyColors.newrskey,
+                  backgroundColor: MyColors.primary,
                   maxRadius: 45,
                   backgroundImage: AssetImage(ImagesUrl.profileImage),
                 );
@@ -70,7 +71,7 @@ class ProfileImageAndName extends StatelessWidget {
           return const Text(" blocBuilder not found ant state");
         }),
       ),
-      const Icon(Icons.verified, color: MyColors.newrskey),
+      const Icon(Icons.verified, color: MyColors.primary),
       SizedBox(
         width: 5.w,
       ),
@@ -92,7 +93,7 @@ class ProfileImageAndName extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: MyColors.newramadi,
+                      color: MyColors.primaryText,
                     ),
                   );
 
@@ -103,7 +104,7 @@ class ProfileImageAndName extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: MyColors.newramadi),
+                        color: MyColors.primaryText),
                   );
               }
             }

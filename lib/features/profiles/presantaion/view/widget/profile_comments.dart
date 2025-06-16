@@ -19,7 +19,7 @@ class ProfileComments extends StatelessWidget {
       // height: 500.h,
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
-          border: Border.all(width: 0.3, color: MyColors.newgrey),
+          border: Border.all(width: 0.3, color: MyColors.primaryBackground),
           borderRadius: BorderRadius.circular(10)),
       child: ListView.builder(
           shrinkWrap: true,
@@ -42,7 +42,7 @@ class Comment extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
-        border: Border.all(width: 0.3, color: MyColors.newgrey),
+        border: Border.all(width: 0.3, color: MyColors.primaryBackground),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -82,10 +82,10 @@ class Comment extends StatelessWidget {
             },
             child: CircleAvatar(
               maxRadius: 25,
-              backgroundColor: MyColors.newrskey,
+              backgroundColor: MyColors.primary,
               backgroundImage: commentEntity?.authorPhoto != null
                   ? NetworkImage(commentEntity!.authorPhoto!)
-                  : const AssetImage(ImagesUrl.profileImage),
+                  : const AssetImage(ImagesUrl.profileImage) as ImageProvider,
             ),
           ),
         ],

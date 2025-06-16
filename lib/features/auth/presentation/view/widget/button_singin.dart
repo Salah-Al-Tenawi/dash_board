@@ -68,7 +68,7 @@ class ButtonSingin extends StatelessWidget {
                   }
                 },
                 borderRadius: true,
-                color: MyColors.newramadi,
+                color: MyColors.primaryText,
                 height: 50.h,
                 width: 170.w,
                 child: const Text(

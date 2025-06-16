@@ -46,7 +46,7 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
                   child: const FaIcon(
                     FontAwesomeIcons.circleCheck,
                     size: 150,
-                    color: MyColors.newrskey,
+                    color: MyColors.primary,
                   ),
                 ),
                 tripFrom.reverseTripRoute == false
@@ -55,8 +55,8 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
                         onPressed: () {
                           Get.offAllNamed(RouteName.home);
                         },
-                        color: MyColors.newrskey,
-                        splashcolor: MyColors.newramadi,
+                        color: MyColors.primary,
+                        splashcolor: MyColors.primaryText,
                         width: 260.w,
                         height: 60,
                         borderRadius: true,
@@ -64,10 +64,8 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
                           FontAwesomeIcons.carSide,
                           color: Colors.orange,
                           size: 35,
-                        )
-                            .animate()
-                            .fadeIn(duration: 500.ms)
-                            .move(begin: const Offset(-50, 0), end: Offset.zero))
+                        ).animate().fadeIn(duration: 500.ms).move(
+                            begin: const Offset(-50, 0), end: Offset.zero))
               ],
             ),
           ),

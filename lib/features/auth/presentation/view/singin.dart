@@ -32,7 +32,7 @@ class _SinginState extends State<Singin> {
               CricularDecoration(
                 heghit: 100,
                 width: 120,
-                color: MyColors.newrskey,
+                color: MyColors.primary,
               ),
               TextFieldsSingin(
                 firstname: firstname,

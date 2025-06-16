@@ -25,7 +25,7 @@ class ProfileSaveAndEditButtons extends StatelessWidget {
                     },
                     child: const Icon(
                       Icons.edit,
-                      color: MyColors.newrskey,
+                      color: MyColors.primary,
                       size: 20,
                     )),
               );
@@ -33,7 +33,7 @@ class ProfileSaveAndEditButtons extends StatelessWidget {
               return Align(
                 alignment: Alignment.topRight,
                 child: MyButton(
-                    color: MyColors.newramadi,
+                    color: MyColors.primaryText,
                     borderRadius: true,
                     width: 80.w,
                     onPressed: () {

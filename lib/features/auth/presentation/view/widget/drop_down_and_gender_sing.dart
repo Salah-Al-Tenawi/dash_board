@@ -36,7 +36,7 @@ class DropDownAndGenderSing extends StatelessWidget {
                     },
                     title: const Text("ذكر"),
                     secondary: const Icon(Icons.male, color: Colors.black),
-                    activeColor: MyColors.newrskey,
+                    activeColor: MyColors.primary,
                   ),
                 ),
                 Expanded(
@@ -48,7 +48,7 @@ class DropDownAndGenderSing extends StatelessWidget {
                     },
                     title: const Text("أنثى"),
                     secondary: const Icon(Icons.female, color: Colors.black),
-                    activeColor: MyColors.newrskey,
+                    activeColor: MyColors.primary,
                   ),
                 ),
               ],
