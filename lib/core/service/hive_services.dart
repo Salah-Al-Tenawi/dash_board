@@ -1,20 +1,19 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
+import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 
 class HiveService {
   static Future<void> init() async {
     await Hive.initFlutter();
 
     Hive.registerAdapter(UserModelAdapter());
-    // إذا أضفت مثلاً ProfileModel لاحقًا:
-    // Hive.registerAdapter(ProfileModelAdapter());
 
     // Open needed boxes
     await Future.wait([
-      Hive.openBox(HiveBoxes.authBoxName),
-      Hive.openBox(HiveBoxes.profileBoxName),
-      Hive.openBox(HiveBoxes.tripBoxName),
-    ]);
+  Hive.openBox<UserModel>(HiveBoxes.authBoxName),
+  // Hive.openBox<ProfileEntity>(HiveBoxes.profileBox), 
+  // Hive.openBox<TripModel>(HiveBoxes.tripBoxName),
+]);
   }
 
   static Future<Box<E>> openBox<E>(String boxName) async {

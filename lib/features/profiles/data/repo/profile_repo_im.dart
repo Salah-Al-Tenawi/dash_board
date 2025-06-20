@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:sharecars/core/errors/filuar.dart';
-import 'package:sharecars/features/profiles/data/model/profile_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/comment_entity.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/domain/repo/profile_rep.dart';
@@ -27,21 +26,9 @@ class ProfileRepoIm extends ProfileRepo {
   }
 
   @override
-  Future<Either<Filuar, ProfileEntity>> updateProfile(File profilePic, String description) {
+  Future<Either<Filuar, ProfileEntity>> updateProfile(
+      File profilePic, String description) {
     // TODO: implement updateProfile
     throw UnimplementedError();
   }
-
-  @override
-  Future<Either<Filuar, String>> verifydriver(File faceIdPic, File backIdPic, File licensePic, mechanicPic) {
-    // TODO: implement verifydriver
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Filuar, String>> verifypassenger(File faceIdPic, File backIdPic) {
-    // TODO: implement verifypassenger
-    throw UnimplementedError();
-  }
-
 }

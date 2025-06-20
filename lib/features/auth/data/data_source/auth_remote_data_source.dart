@@ -24,8 +24,9 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
   Future<UserModel> login(String email, String password) async {
     final response = await api.post(ApiEndPoint.login,
         data: {ApiKey.email: email, ApiKey.password: password});
-    HiveBoxes.authBox.put(HiveKeys.user, response);
-    return UserModel.fromjson(response);
+    final user = UserModel.fromjson(response);
+    HiveBoxes.authBox.put(HiveKeys.user, user);
+    return user;
   }
 
   @override
@@ -46,8 +47,9 @@ class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
       ApiKey.gender: gender,
       ApiKey.address: address,
     });
-    HiveBoxes.authBox.put(HiveKeys.user, response);
-    return UserModel.fromjson(response);
+    final user = UserModel.fromjson(response);
+    HiveBoxes.authBox.put(HiveKeys.user, user);
+    return user;
   }
 
 // to do

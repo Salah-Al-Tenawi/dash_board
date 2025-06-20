@@ -32,8 +32,9 @@
 //       ];
 // }
 
-// final class VerifyprofileInitial extends VerifyprofileState {
-//   const VerifyprofileInitial() : super();
+// final class VerifiyUser extends VerifyprofileState {
+//   const 
+//   VerifiyUser() : super();
 // }
 
 // final class VerifyprofileLoading extends VerifyprofileState {

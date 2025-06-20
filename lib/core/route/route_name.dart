@@ -11,8 +11,7 @@ class RouteName {
   static const updateprofile = "/updateprofile";
   static const home = "/home";
 // map
-  static const orsmap = "/orsmap"; 
-  static const ghraphHoppermap = "/ghraphHoppermap"; 
+  static const maps = "/maps"; 
   
 
   //trip  create

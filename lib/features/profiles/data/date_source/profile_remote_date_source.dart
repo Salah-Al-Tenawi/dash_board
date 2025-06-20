@@ -9,18 +9,13 @@ abstract class ProfileRemoteDateSource {
   Future<ProfileModel> showProfile(int id);
   Future<ProfileModel> updateProfile(
       String name, int imageId, String address, CarModel car);
-  checkUpProfile();
+
   Future<ProfileModel> addcommit(String commit);
 }
 
 class ProfileRemoteDateSourceIm extends ProfileRemoteDateSource {
   ProfileRemoteDateSourceIm({required super.api});
 
-  @override
-  checkUpProfile() {
-    // TODO: implement checkUpProfile
-    throw UnimplementedError();
-  }
 
   @override
   Future<ProfileModel> showProfile(int id) {

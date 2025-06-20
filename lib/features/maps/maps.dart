@@ -1,91 +1,94 @@
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:http/http.dart' as http;
-class GhraphHopperMap extends StatefulWidget { 
-  
+import 'package:sharecars/core/api/dio_consumer.dart';
+import 'package:sharecars/features/maps/data/data_source/maps_data_source.dart';
+import 'package:sharecars/features/maps/data/repo/map_repo.dart';
 
-  const GhraphHopperMap({super.key});
+class Maps extends StatefulWidget {
+  const Maps({super.key});
 
   @override
-  State<GhraphHopperMap> createState() => _GhraphHopperMapState();
+  State<Maps> createState() => MapsState();
 }
 
-class _GhraphHopperMapState extends State<GhraphHopperMap> {
-  final String ghrapHopperApiKey = "a387f47a-e76a-492a-8e1f-275d1d3be3f3"; 
+class MapsState extends State<Maps> {
+  late MapRepoIm mapsDataSourceIm;
   LatLng? startLocation;
   LatLng? endLocation;
   List<List<LatLng>> allRoutes = [];
   int currentRouteIndex = 0;
   List<Map<String, dynamic>> routeInfos = [];
- void _handleTap(LatLng point) async {
+
+  @override
+  void initState() {
+    super.initState();
+    mapsDataSourceIm =
+        MapRepoIm(mapsDataSource: MapsDataSourceIm(api: DioConSumer()));
+  }
+
+  void _handleTap(LatLng point) async {
     setState(() {
       if (startLocation == null) {
         startLocation = point;
         endLocation = null;
+        allRoutes = [];
+        routeInfos = [];
       } else if (endLocation == null) {
         endLocation = point;
       } else {
         startLocation = point;
         endLocation = null;
+        allRoutes = [];
+        routeInfos = [];
       }
-      allRoutes = [];
-      routeInfos = [];
     });
 
     if (startLocation != null && endLocation != null) {
-      await fetchGraphHopperRoute ();
-    }
-  }
- Future<void> fetchGraphHopperRoute() async {
-  final url = Uri.parse(
-    "https://graphhopper.com/api/1/route"
-    "?point=${startLocation!.latitude},${startLocation!.longitude}"
-    "&point=${endLocation!.latitude},${endLocation!.longitude}"
-    "&vehicle=car"
-    "&locale=en"
-    "&points_encoded=false"
-    "&alternative_route.max_paths=3"
-    "&alternative_route.max_weight_factor=1.6"
-    "&alternative_route.max_share_factor=0.8"
-    "&key=$ghrapHopperApiKey",
-  );
+      final double distance = _calculateDistance(startLocation!, endLocation!);
+      final bool useOpenRoute = distance < 100;
 
-  try {
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final paths = data['paths'] as List;
+      final response = useOpenRoute
+          ? await mapsDataSourceIm.fetchRouteBYOpenRouteServices(
+              startLocation!, endLocation!)
+          : await mapsDataSourceIm.fetchRouteBYgraphHopper(
+              startLocation!, endLocation!);
 
-      setState(() {
-        allRoutes = [];
-        routeInfos = [];
+      response.fold(
+        (failure) {
+          debugPrint("Error fetching route: ${failure.message}");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Failed to get route: ${failure.message}")),
+          );
+        },
+        (routes) {
+          if (routes.isEmpty) {
+            debugPrint("No routes found");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("No available routes found")),
+            );
+            return;
+          }
 
-        for (var path in paths) {
-          final points = path['points']['coordinates'] as List;
-          final latLngList = points.map((p) => LatLng(p[1], p[0])).toList();
-
-          allRoutes.add(latLngList);
-          routeInfos.add({
-            "distance": path['distance'],
-            "duration": path['time'] / 1000, // seconds
+          setState(() {
+            allRoutes = routes.map((route) => route.path).toList();
+            routeInfos = routes
+                .map((route) => {
+                      "distance": route.distance,
+                      "duration": route.duration,
+                    })
+                .toList();
+            currentRouteIndex = 0;
           });
-        }
-
-        currentRouteIndex = 0;
-      });
-    } else {
-      debugPrint("Failed to fetch route: ${response.statusCode}");
-      debugPrint("Body: ${response.body}");
+        },
+      );
     }
-  } catch (e) {
-    debugPrint("Error fetching route: $e");
   }
-}
 
+  double _calculateDistance(LatLng start, LatLng end) {
+    const Distance distance = Distance();
+    return distance(start, end) / 1000; // المسافة بالكيلومترات
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,8 +170,3 @@ class _GhraphHopperMapState extends State<GhraphHopperMap> {
     );
   }
 }
-
-
-
-
-

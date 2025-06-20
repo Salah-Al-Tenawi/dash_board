@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: MyColors.primaryBackground,
 
       // extendBody: true,
       body: PageView(

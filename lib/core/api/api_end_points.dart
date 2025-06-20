@@ -1,5 +1,11 @@
 class ApiEndPoint {
   static const baserUrl = "localhost:8000/api/";
+
+  static const mapsOpenRouteServices =
+      "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
+      static const mapsGraphHopper =
+      "https://graphhopper.com/api/1/route";
+      
   // auth
   static const login = "$baserUrl login";
   static const singin = "$baserUrl signup";
@@ -15,10 +21,7 @@ class ApiEndPoint {
 //  trips endpoint
   static const rides = "$baserUrl rides";
 
-// http://localhost:8000/api/profile/verify/passenger
-// http://localhost:8000/api/profile/3/comments
-// localhost:8000/api/profile/2/rate
-  // storage
+
 }
 
 class ApiKey {
@@ -28,6 +31,8 @@ class ApiKey {
   static const success = "success";
   static const error = "error";
   static const token = "access_token";
+  static const contentType = "Content-Type"; 
+  
 
   // User Info
   static const userId = "user_id";
@@ -63,7 +68,7 @@ class ApiKey {
   static const documents = "documents";
   static const faceIdPic = "face_id_pic";
   static const backIdPic = "back_id_pic";
-  static const licensePic = "license_pic";
+  static const licensePic = "driving_license_pic";
   static const mechanicCardPic = "mechanic_card_pic";
 
   // Comments
@@ -77,18 +82,22 @@ class ApiKey {
   // rides
   static const pickupAddress = "pickup_address";
   static const destinationAddress = "destination_address";
-  
   static const departureTime = "departure_time";
-
-  static const availableSeats = "available_seats";
+  static const availableSeats = "available_seats"; 
+  static const seats = "seats"; 
   static const pricePerSeat = "price_per_seat";
-  
-  // {
-//     "pickup_address": "Al-Zabadani, Rif Dimashq, Syria",
-//     "destination_address": "Damascus, Syria",
-//     "departure_time": "2026-03-20T08:00:00Z",
-//     "available_seats": 3,
-//     "price_per_seat": 15.50,
-//     "vehicle_type": "Sedan"
-// }
+
+ // maps 
+static const coordinates = "coordinates"; 
+static const alternativeRoutes = "alternative_routes";  
+static const targetCount = "target_count";  
+static const shareFactor = "share_factor";  
+static const features = "features";  
+
+
+
+
+
+
+ 
 }
