@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sharecars/core/constant/const_text.dart';
 import 'package:sharecars/core/them/my_colors.dart';
+import 'package:sharecars/core/utils/functions/get_token.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,6 +29,13 @@ class _HomeState extends State<Home> {
     MyColors.primary,
     MyColors.primaryBackground,
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("============================mytoken ${mytoken()}");
+  }
 
   @override
   Widget build(BuildContext context) {

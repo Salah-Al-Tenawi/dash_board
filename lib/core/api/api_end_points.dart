@@ -1,5 +1,5 @@
 class ApiEndPoint {
-  static const baserUrl = "localhost:8000/api/";
+  static const baserUrl = "http://192.168.43.81:8000/api";
 
   static const mapsOpenRouteServices =
       "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
@@ -7,19 +7,19 @@ class ApiEndPoint {
       "https://graphhopper.com/api/1/route";
       
   // auth
-  static const login = "$baserUrl login";
-  static const singin = "$baserUrl signup";
-  static const logout = "$baserUrl logout";
-  static const forgetPassword = "$baserUrl forgot-password";
-  static const resetPassword = "$baserUrl reset-password";
-  static const profile = "$baserUrl profile";
-  static const comments = "$baserUrl comments";
-  static const verifypassenger = "$profile /verify/passenger";
-  static const verifydriver = "$profile /verify/driver";
-  static const rateUser = "$profile /rate";
+  static const login = "$baserUrl/login";
+  static const singin = "$baserUrl/signup";
+  static const logout = "$baserUrl/logout";
+  static const forgetPassword = "$baserUrl/forgot-password";
+  static const resetPassword = "$baserUrl/reset-password";
+  static const profile = "$baserUrl/profile";
+  static const comments = "$baserUrl/comments";
+  static const verifypassenger = "$profile/verify/passenger";
+  static const verifydriver = "$profile/verify/driver";
+  static const rateUser = "$profile/rate";
 
 //  trips endpoint
-  static const rides = "$baserUrl rides";
+  static const rides = "$baserUrl/rides";
 
 
 }

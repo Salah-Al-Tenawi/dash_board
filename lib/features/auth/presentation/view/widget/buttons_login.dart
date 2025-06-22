@@ -34,12 +34,17 @@ class ColumnButtonsLogin extends StatelessWidget {
         } else if (state is LoginNavigationToForgetPassword) {
           Get.toNamed(RouteName.forgetpassword);
         } else if (state is LoginError) {
-          showMySnackBar(context, state.message);
+          showMySnackBar(context, state.message,
+              duration: const Duration(seconds: 3));
         }
       },
       builder: (context, state) {
         return state is LoginLoading
-            ? LottieBuilder.asset(ImagesUrl.loadinglottie)
+            ? LottieBuilder.asset(
+                ImagesUrl.loadinglottie,
+                height: 100.h,
+                width: 100.w,
+              )
             : Column(
                 children: [
                   MyButton(

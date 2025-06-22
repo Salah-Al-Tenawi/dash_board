@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 
 class ThemApp {
-  static ThemeData lightThem = ThemeData.light().copyWith( 
-    scaffoldBackgroundColor: MyColors.primaryBackground,
-    
-  );
+  static ThemeData lightThem = ThemeData.light();
+
   static ThemeData darkThem = ThemeData.dark();
 }
 

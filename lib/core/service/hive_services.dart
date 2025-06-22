@@ -4,16 +4,14 @@ import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 
 class HiveService {
   static Future<void> init() async {
-    await Hive.initFlutter();
-
+    await Hive.initFlutter(); 
+  
     Hive.registerAdapter(UserModelAdapter());
-
-    // Open needed boxes
-    await Future.wait([
-  Hive.openBox<UserModel>(HiveBoxes.authBoxName),
-  // Hive.openBox<ProfileEntity>(HiveBoxes.profileBox), 
-  // Hive.openBox<TripModel>(HiveBoxes.tripBoxName),
-]);
+ await Future.wait([
+    Hive.openBox(HiveBoxes.authBoxName),
+    Hive.openBox(HiveBoxes.profileBoxName),
+    Hive.openBox(HiveBoxes.tripBoxName),
+  ]);
   }
 
   static Future<Box<E>> openBox<E>(String boxName) async {

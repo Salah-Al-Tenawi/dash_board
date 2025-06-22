@@ -29,7 +29,7 @@ class DropDownAndGenderSing extends StatelessWidget {
               children: [
                 Expanded(
                   child: RadioListTile<String>(
-                    value: "male",
+                    value: "M",
                     groupValue: context.read<SinginCubit>().gender,
                     onChanged: (value) {
                       context.read<SinginCubit>().emitChangeGender(value!);
@@ -41,7 +41,7 @@ class DropDownAndGenderSing extends StatelessWidget {
                 ),
                 Expanded(
                   child: RadioListTile<String>(
-                    value: "female",
+                    value: "F",
                     groupValue: context.read<SinginCubit>().gender,
                     onChanged: (value) {
                       context.read<SinginCubit>().emitChangeGender(value!);
