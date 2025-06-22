@@ -31,13 +31,6 @@ class _HomeState extends State<Home> {
   ];
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("============================mytoken ${mytoken()}");
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.primaryBackground,

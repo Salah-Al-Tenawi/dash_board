@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:sharecars/features/auth/data/model/user_model.dart';
 import 'package:sharecars/features/auth/data/repo/auth_repo_im.dart';
 
 part 'singin_state.dart';
 
 class SinginCubit extends Cubit<SinginState> {
-  String gender = "male";
+  String gender = "M";
   String? address;
   final AuthRepoIm authRepoIm;
   SinginCubit(this.authRepoIm) : super(SinginInitial());
@@ -18,7 +19,7 @@ class SinginCubit extends Cubit<SinginState> {
     response.fold((filuar) {
       emit(SinginErorre(filuar.message));
     }, (userModel) {
-      emit(SinginSuccess());
+      emit(SinginSuccess(user: userModel));
     });
   }
 

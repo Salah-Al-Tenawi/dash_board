@@ -13,7 +13,11 @@ final class SinginInitial extends SinginState {
 
 final class SinginLoading extends SinginState {}
 
-final class SinginSuccess extends SinginState {}
+final class SinginSuccess extends SinginState {
+  final UserModel user;
+
+  const SinginSuccess({required this.user});
+}
 
 final class SinginErorre extends SinginState {
   final String message;

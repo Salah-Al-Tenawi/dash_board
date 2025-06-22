@@ -35,7 +35,8 @@ class ButtonSingin extends StatelessWidget {
     return BlocConsumer<SinginCubit, SinginState>(
       listener: (context, state) {
         if (state is SinginSuccess) {
-          Get.offAllNamed(RouteName.home);
+          Get.offAllNamed(RouteName.profile ,arguments: state.user.id);
+          
         } else if (state is SinginErorre) {
           showMySnackBar(context, state.message);
         }
