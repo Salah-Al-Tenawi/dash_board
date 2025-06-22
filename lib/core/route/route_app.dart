@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:sharecars/core/api/dio_consumer.dart';
 import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/service/locator_ser.dart';
+import 'package:sharecars/features/profiles/data/date_source/profile_remote_date_source.dart';
 import 'package:sharecars/features/splash_view/presentaion/manger/cubit/splash_view_cubit.dart';
 import 'package:sharecars/features/test/my_test.dart';
 import 'package:sharecars/features/auth/data/repo/auth_repo_im.dart';
@@ -23,7 +25,7 @@ import 'package:sharecars/features/trip_create/presantion/view/trip_select_price
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_did_you_back.dart';
 
-List<GetPage<dynamic>> appRoute = [ 
+List<GetPage<dynamic>> appRoute = [
   GetPage(
     name: RouteName.splashView,
     page: () => BlocProvider(
@@ -55,14 +57,14 @@ List<GetPage<dynamic>> appRoute = [
   GetPage(
       name: RouteName.profile,
       page: () => BlocProvider(
-            create: (context) => ProfileCubit(ProfileRepoIm()),
+            create: (context) => ProfileCubit(ProfileRepoIm(
+                profileRemoteDateSourceIm:
+                    ProfileRemoteDateSourceIm(api: getit.get<DioConSumer>()))),
             child: const Profile(),
           )),
-  // map 
+  // map
 
-  GetPage(
-      name: RouteName.maps,
-      page: () => const Maps()),
+  GetPage(name: RouteName.maps, page: () => const Maps()),
 
   // trips create
   // Todo add bloc provider

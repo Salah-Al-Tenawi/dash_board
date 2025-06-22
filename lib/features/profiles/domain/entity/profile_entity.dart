@@ -6,8 +6,8 @@ class ProfileEntity {
   final String fullname;
   final String? profilePhoto;
   final int numberOfides;
-  final double rate;
-  final int numberRating;
+  final int totalRating;
+  final double averageRating;
   final String verification;
   final String description;
   final String address;
@@ -19,7 +19,7 @@ class ProfileEntity {
   ProfileEntity({
     required this.fullname,
     required this.profilePhoto,
-    required this.rate,
+    required this.totalRating,
     required this.verification,
     required this.address,
     required this.gender,
@@ -27,7 +27,7 @@ class ProfileEntity {
     required this.car,
     required this.comments,
     required this.documents,
-    required this.numberRating,
+    required this.averageRating,
     required this.numberOfides,
   });
 }

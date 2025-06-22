@@ -51,7 +51,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ProfileRating(
-                          reviewsCount: widget.profileEntity.numberRating ,
+                          reviewsCount: widget.profileEntity.totalRating ,
                           tripsCount: widget.profileEntity.numberOfides,
                         ),
                         Text(widget.profileEntity.address,

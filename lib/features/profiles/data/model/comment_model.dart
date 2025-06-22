@@ -6,6 +6,7 @@ class CommentModel extends CommentEntity {
   final String comment;
   final Commenter commenter;
   final String created;
+  
 
   CommentModel({
     required this.id,

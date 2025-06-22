@@ -11,7 +11,19 @@ class ProfileModel extends ProfileEntity {
   ProfileModel({
     required this.success,
     required this.data,
-  }) : super(fullname: data.fullName, profilePhoto: data.profilePhoto, rate: data.rate, verification: data.verificationStatus, address: data.address, gender: data.gender, description: data.description, car: data.car, comments: data.comments, documents: data.documents, numberRating: data.numberRating, numberOfides: data.numberOfRides);
+  }) : super(
+            fullname: data.fullName,
+            profilePhoto: data.profilePhoto,
+            totalRating: data.totalRating,
+            verification: data.verificationStatus,
+            address: data.address,
+            gender: data.gender,
+            description: data.description,
+            car: data.car,
+            comments: data.comments,
+            documents: data.documents,
+            averageRating: data.averageRating,
+            numberOfides: data.numberOfRides);
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
@@ -36,16 +48,17 @@ class ProfileData {
   final String gender;
   final String? profilePhoto;
   final String description;
-  final double rate;
-  final int numberRating;
-   final CarModel? car;
-  final int numberOfRides; 
+  final double averageRating;
+  final int totalRating;
+  final CarModel? car;
+  final int numberOfRides;
   final DocumentsModel? documents;
   final List<CommentModel>? comments;
 
   ProfileData({
-    required this.rate,
-    required this.numberRating,
+    required this.averageRating,
+    required this.totalRating,
+    
     required this.userId,
     required this.fullName,
     required this.verificationStatus,
@@ -53,7 +66,7 @@ class ProfileData {
     required this.gender,
     this.profilePhoto,
     required this.description,
-     this.car,
+    this.car,
     required this.numberOfRides,
     required this.documents,
     required this.comments,
@@ -61,10 +74,11 @@ class ProfileData {
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
     return ProfileData(
-      userId: json[ApiKey.userId] ?? 0,
+      userId: json[ApiKey.userId] ,
       fullName: json[ApiKey.fullName] ?? '',
-      numberRating: json[ApiKey.numberRating] ?? 0, 
-      rate: json[ApiKey.rate] ?? 0, 
+      totalRating: json[ApiKey.rating][ApiKey.totalRatings] ?? 0,
+      averageRating: json[ApiKey.rating][ApiKey.averageRating] ?? 0,
+
       verificationStatus: json[ApiKey.verificationStatus] ?? 'none',
       address: json[ApiKey.address] ?? '',
       gender: json[ApiKey.gender] ?? 'Male',
@@ -72,8 +86,8 @@ class ProfileData {
       description: json[ApiKey.description] ?? '',
       car: json[ApiKey.typeOfCar] != null ? CarModel.fromJson(json) : null,
       numberOfRides: json[ApiKey.numberOfRides] ?? 0,
-      documents: json[ApiKey.documents] != null 
-          ? DocumentsModel.fromJson(json[ApiKey.documents]) 
+      documents: json[ApiKey.documents] != null
+          ? DocumentsModel.fromJson(json[ApiKey.documents])
           : null,
       comments: (json[ApiKey.comments] as List<dynamic>?)
               ?.map((comment) => CommentModel.fromJson(comment))

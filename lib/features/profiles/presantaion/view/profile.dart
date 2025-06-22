@@ -6,6 +6,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/service/hive_services.dart';
+import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/auth/data/model/user_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
@@ -32,27 +33,26 @@ class _ProfileState extends State<Profile> {
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
-  int? getCurrentUserID() {
-    final currentUser = HiveBoxes.authBox.get(HiveKeys.user) as UserModel?;
-    return currentUser?.id;
-  }
-
   Future<ProfileEntity> _fetchProfileData(int userId) async {
-    final currentUserid = getCurrentUserID();
+    final currentUserid = myid();
     if (userId == currentUserid) {
+      print("===============================showmyprofile");
       return await _profileCubit.showMyProfile();
     } else {
+      print("===============================showotherProfile");
       return await _profileCubit.showOtherProfile(userId);
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+    print("===============================build");
     return Scaffold(
       body: FutureBuilder<ProfileEntity>(
         future: _loadProfileFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
+            print("===============================futuer wating");
             return Center(
               child: Lottie.asset(
                 ImagesUrl.loadinglottie,
@@ -63,7 +63,8 @@ class _ProfileState extends State<Profile> {
             );
           }
 
-          if (snapshot.hasError) {
+          if (snapshot.hasError) { 
+            print("===============================future error");
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -94,9 +95,11 @@ class _ProfileState extends State<Profile> {
               ),
             );
           }
+          print("===============================profile Body statrt");
           return ProfileBody(
             profileEntity: snapshot.data!,
           );
+          
         },
       ),
     );

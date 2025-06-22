@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
@@ -24,14 +25,14 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   showMyProfile() async {
+    int ?myId = myid();
     emit(ProfileLoadingState());
-    
-    // final response = await profileRepoIm.showMyProfile();
-    // response.fold((error) {
-    //   emit(ProfileErorrState(message: error.message));
-    // }, (myProfile) {
-    //   emit(ProfileloadedState(ProfileMode.myView, profileModel: myProfile));
-    // });
+    final response = await profileRepoIm.showProfile(myId!);
+    response.fold((error) {
+      emit(ProfileErorrState(message: error.message));
+    }, (myProfile) {
+      emit(ProfileloadedState(ProfileMode.myView, profileEntity: myProfile));
+    });
   }
 
   editMyProfile() {
@@ -52,12 +53,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     // final response = await profileRepoIm.updateProfile();
     // response.fold((error) {
     //   emit(ProfileErorrState(message: error.message));
-    // }, 
+    // },
     // (profileModel) {
-      // emit(ProfileloadedState(
-      //   ProfileMode.myEdit,
-      //   profileModel: profileModel,
-      // ));
+    // emit(ProfileloadedState(
+    //   ProfileMode.myEdit,
+    //   profileModel: profileModel,
+    // ));
     // });
   }
 }
