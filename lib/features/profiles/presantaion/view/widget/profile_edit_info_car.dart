@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
@@ -23,12 +25,20 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
   late TextEditingController colorCar;
   late TextEditingController seatsCar;
 
+  late bool hasRadio;
+  late bool allowsSmoking;
+  String? carImage;
+
   @override
   void initState() {
     super.initState();
     carName = TextEditingController(text: widget.car.type);
     colorCar = TextEditingController(text: widget.car.color);
-    seatsCar = TextEditingController(text: widget.car.seats as String);
+    seatsCar = TextEditingController(text: widget.car.seats.toString());
+
+    hasRadio = widget.car.hasRadio;
+    allowsSmoking = widget.car.allowsSmoking;
+    carImage = widget.car.image;
   }
 
   @override
@@ -43,42 +53,45 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: MyButton(
+            onPressed: () async {
+              final picker = ImagePicker();
+              final pickedFile =
+                  await picker.pickImage(source: ImageSource.gallery);
+              if (pickedFile != null) {
+                setState(() {
+                  carImage = pickedFile.path;
+                });
+                // context.read<ProfileCubit>().updateCarImage(pickedFile);
+              }
+            },
+            child: CircleAvatar(
+              backgroundColor: MyColors.primary,
+              maxRadius: 30,
+              backgroundImage: carImage == null
+                  ? const AssetImage(ImagesUrl.defualtCar)
+                  : carImage!.startsWith('http')
+                      ? NetworkImage(carImage!)
+                      : FileImage(
+                          // For local images (picked from gallery)
+                          File(carImage!),
+                        ) as ImageProvider,
+            ),
+          ),
+        ),
         Row(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: MyButton(
-                onPressed: () async {
-                  final ImagePicker picker = ImagePicker();
-                  final XFile? pickedFile =
-                      await picker.pickImage(source: ImageSource.gallery);
-                  if (pickedFile != null) {
-                    // context.read<ProfileCubit>().pickImage(pickedFile);
-                  }
-                },
-                child: CircleAvatar(
-                  backgroundColor: MyColors.primary,
-                  maxRadius: 30,
-                  backgroundImage: widget.car.image == null
-                      ? const AssetImage(ImagesUrl.defualtCar)
-                      : NetworkImage(widget.car.image!) as ImageProvider,
-                ),
-              ),
-            ),
             Expanded(
               child: CustomListTile(
                 title: "نوع السيارة",
                 titleTextStyle: font15BoldRamadi,
-                iconleading: const Icon(
-                  Icons.directions_car,
-                  size: 20,
-                  color: MyColors.primary,
-                ),
+                iconleading: const Icon(Icons.directions_car,
+                    size: 20, color: MyColors.primary),
                 subtitle: TextFormField(
                   controller: carName,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                  ),
+                  decoration: const InputDecoration(border: InputBorder.none),
                 ),
               ),
             ),
@@ -90,16 +103,11 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
               child: CustomListTile(
                 title: "لون",
                 titleTextStyle: font15BoldRamadi,
-                iconleading: const Icon(
-                  Icons.color_lens,
-                  size: 20,
-                  color: MyColors.primary,
-                ),
+                iconleading: const Icon(Icons.color_lens,
+                    size: 20, color: MyColors.primary),
                 subtitle: TextFormField(
                   controller: colorCar,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                  ),
+                  decoration: const InputDecoration(border: InputBorder.none),
                 ),
               ),
             ),
@@ -107,17 +115,82 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
               child: CustomListTile(
                 title: "عدد الكراسي",
                 titleTextStyle: font15BoldRamadi,
-                iconleading: const Icon(
-                  Icons.chair,
-                  size: 20,
-                  color: MyColors.primary,
-                ),
+                iconleading:
+                    const Icon(Icons.chair, size: 20, color: MyColors.primary),
                 subtitle: TextFormField(
                   controller: seatsCar,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                  ),
+                  decoration: const InputDecoration(border: InputBorder.none),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: CustomListTile(
+                title: "الراديو",
+                titleTextStyle: font15BoldRamadi,
+                iconleading:
+                    const Icon(Icons.radio, size: 20, color: MyColors.primary),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Transform.scale(
+                      scale: 0.8, // تصغير الـ Switch
+                      child: Switch(
+                        value: hasRadio,
+                        onChanged: (val) => setState(() => hasRadio = val),
+                        activeColor: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: Text(
+                        hasRadio ? "متاح" : "غير متاح",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12, // تصغير الخط
+                          color: hasRadio ? Colors.green : Colors.red,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: CustomListTile(
+                title: "التدخين",
+                titleTextStyle: font15BoldRamadi,
+                iconleading: const Icon(Icons.smoking_rooms,
+                    size: 20, color: MyColors.primary),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Transform.scale(
+                      scale: 0.8,
+                      child: Switch(
+                        value: allowsSmoking,
+                        onChanged: (val) => setState(() => allowsSmoking = val),
+                        activeColor: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: Text(
+                        allowsSmoking ? "مسموح" : "ممنوع",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: allowsSmoking ? Colors.green : Colors.red,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

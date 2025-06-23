@@ -7,7 +7,7 @@ class ProfileEntity {
   final String? profilePhoto;
   final int numberOfides;
   final int totalRating;
-  final int averageRating;
+  final double averageRating;
   final String verification;
   final String description;
   final String address;

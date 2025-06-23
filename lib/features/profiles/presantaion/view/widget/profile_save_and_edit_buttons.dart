@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
-import 'package:sharecars/core/utils/widgets/my_button.dart';
-import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_edit_button.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_save_button.dart';
 
@@ -19,7 +16,6 @@ class ProfileSaveAndEditButtons extends StatelessWidget {
           top: 0.h, bottom: 0.h, right: 0.w, left: 260.w),
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
-          print("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
           if (state is ProfileloadedState) {
             switch (state.mode) {
               case ProfileMode.myView:

@@ -7,7 +7,7 @@ import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/functions/input_valid.dart';
 import 'package:sharecars/core/utils/widgets/custom_text_form.dart';
 import 'package:sharecars/core/utils/widgets/cutom_list_tile.dart';
-import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 
 class ProfileHintline extends StatelessWidget {
   final String hintLine;

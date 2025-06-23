@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
+import 'package:sharecars/core/utils/functions/get_token.dart';
+import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
-import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_Car_ifno.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_contact_me.dart';
-import 'package:sharecars/features/profiles/presantaion/view/widget/profile_comments.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_hintline.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_image_and_name.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_rating.dart';
@@ -26,13 +27,13 @@ class ProfileBody extends StatefulWidget {
 class _ProfileBodyState extends State<ProfileBody> {
   TextEditingController? controllerEditAboutMe;
 
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state is ProfileloadedState && state.mode == ProfileMode.myEdit) {
           controllerEditAboutMe = TextEditingController();
-          print("==========================textedint");
         }
       },
       child: Scaffold(
@@ -87,9 +88,9 @@ class _ProfileBodyState extends State<ProfileBody> {
                       ],
                     ),
                   ),
-                  ProfileComments(
-                    feadBack: widget.profileEntity.comments,
-                  ),
+                  // ProfileComments(
+                  //   feadBack: widget.profileEntity.comments,
+                  // ),
                 ])),
           ),
         ),

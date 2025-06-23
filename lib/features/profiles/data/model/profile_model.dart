@@ -48,7 +48,7 @@ class ProfileData {
   final String gender;
   final String? profilePhoto;
   final String description;
-  final int averageRating;
+  final double averageRating;
   final int totalRating;
   final CarModel? car;
   final int numberOfRides;

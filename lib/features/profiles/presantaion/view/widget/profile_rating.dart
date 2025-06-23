@@ -4,7 +4,7 @@ import 'package:sharecars/core/them/text_style_app.dart';
 
 class ProfileRating extends StatelessWidget {
   final int totalRating;
-  final int averageRating;
+  final double averageRating;
   final int tripsCount;
   const ProfileRating(
       {super.key,
@@ -16,7 +16,7 @@ class ProfileRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       RatingBarIndicator(
-        rating: averageRating.toDouble(),
+        rating: averageRating,
         itemBuilder: (context, index) => const Icon(
           Icons.star,
           color: Colors.amber,

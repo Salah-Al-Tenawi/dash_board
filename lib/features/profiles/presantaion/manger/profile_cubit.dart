@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
+import 'package:sharecars/features/profiles/data/date_source/profile_locat_data_source.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
@@ -50,6 +52,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   editMyProfile() {
     final current = state;
     if (current is ProfileloadedState) {
+      print("=== emitting myEdit mode ===");
       emit(ProfileloadedState(
         ProfileMode.myEdit,
         profileEntity: current.profileEntity,
@@ -58,21 +61,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void saveMyProfile() async {
-    if (state is ProfileloadedState) { 
-      
-    }
+    if (state is ProfileloadedState) {}
 
-    emit(ProfileLoadingState());
-    // to do
-    // final response = await profileRepoIm.updateProfile();
-    // response.fold((error) {
-    //   emit(ProfileErorrState(message: error.message));
-    // },
-    // (profileModel) {
-    // emit(ProfileloadedState(
-    //   ProfileMode.myEdit,
-    //   profileModel: profileModel,
-    // ));
-    // });
   }
+
+  
 }

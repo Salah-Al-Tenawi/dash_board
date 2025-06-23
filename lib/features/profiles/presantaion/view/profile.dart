@@ -6,10 +6,12 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
+import 'package:sharecars/core/utils/widgets/loading_widget_size_150.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
-import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
+import 'package:sharecars/features/profiles/presantaion/view/widget/profile_erorr.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -27,80 +29,48 @@ class _ProfileState extends State<Profile> {
     super.initState();
     _profileCubit = context.read<ProfileCubit>();
     final userId = 26;
-    print("=========================================${myid()}");
+    // final userId = Get.arguments as int;
+
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
   Future<ProfileEntity> _fetchProfileData(int userId) async {
     final currentUserid = myid();
     if (userId == currentUserid) {
-      print("===============================showmyprofile");
       return await _profileCubit.showMyProfile();
     } else {
-      print("===============================showotherProfile");
       return await _profileCubit.showOtherProfile(userId);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("===============================build");
     return Scaffold(
-        body: RefreshIndicator(
-      onRefresh: () async {},
-      child: FutureBuilder<ProfileEntity>(
-        future: _loadProfileFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            print("===============================futuer wating");
-            return Center(
-              child: Lottie.asset(
-                ImagesUrl.loadinglottie,
-                width: 150.w,
-                height: 150.h,
-                fit: BoxFit.contain,
-              ),
-            );
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {},
+        child: FutureBuilder<ProfileEntity>(
+          future: _loadProfileFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              const LoadingWidgetSize150();
+            }
 
-          if (snapshot.hasError) {
-            print("===============================future error");
-            print(
-                "=====================================================${snapshot.error}");
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'حدث خطأ اثناء التحميل',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20.h),
-                  MyButton(
-                    onPressed: () {
-                      setState(() {
-                        _loadProfileFuture =
-                            _fetchProfileData(Get.arguments as int);
-                      });
-                    },
-                    width: 150.w,
-                    height: 45.h,
-                    borderRadius: true,
-                    child: const Text("أعد المحاولة"),
-                  ),
-                ],
-              ),
-            );
-          }
-          print("===============================profile Body statrt");
-          return ProfileBody(profileEntity: snapshot.data!);
-        },
+            if (snapshot.hasError || snapshot.data == null) {
+              return ProfileErrorWidget(
+                onRetry: () {
+                  setState(() {
+                    _loadProfileFuture =
+                        _fetchProfileData(Get.arguments as int);
+                  });
+                },
+              );
+            }
+            
+
+            return ProfileBody(profileEntity: snapshot.data!);
+          },
+        ),
       ),
-    ));
+    );
   }
 }

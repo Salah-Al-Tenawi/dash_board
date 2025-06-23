@@ -16,7 +16,7 @@ import 'package:sharecars/features/auth/presentation/view/singin.dart';
 import 'package:sharecars/features/home/preantion/view/home.dart';
 import 'package:sharecars/features/maps/maps.dart';
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
-import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
 import 'package:sharecars/features/splash_view/presentaion/view/splash_view.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_add_number_phone.dart';

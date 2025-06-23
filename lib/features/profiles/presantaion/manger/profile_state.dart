@@ -19,5 +19,9 @@ final class ProfileErorrState extends ProfileState {
 final class ProfileloadedState extends ProfileState {
   final ProfileEntity profileEntity;
   final ProfileMode mode;
+
   const ProfileloadedState(this.mode, {required this.profileEntity});
+
+  @override
+  List<Object> get props => [mode, profileEntity];
 }
