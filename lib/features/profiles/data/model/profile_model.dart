@@ -48,7 +48,7 @@ class ProfileData {
   final String gender;
   final String? profilePhoto;
   final String description;
-  final double averageRating;
+  final int averageRating;
   final int totalRating;
   final CarModel? car;
   final int numberOfRides;
@@ -58,7 +58,6 @@ class ProfileData {
   ProfileData({
     required this.averageRating,
     required this.totalRating,
-    
     required this.userId,
     required this.fullName,
     required this.verificationStatus,
@@ -73,12 +72,12 @@ class ProfileData {
   });
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
+    final rating = json[ApiKey.rating] ?? {};
     return ProfileData(
-      userId: json[ApiKey.userId] ,
+      userId: json[ApiKey.userId],
       fullName: json[ApiKey.fullName] ?? '',
-      totalRating: json[ApiKey.rating][ApiKey.totalRatings] ?? 0,
-      averageRating: json[ApiKey.rating][ApiKey.averageRating] ?? 0,
-
+      totalRating: rating[ApiKey.totalRatings] ?? 0,
+      averageRating: rating[ApiKey.averageRating] ?? 0,
       verificationStatus: json[ApiKey.verificationStatus] ?? 'none',
       address: json[ApiKey.address] ?? '',
       gender: json[ApiKey.gender] ?? 'Male',
@@ -86,7 +85,8 @@ class ProfileData {
       description: json[ApiKey.description] ?? '',
       car: json[ApiKey.typeOfCar] != null ? CarModel.fromJson(json) : null,
       numberOfRides: json[ApiKey.numberOfRides] ?? 0,
-      documents: json[ApiKey.documents] != null
+      documents: (json[ApiKey.documents] != null &&
+              json[ApiKey.documents] is Map<String, dynamic>)
           ? DocumentsModel.fromJson(json[ApiKey.documents])
           : null,
       comments: (json[ApiKey.comments] as List<dynamic>?)

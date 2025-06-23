@@ -13,40 +13,54 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileCubit(this.profileRepoIm) : super(ProfileInitialState());
 
-  showOtherProfile(int userid) async {
+  Future<ProfileEntity> showOtherProfile(int userid) async {
     emit(ProfileLoadingState());
     final response = await profileRepoIm.showProfile(userid);
-    response.fold((error) {
-      emit(ProfileErorrState(message: error.message));
-    }, (profileEntity) {
-      emit(ProfileloadedState(ProfileMode.otherView,
-          profileEntity: profileEntity));
-    });
+
+    return response.fold(
+      (error) {
+        emit(ProfileErorrState(message: error.message));
+        throw Exception(error.message);
+      },
+      (profileEntity) {
+        emit(ProfileloadedState(ProfileMode.otherView,
+            profileEntity: profileEntity));
+        return profileEntity;
+      },
+    );
   }
 
-  showMyProfile() async {
-    int ?myId = myid();
+  Future<ProfileEntity> showMyProfile() async {
+    int? myId = myid();
     emit(ProfileLoadingState());
     final response = await profileRepoIm.showProfile(myId!);
-    response.fold((error) {
-      emit(ProfileErorrState(message: error.message));
-    }, (myProfile) {
-      emit(ProfileloadedState(ProfileMode.myView, profileEntity: myProfile));
-    });
+
+    return response.fold(
+      (error) {
+        emit(ProfileErorrState(message: error.message));
+        throw Exception(error.message);
+      },
+      (myProfile) {
+        emit(ProfileloadedState(ProfileMode.myView, profileEntity: myProfile));
+        return myProfile;
+      },
+    );
   }
 
   editMyProfile() {
     final current = state;
-    // if (current is ProfileloadedState) {
-    //   emit(ProfileloadedState(
-    //     ProfileMode.myEdit,
-    //     profileModel: current.profileModel,
-    //   ));
-    // }
+    if (current is ProfileloadedState) {
+      emit(ProfileloadedState(
+        ProfileMode.myEdit,
+        profileEntity: current.profileEntity,
+      ));
+    }
   }
 
   void saveMyProfile() async {
-    if (state is ProfileloadedState) {}
+    if (state is ProfileloadedState) { 
+      
+    }
 
     emit(ProfileLoadingState());
     // to do

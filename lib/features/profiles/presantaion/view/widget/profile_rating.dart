@@ -3,16 +3,20 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 
 class ProfileRating extends StatelessWidget {
-  final int reviewsCount;
+  final int totalRating;
+  final int averageRating;
   final int tripsCount;
   const ProfileRating(
-      {super.key, required this.reviewsCount, required this.tripsCount});
+      {super.key,
+      required this.averageRating,
+      required this.totalRating,
+      required this.tripsCount});
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       RatingBarIndicator(
-        rating: 5,
+        rating: averageRating.toDouble(),
         itemBuilder: (context, index) => const Icon(
           Icons.star,
           color: Colors.amber,
@@ -23,7 +27,7 @@ class ProfileRating extends StatelessWidget {
       ),
       const SizedBox(height: 2),
       Text(
-        "($reviewsCount) التقييمات",
+        "($totalRating) التقييمات",
         style: font10NormalGrey,
       ),
       Text(

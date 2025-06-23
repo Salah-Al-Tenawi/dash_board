@@ -1,7 +1,7 @@
 import 'package:sharecars/core/api/api_end_points.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 
-class CarModel extends CarEntity{
+class CarModel extends CarEntity {
   final String typeOfCar;
   final String colorOfCar;
   final int numberOfSeats;
@@ -16,7 +16,13 @@ class CarModel extends CarEntity{
     this.carPic,
     required this.radio,
     required this.smoking,
-  }) : super(type: typeOfCar, color: colorOfCar, seats: numberOfSeats, image: carPic, hasRadio: radio, allowsSmoking: smoking);
+  }) : super(
+            type: typeOfCar,
+            color: colorOfCar,
+            seats: numberOfSeats,
+            image: carPic,
+            hasRadio: radio,
+            allowsSmoking: smoking);
 
   factory CarModel.fromJson(Map<String, dynamic> json) {
     return CarModel(
@@ -24,8 +30,8 @@ class CarModel extends CarEntity{
       colorOfCar: json[ApiKey.colorOfCar],
       numberOfSeats: json[ApiKey.numberOfSeats],
       carPic: json[ApiKey.carPic],
-      radio: json[ApiKey.radio] == 1, // تحويل من int إلى bool
-      smoking: json[ApiKey.smoking] == 1, // تحويل من int إلى bool
+      radio: json[ApiKey.radio] == 1 ? true : false,
+      smoking: json[ApiKey.smoking] == 1 ? true : false,
     );
   }
 
@@ -39,5 +45,4 @@ class CarModel extends CarEntity{
       ApiKey.smoking: smoking == true ? 1 : 0, // تحويل من bool إلى int
     };
   }
-
 }

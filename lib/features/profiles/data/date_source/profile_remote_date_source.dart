@@ -36,7 +36,8 @@ class ProfileRemoteDateSourceIm extends ProfileRemoteDateSource {
 
   @override
   Future<ProfileModel> showProfile(int id) async {
-    final response = await api.get("${ApiEndPoint.profile}/$id");
+    final response = await api.get("${ApiEndPoint.profile}/$id",
+        header: {ApiKey.authorization:"Bearer ${mytoken()}"});
 
     return ProfileModel.fromJson(response);
   }
@@ -44,7 +45,7 @@ class ProfileRemoteDateSourceIm extends ProfileRemoteDateSource {
   @override
   Future<CommentModel> addcommit(String commit, int userId) async {
     final response = await api.post("${ApiEndPoint.profile}/$userId/comments",
-        header: {ApiKey.authorization: mytoken()},
+        header: {ApiKey.authorization:"Bearer ${mytoken()}"},
         data: {ApiKey.comment: commit});
 
     return CommentModel.fromJson(response);
@@ -67,7 +68,7 @@ class ProfileRemoteDateSourceIm extends ProfileRemoteDateSource {
       String? gender,
       String? address) async {
     final response = await api.post(ApiEndPoint.profile, header: {
-      ApiKey.authorization: mytoken()
+      ApiKey.authorization:"Bearer ${mytoken()}"
     }, data: {
       ApiKey.profilePhoto: profilePhoto,
       ApiKey.description: description,
@@ -90,7 +91,7 @@ class ProfileRemoteDateSourceIm extends ProfileRemoteDateSource {
   @override
   Future<RatingModle> rateUser(double rating, int userId) async {
     final response = await api.post("${ApiEndPoint.profile}/$userId/rate",
-        header: {ApiKey.authorization: mytoken()},
+        header: {ApiKey.authorization:"Bearer ${mytoken()}"},
         data: {ApiKey.rating: rating});
 
     return RatingModle.fromJson(response);

@@ -26,8 +26,12 @@ class ProfileCarIfno extends StatelessWidget {
           switch (state.mode) {
             case ProfileMode.otherView:
             case ProfileMode.myView:
-              Column(
+             return Column(
                 children: [
+                  const Divider(
+                    endIndent: 100,
+                    indent: 100,
+                  ),
                   Row(
                     children: [
                       Align(
@@ -175,13 +179,13 @@ class ProfileCarIfno extends StatelessWidget {
               );
 
             case ProfileMode.myEdit:
-              ProfileEditINfoCar(
+              return ProfileEditINfoCar(
                 car: car,
               );
           }
         }
 
-        return const SizedBox();
+        return  const SizedBox();
       },
     );
   }

@@ -12,8 +12,13 @@ class ImagesUrl {
 
 // lottie image
   static const String loadinglottie = "$lottieAssets/loading1.json";
-static const String searchlottie = "$lottieAssets/Animation - 1719048732828(1).json" ;
+  static const String searchlottie =
+      "$lottieAssets/Animation - 1719048732828(1).json";
+  static const String lottie1 = "$lottieAssets/one.json";
+
+  static const String lottie3 = "$lottieAssets/three.json";
 
   // svg
-  static const String didyouback = "$svgAssets /undraw_mobile_login_re_9ntv.svg";
+  static const String didyouback =
+      "$svgAssets /undraw_mobile_login_re_9ntv.svg";
 }

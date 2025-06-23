@@ -8,12 +8,17 @@ import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/functions/show_image.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/view/widget/profile_verification_icon.dart';
 
 class ProfileImageAndName extends StatelessWidget {
   final String? imageurl;
   final String name;
+  final String verification;
   const ProfileImageAndName(
-      {super.key, required this.imageurl, required this.name});
+      {super.key,
+      required this.imageurl,
+      required this.name,
+      required this.verification});
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +56,11 @@ class ProfileImageAndName extends StatelessWidget {
                   },
                   child: CircleAvatar(
                     backgroundColor: MyColors.primary,
-                    maxRadius: 45, 
-                    
+                    maxRadius: 45,
                     backgroundImage: imageurl == null
-                        ? const AssetImage(ImagesUrl.profileImage) 
+                        ? const AssetImage(ImagesUrl.profileImage)
                         : NetworkImage(imageurl!) as ImageProvider,
                   ),
-                );
-
-              default:
-                return const CircleAvatar(
-                  backgroundColor: MyColors.primary,
-                  maxRadius: 45,
-                  backgroundImage: AssetImage(ImagesUrl.profileImage),
                 );
             }
           }
@@ -71,9 +68,11 @@ class ProfileImageAndName extends StatelessWidget {
           return const Text(" blocBuilder not found ant state");
         }),
       ),
-      const Icon(Icons.verified, color: MyColors.primary),
+      ProfileVerificationIcon(
+        verification: verification,
+      ),
       SizedBox(
-        width: 5.w,
+        width: 15.w,
       ),
       Expanded(
         child: BlocBuilder<ProfileCubit, ProfileState>(

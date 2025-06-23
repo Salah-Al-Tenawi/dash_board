@@ -31,15 +31,14 @@ class ProfileHintline extends StatelessWidget {
             case ProfileMode.myView:
             case ProfileMode.otherView:
               return CustomListTile(
-                title: "",
+                title: "نبذة عني",
+
                 margin: EdgeInsets.symmetric(vertical: 20.h),
                 // color: MyColors.beige,
-                trailing: const Text(
-                  "نبذة عني",
-                  style: font12boldnewramadi,
-                ),
+                // trailing: Iconst
+
                 isThreeLine: true,
-                titleTextStyle: font13boldbluedark,
+                titleTextStyle: font15BoldRamadi,
                 subtitle: Text(
                     style: const TextStyle(color: MyColors.greyTextColor),
                     hintLine),

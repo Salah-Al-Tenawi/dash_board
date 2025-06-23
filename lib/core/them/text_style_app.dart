@@ -62,3 +62,6 @@ const font13normaldgrey = TextStyle(
   fontSize: 14,
   color: Colors.grey,
 );
+
+const font13NormalGrayText = TextStyle(
+    fontSize: 13, fontWeight: FontWeight.normal, color: MyColors.greyTextField);

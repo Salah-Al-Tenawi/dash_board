@@ -5,10 +5,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
-import 'package:sharecars/core/service/hive_services.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
-import 'package:sharecars/features/auth/data/model/user_model.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
@@ -25,11 +23,11 @@ class _ProfileState extends State<Profile> {
   late ProfileCubit _profileCubit;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     _profileCubit = context.read<ProfileCubit>();
-    final userId = Get.arguments as int;
-
+    final userId = 26;
+    print("=========================================${myid()}");
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
@@ -45,10 +43,12 @@ class _ProfileState extends State<Profile> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     print("===============================build");
     return Scaffold(
-      body: FutureBuilder<ProfileEntity>(
+        body: RefreshIndicator(
+      onRefresh: () async {},
+      child: FutureBuilder<ProfileEntity>(
         future: _loadProfileFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -63,14 +63,16 @@ class _ProfileState extends State<Profile> {
             );
           }
 
-          if (snapshot.hasError) { 
+          if (snapshot.hasError) {
             print("===============================future error");
+            print(
+                "=====================================================${snapshot.error}");
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'حدث خطأ: ${snapshot.error}',
+                    'حدث خطأ اثناء التحميل',
                     style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.red,
@@ -96,12 +98,9 @@ class _ProfileState extends State<Profile> {
             );
           }
           print("===============================profile Body statrt");
-          return ProfileBody(
-            profileEntity: snapshot.data!,
-          );
-          
+          return ProfileBody(profileEntity: snapshot.data!);
         },
       ),
-    );
+    ));
   }
 }

@@ -7,14 +7,14 @@ class ProfileEntity {
   final String? profilePhoto;
   final int numberOfides;
   final int totalRating;
-  final double averageRating;
+  final int averageRating;
   final String verification;
   final String description;
   final String address;
   final String gender;
   CarEntity? car;
   List<CommentEntity>? comments;
-  DocumentsModel ?documents;
+  DocumentsModel? documents;
 
   ProfileEntity({
     required this.fullname,

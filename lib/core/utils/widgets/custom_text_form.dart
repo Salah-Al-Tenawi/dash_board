@@ -47,7 +47,6 @@ class CustomTextformfild extends StatelessWidget {
                 borderSide: BorderSide(color: MyColors.primary)),
             hintText: hint,
             suffix: suffix,
-            fillColor: MyColors.beige,
             labelText: title,
             labelStyle: const TextStyle(
               fontSize: 14,

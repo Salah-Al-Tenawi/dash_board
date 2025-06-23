@@ -6,55 +6,35 @@ import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit/profile_cubit.dart';
+import 'package:sharecars/features/profiles/presantaion/view/widget/profile_edit_button.dart';
+import 'package:sharecars/features/profiles/presantaion/view/widget/profile_save_button.dart';
 
 class ProfileSaveAndEditButtons extends StatelessWidget {
   const ProfileSaveAndEditButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileCubit, ProfileState>(
-      builder: (context, state) {
-        if (state is ProfileloadedState) {
-          switch (state.mode) {
-            case ProfileMode.myView:
-              Align(
-                alignment: Alignment.topRight,
-                child: MyButton(
-                    onPressed: () {
-                      context.read<ProfileCubit>().editMyProfile();
-                    },
-                    child: const Icon(
-                      Icons.edit,
-                      color: MyColors.primary,
-                      size: 20,
-                    )),
-              );
-            case ProfileMode.myEdit:
-              return Align(
-                alignment: Alignment.topRight,
-                child: MyButton(
-                    color: MyColors.primaryText,
-                    borderRadius: true,
-                    width: 80.w,
-                    onPressed: () {
-                      context.read<ProfileCubit>().saveMyProfile();
-                    },
-                    child: const Text(
-                      "حفظ",
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.normal,
-                          color: MyColors.greyTextField),
-                    )),
-              );
+    return Padding(
+      padding: EdgeInsetsGeometry.only(
+          top: 0.h, bottom: 0.h, right: 0.w, left: 260.w),
+      child: BlocBuilder<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          print("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+          if (state is ProfileloadedState) {
+            switch (state.mode) {
+              case ProfileMode.myView:
+                return const ProfileEditButton();
+              case ProfileMode.myEdit:
+                return const ProfileSaveButton();
 
-            case ProfileMode.otherView:
-              return const SizedBox();
+              case ProfileMode.otherView:
+                return const SizedBox();
+            }
           }
-        }
 
-        return const SizedBox();
-      },
+          return const SizedBox();
+        },
+      ),
     );
   }
 }
