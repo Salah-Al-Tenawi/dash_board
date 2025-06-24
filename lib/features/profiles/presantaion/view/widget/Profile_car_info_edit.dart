@@ -1,44 +1,62 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/widgets/cutom_list_tile.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/profiles/data/model/enum/image_mode.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
+import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 
-class ProfileEditINfoCar extends StatefulWidget {
-  final CarEntity car;
-  const ProfileEditINfoCar({
+class ProfileCarINfoEdit extends StatefulWidget {
+  final CarEntity ?carWithEdit;
+
+  const ProfileCarINfoEdit({
     super.key,
-    required this.car,
+    required this.carWithEdit,
   });
 
   @override
-  State<ProfileEditINfoCar> createState() => _ProfileEditINfoCarState();
+  State<ProfileCarINfoEdit> createState() => ProfileCarINfoEditState();
 }
 
-class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
+class ProfileCarINfoEditState extends State<ProfileCarINfoEdit> {
   late TextEditingController carName;
   late TextEditingController colorCar;
   late TextEditingController seatsCar;
-
   late bool hasRadio;
   late bool allowsSmoking;
   String? carImage;
 
+  void _onPickImage(BuildContext context) async {
+    final picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (!context.mounted) return;
+
+    if (pickedFile != null) {
+      context.read<ProfileCubit>().pickImage(
+            pickedFile,
+            ProfileImagePicMode.car,
+          );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    carName = TextEditingController(text: widget.car.type);
-    colorCar = TextEditingController(text: widget.car.color);
-    seatsCar = TextEditingController(text: widget.car.seats.toString());
+    carName = TextEditingController(text: widget.carWithEdit?.type);
+    colorCar = TextEditingController(text: widget.carWithEdit?.color);
+    seatsCar = TextEditingController(text: widget.carWithEdit?.seats.toString());
 
-    hasRadio = widget.car.hasRadio;
-    allowsSmoking = widget.car.allowsSmoking;
-    carImage = widget.car.image;
+    hasRadio = widget.carWithEdit!.hasRadio;
+    allowsSmoking = widget.carWithEdit!.allowsSmoking;
+    carImage = widget.carWithEdit?.image;
   }
 
   @override
@@ -56,17 +74,7 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
         Align(
           alignment: Alignment.topLeft,
           child: MyButton(
-            onPressed: () async {
-              final picker = ImagePicker();
-              final pickedFile =
-                  await picker.pickImage(source: ImageSource.gallery);
-              if (pickedFile != null) {
-                setState(() {
-                  carImage = pickedFile.path;
-                });
-                // context.read<ProfileCubit>().updateCarImage(pickedFile);
-              }
-            },
+            onPressed: () => _onPickImage(context),
             child: CircleAvatar(
               backgroundColor: MyColors.primary,
               maxRadius: 30,
@@ -75,7 +83,6 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                   : carImage!.startsWith('http')
                       ? NetworkImage(carImage!)
                       : FileImage(
-                          // For local images (picked from gallery)
                           File(carImage!),
                         ) as ImageProvider,
             ),
@@ -92,6 +99,9 @@ class _ProfileEditINfoCarState extends State<ProfileEditINfoCar> {
                 subtitle: TextFormField(
                   controller: carName,
                   decoration: const InputDecoration(border: InputBorder.none),
+                  onFieldSubmitted: (value) {
+                    widget.carWithEdit?.type = value;
+                  },
                 ),
               ),
             ),

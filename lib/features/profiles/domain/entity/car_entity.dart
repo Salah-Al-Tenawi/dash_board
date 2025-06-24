@@ -1,5 +1,5 @@
 class CarEntity {
-  final String type;
+  late final String type;
   final String color;
   final int seats;
   final String? image;

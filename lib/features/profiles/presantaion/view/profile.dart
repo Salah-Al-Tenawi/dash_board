@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:lottie/lottie.dart';
-import 'package:sharecars/core/constant/imagesUrl.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/core/utils/widgets/loading_widget_size_150.dart';
-import 'package:sharecars/core/utils/widgets/my_button.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_body.dart';
@@ -28,6 +24,7 @@ class _ProfileState extends State<Profile> {
   void initState() {
     super.initState();
     _profileCubit = context.read<ProfileCubit>();
+
     final userId = 26;
     // final userId = Get.arguments as int;
 
@@ -52,7 +49,7 @@ class _ProfileState extends State<Profile> {
           future: _loadProfileFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              const LoadingWidgetSize150();
+              return const LoadingWidgetSize150();
             }
 
             if (snapshot.hasError || snapshot.data == null) {
@@ -65,7 +62,6 @@ class _ProfileState extends State<Profile> {
                 },
               );
             }
-            
 
             return ProfileBody(profileEntity: snapshot.data!);
           },

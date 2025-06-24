@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
-import 'package:sharecars/core/utils/functions/get_token.dart';
-import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
-import 'package:sharecars/features/profiles/presantaion/view/widget/profile_Car_ifno.dart';
+import 'package:sharecars/features/profiles/presantaion/view/widget/profile_car.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_contact_me.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_hintline.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_image_and_name.dart';
@@ -26,20 +24,26 @@ class ProfileBody extends StatefulWidget {
 
 class _ProfileBodyState extends State<ProfileBody> {
   TextEditingController? controllerEditAboutMe;
-
+  ProfileEntity? _profileCopyWithEdit;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
-        if (state is ProfileloadedState && state.mode == ProfileMode.myEdit) {
-          controllerEditAboutMe = TextEditingController();
+        if (state is ProfileLoadedState && state.mode == ProfileMode.myEdit) {
+          _profileCopyWithEdit = widget.profileEntity;
+          controllerEditAboutMe =
+              TextEditingController(text: widget.profileEntity.description);
         }
       },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: MyColors.primaryBackground,
-          actions: const [ProfileSaveAndEditButtons()],
+          actions: [
+            ProfileSaveAndEditButtons(
+              profileEntityWithEdit: _profileCopyWithEdit,
+            )
+          ],
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -50,6 +54,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                     verification: widget.profileEntity.verification,
                     name: widget.profileEntity.fullname,
                     imageurl: widget.profileEntity.profilePhoto,
+                    profileEntitYEdit: _profileCopyWithEdit,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -69,10 +74,13 @@ class _ProfileBodyState extends State<ProfileBody> {
                   ProfileHintline(
                     hintLine: widget.profileEntity.description,
                     controllerAboutme: controllerEditAboutMe,
+                    profileCopyWithEdit: _profileCopyWithEdit,
                   ),
                   widget.profileEntity.car != null
-                      ? ProfileCarIfno(
+                      ? ProfileCar(
                           car: widget.profileEntity.car!,
+                          carWitheidt:_profileCopyWithEdit?.car,
+
                         )
                       : const SizedBox(),
                   Padding(

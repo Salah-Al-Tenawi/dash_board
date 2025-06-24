@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 
 class ProfileSaveButton extends StatelessWidget {
-  const ProfileSaveButton({super.key});
+  final ProfileEntity? profileEntityWithEdit;
+  const ProfileSaveButton({super.key, this.profileEntityWithEdit});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ProfileSaveButton extends StatelessWidget {
                     borderRadius: true,
                     width: 80.w,
                     onPressed: () {
-                      context.read<ProfileCubit>().saveMyProfile();
+                      context.read<ProfileCubit>().saveMyProfile(profileEntityWithEdit);
                     },
                     child: const Text(
                       "حفظ",

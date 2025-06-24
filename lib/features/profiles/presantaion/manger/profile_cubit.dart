@@ -1,32 +1,38 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sharecars/core/utils/functions/boot_to_int.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
-import 'package:sharecars/features/profiles/data/date_source/profile_locat_data_source.dart';
+import 'package:sharecars/features/profiles/data/model/enum/image_mode.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
 
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
+import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepoIm profileRepoIm;
+  XFile? userPhoto;
+  XFile? carPhoto;
+  String? username;
 
-  ProfileCubit(this.profileRepoIm) : super(ProfileInitialState());
+  ProfileCubit(this.profileRepoIm) : super(const ProfileInitialState());
 
   Future<ProfileEntity> showOtherProfile(int userid) async {
-    emit(ProfileLoadingState());
+    emit(const ProfileLoadingState());
     final response = await profileRepoIm.showProfile(userid);
 
     return response.fold(
       (error) {
-        emit(ProfileErorrState(message: error.message));
+        emit(ProfileErrorState(message: error.message));
         throw Exception(error.message);
       },
       (profileEntity) {
-        emit(ProfileloadedState(ProfileMode.otherView,
-            profileEntity: profileEntity));
+        emit(ProfileLoadedState(
+            mode: ProfileMode.otherView, profileEntity: profileEntity));
         return profileEntity;
       },
     );
@@ -34,16 +40,17 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<ProfileEntity> showMyProfile() async {
     int? myId = myid();
-    emit(ProfileLoadingState());
+    emit(const ProfileLoadingState());
     final response = await profileRepoIm.showProfile(myId!);
 
     return response.fold(
       (error) {
-        emit(ProfileErorrState(message: error.message));
+        emit(ProfileErrorState(message: error.message));
         throw Exception(error.message);
       },
       (myProfile) {
-        emit(ProfileloadedState(ProfileMode.myView, profileEntity: myProfile));
+        emit(ProfileLoadedState(
+            mode: ProfileMode.otherView, profileEntity: myProfile));
         return myProfile;
       },
     );
@@ -51,19 +58,50 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   editMyProfile() {
     final current = state;
-    if (current is ProfileloadedState) {
-      print("=== emitting myEdit mode ===");
-      emit(ProfileloadedState(
-        ProfileMode.myEdit,
-        profileEntity: current.profileEntity,
-      ));
+    if (current is ProfileLoadedState) {
+      emit(ProfileLoadedState(
+          mode: ProfileMode.otherView, profileEntity: current.profileEntity!));
     }
   }
 
-  void saveMyProfile() async {
-    if (state is ProfileloadedState) {}
-
+  void saveMyProfile(ProfileEntity ?newProfile) async {
+    final current = state;
+    if (current is! ProfileLoadedState) return;
+    emit(const ProfileLoadingState());
+    ProfileEntity? profile = newProfile;
+    CarEntity? car = profile?.car;
+    final response = await profileRepoIm.updateProfile(
+        userPhoto,
+        profile?.description,
+        car?.color,
+        car?.seats,
+        carPhoto,
+        boolToInt(car?.hasRadio),
+        boolToInt(car?.allowsSmoking),
+        null,
+        null,
+        null,
+        null,
+        car?.type,
+        profile?.gender,
+        profile?.address);
+    response.fold((erorr) {
+      emit(ProfileErrorState(message: erorr.message));
+    }, (profileEntity) {
+      emit(ProfileLoadedState(
+          mode: ProfileMode.myView, profileEntity: profileEntity));
+    });
   }
 
-  
+  pickImage(XFile image, ProfileImagePicMode type) {
+    switch (type) {
+      case ProfileImagePicMode.user:
+        userPhoto = image;
+        break;
+      case ProfileImagePicMode.car:
+        carPhoto = image;
+        break;
+    }
+  }
+
 }
