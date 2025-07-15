@@ -4,31 +4,43 @@ import 'package:sharecars/core/them/my_colors.dart';
 
 // ignore: must_be_immutable
 class CustomTextformfild extends StatelessWidget {
-  TextEditingController? controller = TextEditingController();
-  String? Function(String?)? validator;
-  void Function(String)? onFieldSubmitted;
-  String title;
-  Icon? icon;
-  Widget? suffix;
-  bool? scureText;
-  TextInputType? keyboardType;
-  String? hint;
-  double? height;
-  double? width;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
+  final String title;
+  final Icon? icon;
+  final Widget? suffix;
+  final bool scureText;
+  final TextInputType? keyboardType;
+  final String? hint;
+  final double? height;
+  final double? width;
+  final int? maxLines;
+  final int? minLines;
+  final bool expands;
+  final TextInputAction? textInputAction;
+  final void Function(String)? onChanged;
 
-  CustomTextformfild(
-      {super.key,
-      this.height,
-      this.width,
-      required this.title,
-      this.controller,
-      this.icon,
-      this.suffix,
-      this.onFieldSubmitted,
-      required this.validator,
-      this.keyboardType,
-      this.scureText,
-      this.hint});
+
+  const CustomTextformfild({
+    super.key,
+    this.height,
+    this.width,
+    required this.title,
+    this.onChanged,
+    this.controller,
+    this.icon,
+    this.suffix,
+    this.onFieldSubmitted,
+    this.validator,
+    this.keyboardType,
+    this.scureText = false,
+    this.maxLines = 1,
+    this.minLines,
+    this.expands = false,
+    this.textInputAction,
+    this.hint,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,27 +49,34 @@ class CustomTextformfild extends StatelessWidget {
       width: width,
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: TextFormField(
+        controller: controller,
+        validator: validator,
+        onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         keyboardType: keyboardType,
-        obscureText: scureText == null || scureText == false ? false : true,
-        validator: validator,
-        controller: controller,
+        obscureText: scureText,
+        maxLines: expands ? null : maxLines,
+        minLines: expands ? null : minLines,
+        expands: expands,
+        textInputAction: textInputAction,
         decoration: InputDecoration(
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: MyColors.primary)),
-            hintText: hint,
-            suffix: suffix,
-            labelText: title,
-            labelStyle: const TextStyle(
-              fontSize: 14,
-              color: MyColors.blackColor,
-            ),
-            filled: false,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            prefixIcon: icon,
-            prefixIconColor: MyColors.primaryBackground),
+          labelText: title,
+          labelStyle: const TextStyle(
+            fontSize: 14,
+            color: MyColors.blackColor,
+          ),
+          hintText: hint,
+          suffix: suffix,
+          prefixIcon: icon,
+          prefixIconColor: MyColors.primaryBackground,
+          filled: false,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: MyColors.primary),
+          ),
+        ),
       ),
     );
   }

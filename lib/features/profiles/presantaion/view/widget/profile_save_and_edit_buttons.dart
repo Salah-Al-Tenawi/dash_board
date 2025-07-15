@@ -20,6 +20,7 @@ class ProfileSaveAndEditButtons extends StatelessWidget {
         builder: (context, state) {
           if (state is ProfileLoadedState) {
             switch (state.mode) {
+              
               case ProfileMode.myView:
                 return const ProfileEditButton();
               case ProfileMode.myEdit:

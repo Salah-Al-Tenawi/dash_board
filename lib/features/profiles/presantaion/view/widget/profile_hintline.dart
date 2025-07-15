@@ -15,7 +15,7 @@ class ProfileHintline extends StatelessWidget {
   final String hintLine;
   final TextEditingController? controllerAboutme;
   final ProfileEntity? profileCopyWithEdit;
-   const ProfileHintline(
+  const ProfileHintline(
       {super.key,
       required this.hintLine,
       required this.controllerAboutme,
@@ -28,9 +28,9 @@ class ProfileHintline extends StatelessWidget {
         if (state is ProfileLoadedState) {
           switch (state.mode) {
             case ProfileMode.myEdit:
-              Container(
-                height: 60,
-                color: MyColors.accent,
+              return SizedBox(
+                height: 150.h,
+                // color: MyColors.accent,
                 child: CustomTextformfild(
                   title: "نبذة عني",
                   validator: (val) =>
@@ -38,7 +38,14 @@ class ProfileHintline extends StatelessWidget {
                   controller: controllerAboutme,
                   onFieldSubmitted: (dec) {
                     profileCopyWithEdit?.description = dec;
+                    print(
+                        "=============================${profileCopyWithEdit?.description}");
                   },
+                  maxLines: null,
+                  minLines: 3,
+                  expands: false,
+                  textInputAction: TextInputAction.newline,
+                  keyboardType: TextInputType.multiline,
                 ),
               );
             case ProfileMode.myView:

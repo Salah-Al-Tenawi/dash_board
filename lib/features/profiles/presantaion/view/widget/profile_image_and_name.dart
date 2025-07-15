@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +25,8 @@ class ProfileImageAndName extends StatelessWidget {
     super.key,
     required this.imageurl,
     required this.name,
-    required this.verification, this.profileEntitYEdit,
+    required this.verification,
+    this.profileEntitYEdit,
   });
 
   void _onPickImage(BuildContext context) async {
@@ -59,7 +62,8 @@ class ProfileImageAndName extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: MyColors.primary,
                       maxRadius: 45,
-                      backgroundImage: getProfileImage(context, profileEntitYEdit?.profilePhoto),
+                      backgroundImage: getProfileImage(
+                          context, profileEntitYEdit?.profilePhoto),
                     ),
                   );
                 }
@@ -105,7 +109,7 @@ class ProfileImageAndName extends StatelessWidget {
                 );
               }
 
-              return const Text("BlocBuilder: no valid state.");
+              return const SizedBox();
             },
           ),
         ),

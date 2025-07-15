@@ -77,7 +77,9 @@ class ProfileData {
       userId: json[ApiKey.userId],
       fullName: json[ApiKey.fullName] ?? '',
       totalRating: rating[ApiKey.totalRatings] ?? 0,
-      averageRating: rating[ApiKey.averageRating] ?? 0,
+      averageRating: (rating[ApiKey.averageRating] is num)
+          ? (rating[ApiKey.averageRating] as num).toDouble()
+          : 0.0,
       verificationStatus: json[ApiKey.verificationStatus] ?? 'none',
       address: json[ApiKey.address] ?? '',
       gender: json[ApiKey.gender] ?? 'Male',

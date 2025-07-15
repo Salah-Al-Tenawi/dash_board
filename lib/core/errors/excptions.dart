@@ -10,7 +10,7 @@ class ServerExpcptions implements Exception {
 void handelDioExcptions(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      throw ServerExpcptions(error: Filuar.fromJson(e.response!.data));
+      throw ServerExpcptions(error: const Filuar(message: "استغرق وقت طويل حاول مجددا "));
 
     case DioExceptionType.sendTimeout:
       throw ServerExpcptions(error: Filuar.fromJson(e.response!.data));

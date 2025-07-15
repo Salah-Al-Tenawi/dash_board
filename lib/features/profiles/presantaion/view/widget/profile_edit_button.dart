@@ -19,7 +19,7 @@ class ProfileEditButton extends StatelessWidget {
           borderRadius: true,
           width: 80.w,
           onPressed: () {
-            context.read<ProfileCubit>().editMyProfile();
+            context.read<ProfileCubit>().emiteditMyProfile();
           },
           child: const Text("تعديل", style: font13NormalGrayText)),
     );

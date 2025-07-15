@@ -1,10 +1,10 @@
 class CarEntity {
   late final String type;
-  final String color;
-  final int seats;
+  late final String color;
+ late final int seats;
   final String? image;
-  final bool hasRadio;
-  final bool allowsSmoking;
+  late final bool hasRadio;
+  late final bool allowsSmoking;
   CarEntity({
     required this.type,
     required this.color,

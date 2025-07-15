@@ -18,3 +18,18 @@ ImageProvider getProfileImage(BuildContext context ,String? imageurl ) {
     return const AssetImage(ImagesUrl.profileImage);
   }
 }
+
+
+ImageProvider getCarImage(BuildContext context ,String? imageurl ) {
+  final cubit = context.read<ProfileCubit>();
+  
+  if (cubit.carPhoto != null) {
+    return FileImage(File(cubit.userPhoto!.path)); 
+  }
+  else if (imageurl != null) {
+    return NetworkImage(imageurl);
+  }
+  else {
+    return const AssetImage(ImagesUrl.carImage);
+  }
+}

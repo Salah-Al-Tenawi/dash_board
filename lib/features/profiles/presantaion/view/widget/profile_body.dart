@@ -24,14 +24,14 @@ class ProfileBody extends StatefulWidget {
 
 class _ProfileBodyState extends State<ProfileBody> {
   TextEditingController? controllerEditAboutMe;
-  ProfileEntity? _profileCopyWithEdit;
+  ProfileEntity? _profileCopyWithforEdit;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state is ProfileLoadedState && state.mode == ProfileMode.myEdit) {
-          _profileCopyWithEdit = widget.profileEntity;
+          _profileCopyWithforEdit = widget.profileEntity;
           controllerEditAboutMe =
               TextEditingController(text: widget.profileEntity.description);
         }
@@ -41,7 +41,7 @@ class _ProfileBodyState extends State<ProfileBody> {
           backgroundColor: MyColors.primaryBackground,
           actions: [
             ProfileSaveAndEditButtons(
-              profileEntityWithEdit: _profileCopyWithEdit,
+              profileEntityWithEdit: _profileCopyWithforEdit,
             )
           ],
         ),
@@ -54,7 +54,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                     verification: widget.profileEntity.verification,
                     name: widget.profileEntity.fullname,
                     imageurl: widget.profileEntity.profilePhoto,
-                    profileEntitYEdit: _profileCopyWithEdit,
+                    profileEntitYEdit: _profileCopyWithforEdit,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -74,15 +74,13 @@ class _ProfileBodyState extends State<ProfileBody> {
                   ProfileHintline(
                     hintLine: widget.profileEntity.description,
                     controllerAboutme: controllerEditAboutMe,
-                    profileCopyWithEdit: _profileCopyWithEdit,
+                    profileCopyWithEdit: _profileCopyWithforEdit,
                   ),
-                  widget.profileEntity.car != null
-                      ? ProfileCar(
-                          car: widget.profileEntity.car!,
-                          carWitheidt:_profileCopyWithEdit?.car,
 
-                        )
-                      : const SizedBox(),
+                  ProfileCar(
+                    car: widget.profileEntity.car,
+                    carWitheidt: _profileCopyWithforEdit?.car,
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 30.h),
                     child: const Row(

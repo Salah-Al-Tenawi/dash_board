@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/core/utils/functions/boot_to_int.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
@@ -50,17 +51,17 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
       (myProfile) {
         emit(ProfileLoadedState(
-            mode: ProfileMode.otherView, profileEntity: myProfile));
+            mode: ProfileMode.myView, profileEntity: myProfile));
         return myProfile;
       },
     );
   }
 
-  editMyProfile() {
+  emiteditMyProfile() {
     final current = state;
     if (current is ProfileLoadedState) {
       emit(ProfileLoadedState(
-          mode: ProfileMode.otherView, profileEntity: current.profileEntity!));
+          mode: ProfileMode.myEdit, profileEntity: current.profileEntity!));
     }
   }
 
