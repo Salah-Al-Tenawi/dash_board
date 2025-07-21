@@ -84,7 +84,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         null,
         null,
         car?.type,
-        profile?.gender,
+        null,
         profile?.address);
     response.fold((erorr) {
       emit(ProfileErrorState(message: erorr.message));

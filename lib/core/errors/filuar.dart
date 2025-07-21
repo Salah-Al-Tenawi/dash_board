@@ -7,7 +7,7 @@ class Filuar {
 
   factory Filuar.fromJson(Map<String, dynamic> json) {
     return Filuar(
-      message: json['message'] ??json['error']['message'] ,
+      message: json['message'] ??json['error']['message']??json['error'] ,
     );
   }
 }

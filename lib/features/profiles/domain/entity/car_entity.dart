@@ -2,7 +2,7 @@ class CarEntity {
   late final String type;
   late final String color;
  late final int seats;
-  final String? image;
+   String? image;
   late final bool hasRadio;
   late final bool allowsSmoking;
   CarEntity({

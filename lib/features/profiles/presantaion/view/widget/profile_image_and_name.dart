@@ -14,18 +14,19 @@ import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/get_profile_image.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_verification_icon.dart';
-
 class ProfileImageAndName extends StatelessWidget {
   final ProfileEntity? profileEntitYEdit;
   final String? imageurl;
   final String name;
   final String verification;
+  final ProfileMode mode;
 
   const ProfileImageAndName({
     super.key,
     required this.imageurl,
     required this.name,
     required this.verification,
+    required this.mode,
     this.profileEntitYEdit,
   });
 
@@ -46,71 +47,51 @@ class ProfileImageAndName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider = () {
+      if (mode == ProfileMode.myEdit) {
+        return getProfileImage(context, profileEntitYEdit?.profilePhoto);
+      } else {
+        if (imageurl == null) {
+          return const AssetImage(ImagesUrl.profileImage);
+        }
+        return NetworkImage(imageurl!) as ImageProvider;
+      }
+    }();
+
+    final avatar = CircleAvatar(
+      backgroundColor: MyColors.primary,
+      maxRadius: 45,
+      backgroundImage: imageProvider,
+    );
+
     return Row(
       children: [
         Align(
           alignment: Alignment.topLeft,
-          child: BlocBuilder<ProfileCubit, ProfileState>(
-            builder: (context, state) {
-              if (state is ProfileLoadedState) {
-                final mode = state.mode;
-
-                if (mode == ProfileMode.myEdit) {
-                  return MyButton(
-                    splashcolor: Colors.white,
-                    onPressed: () => _onPickImage(context),
-                    child: CircleAvatar(
-                      backgroundColor: MyColors.primary,
-                      maxRadius: 45,
-                      backgroundImage: getProfileImage(
-                          context, profileEntitYEdit?.profilePhoto),
-                    ),
-                  );
-                }
-
-                return MyButton(
+          child: mode == ProfileMode.myEdit
+              ? MyButton(
+                  splashcolor: Colors.white,
+                  onPressed: () => _onPickImage(context),
+                  child: avatar,
+                )
+              : MyButton(
                   splashcolor: Colors.white,
                   onPressed: () {
                     openImage(imageurl ?? ImagesUrl.profileImage);
                   },
-                  child: CircleAvatar(
-                    backgroundColor: MyColors.primary,
-                    maxRadius: 45,
-                    backgroundImage: imageurl == null
-                        ? const AssetImage(ImagesUrl.profileImage)
-                        : NetworkImage(imageurl!) as ImageProvider,
-                  ),
-                );
-              }
-
-              return CircleAvatar(
-                backgroundColor: MyColors.primary,
-                maxRadius: 45,
-                backgroundImage: imageurl == null
-                    ? const AssetImage(ImagesUrl.profileImage)
-                    : NetworkImage(imageurl!) as ImageProvider,
-              );
-            },
-          ),
+                  child: avatar,
+                ),
         ),
         const ProfileVerificationIcon(),
         SizedBox(width: 15.w),
         Expanded(
-          child: BlocBuilder<ProfileCubit, ProfileState>(
-            builder: (context, state) {
-              if (state is ProfileLoadedState) {
-                return Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.primaryText,
-                  ),
-                );
-              }
-
-              return const SizedBox();
-            },
+          child: Text(
+            name,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: MyColors.primaryText,
+            ),
           ),
         ),
       ],

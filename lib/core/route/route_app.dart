@@ -24,6 +24,8 @@ import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_did_you_back.dart';
+import 'package:sharecars/features/vieryfiy_user/presintion/manger/cubit/verfiy_user_cubit.dart';
+import 'package:sharecars/features/vieryfiy_user/presintion/view/verfiy_profile.dart';
 
 List<GetPage<dynamic>> appRoute = [
   GetPage(
@@ -61,7 +63,13 @@ List<GetPage<dynamic>> appRoute = [
                 profileRemoteDateSourceIm:
                     ProfileRemoteDateSourceIm(api: getit.get<DioConSumer>()))),
             child: const Profile(),
-          )),
+          )), 
+
+// verfiy user 
+GetPage(name: RouteName.verfiyUser, page: () => BlocProvider(
+            create: (context) => VerfiyUserCubit(),
+            child: const VerfiyProfile(),
+          )) ,
   // map
 
   GetPage(name: RouteName.maps, page: () => const Maps()),

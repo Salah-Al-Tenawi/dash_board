@@ -12,7 +12,6 @@ import 'package:sharecars/features/profiles/presantaion/view/widget/car_seats_in
 import 'package:sharecars/features/profiles/presantaion/view/widget/car_switch_smoking.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_car_image_picker.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/radio_switch_tile.dart';
-
 class ProfileCarInfoEdit extends StatefulWidget {
   final CarEntity? carWithEdit;
 
@@ -33,12 +32,14 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
   @override
   void initState() {
     super.initState();
-    carName = TextEditingController(text: widget.carWithEdit?.type??"");
-    colorCar = TextEditingController(text: widget.carWithEdit?.color??"");
-    seatsCar = TextEditingController(text: widget.carWithEdit?.seats.toString()??"");
-    hasRadio = widget.carWithEdit?.hasRadio??false;
-    allowsSmoking = widget.carWithEdit?.allowsSmoking ??false;
-    carImage = widget.carWithEdit?.image;
+    final car = widget.carWithEdit;
+
+    carName = TextEditingController(text: car?.type ?? "");
+    colorCar = TextEditingController(text: car?.color ?? "");
+    seatsCar = TextEditingController(text: car?.seats?.toString() ?? "");
+    hasRadio = car?.hasRadio ?? false;
+    allowsSmoking = car?.allowsSmoking ?? false;
+    carImage = car?.image;
   }
 
   @override
@@ -51,20 +52,38 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
 
   @override
   Widget build(BuildContext context) {
+    final car = widget.carWithEdit;
+    if (car == null) {
+      return const Text("لا توجد بيانات سيارة بعد.");
+    }
+
     return Column(
       children: [
         ProfileCarImagePicker(
           carImage: carImage,
           onPick: () => _onPickImage(context),
         ),
-        CarNameInputTile(controller: carName, onSubmitted: (val) => widget.carWithEdit?.type = val),
+        CarNameInputTile(
+          controller: carName,
+          onChanged: (val) => car.type = val,
+        ),
         Row(
           children: [
-            Expanded(child: CarColorInputTile(controller: colorCar, onSubmitted: (val) => widget.carWithEdit?.color = val)),
-            Expanded(child: CarSeatsInputTile(controller: seatsCar, onSubmitted: (val) {
-              final parsed = int.tryParse(val);
-              if (parsed != null) widget.carWithEdit?.seats = parsed;
-            })),
+            Expanded(
+              child: CarColorInputTile(
+                controller: colorCar,
+                onChanged: (val) => car.color = val,
+              ),
+            ),
+            Expanded(
+              child: CarSeatsInputTile(
+                controller: seatsCar,
+                onChanged: (val) {
+                  final parsed = int.tryParse(val);
+                  if (parsed != null) car.seats = parsed;
+                },
+              ),
+            ),
           ],
         ),
         Row(
@@ -74,7 +93,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: hasRadio,
                 onChanged: (val) => setState(() {
                   hasRadio = val;
-                  widget.carWithEdit?.hasRadio = val;
+                  car.hasRadio = val;
                 }),
               ),
             ),
@@ -83,7 +102,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: allowsSmoking,
                 onChanged: (val) => setState(() {
                   allowsSmoking = val;
-                  widget.carWithEdit?.allowsSmoking = val;
+                  car.allowsSmoking = val;
                 }),
               ),
             ),
@@ -97,8 +116,14 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
     final picker = ImagePicker();
     final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (!context.mounted) return;
+
     if (pickedFile != null) {
       context.read<ProfileCubit>().pickImage(pickedFile, ProfileImagePicMode.car);
+
+      setState(() {
+        carImage = pickedFile.path;
+        widget.carWithEdit?.image = pickedFile.path;
+      });
     }
   }
 }

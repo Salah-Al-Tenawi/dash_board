@@ -9,7 +9,9 @@ class RouteName {
   static const profile = "/profile";
 
   static const updateprofile = "/updateprofile";
-  static const home = "/home";
+  static const home = "/home"; 
+static const verfiyUser= "/verfiyUser" ;
+  
 // map
   static const maps = "/maps"; 
   

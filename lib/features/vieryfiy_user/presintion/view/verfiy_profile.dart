@@ -1,223 +1,107 @@
-// // verify_profile_screen.dart
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
 
-// class VerifyProfile extends StatelessWidget {
-//   const VerifyProfile({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:sharecars/core/them/my_colors.dart';
+import 'package:sharecars/core/them/text_style_app.dart';
+import 'package:sharecars/core/utils/widgets/my_button.dart';
+import 'package:sharecars/features/vieryfiy_user/presintion/manger/cubit/verfiy_user_cubit.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocProvider(
-//       create: (context) => VerifyProfileCubit(),
-//       child: Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Profile Verification'),
-//           centerTitle: true,
-//         ),
-//         body: SingleChildScrollView(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Column(
-//             children: [
-//               const Text(
-//                 'Please upload the following documents for verification',
-//                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-//                 textAlign: TextAlign.center,
-//               ),
-//               const SizedBox(height: 24),
-//               _buildImageUploadSection(
-//                 context,
-//                 ImageType.idFront,
-//                 'ID Front Side',
-//                 'Upload the front side of your government-issued ID',
-//               ),
-//               const SizedBox(height: 20),
-//               _buildImageUploadSection(
-//                 context,
-//                 ImageType.idBack,
-//                 'ID Back Side',
-//                 'Upload the back side of your government-issued ID',
-//               ),
-//               const SizedBox(height: 20),
-//               _buildImageUploadSection(
-//                 context,
-//                 ImageType.driverLicense,
-//                 'Driver License',
-//                 'Upload your valid driver license',
-//               ),
-//               const SizedBox(height: 20),
-//               _buildImageUploadSection(
-//                 context,
-//                 ImageType.vehicleCertificate,
-//                 'Vehicle Certificate',
-//                 'Upload your vehicle registration certificate',
-//               ),
-//               const SizedBox(height: 30),
-//               BlocConsumer<VerifyProfileCubit, VerifyProfileState>(
-//                 listener: (context, state) {
-//                   if (state is VerifyProfileSuccess) {
-//                     ScaffoldMessenger.of(context).showSnackBar(
-//                       const SnackBar(
-//                         content: Text('Verification submitted successfully!'),
-//                         backgroundColor: Colors.green,
-//                       ),
-//                     );
-//                   } else if (state is VerifyProfileError) {
-//                     ScaffoldMessenger.of(context).showSnackBar(
-//                       SnackBar(
-//                         content: Text(state.message),
-//                         backgroundColor: Colors.red,
-//                       ),
-//                     );
-//                   }
-//                 },
-//                 builder: (context, state) {
-//                   if (state is VerifyProfileLoading) {
-//                     return const CircularProgressIndicator();
-//                   }
-//                   return ElevatedButton(
-//                     onPressed: () {
-//                       context.read<VerifyProfileCubit>().submitVerification();
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                       minimumSize: const Size(double.infinity, 50),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Text(
-//                       'Submit Verification',
-//                       style: TextStyle(fontSize: 16),
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
+class VerfiyProfile extends StatefulWidget {
+  const VerfiyProfile({super.key});
 
-//   Widget _buildImageUploadSection(
-//     BuildContext context,
-//     ImageType type,
-//     String title,
-//     String description,
-//   ) {
-//     return BlocBuilder<VerifyProfileCubit, VerifyProfileState>(
-//       builder: (context, state) {
-//         final imageFile = state.images[type];
-//         return Card(
-//           elevation: 2,
-//           shape: RoundedRectangleBorder(
-//             borderRadius: BorderRadius.circular(12),
-//           ),
-//           child: Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Text(
-//                   title,
-//                   style: const TextStyle(
-//                     fontSize: 18,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 4),
-//                 Text(
-//                   description,
-//                   style: TextStyle(
-//                     fontSize: 14,
-//                     color: Colors.grey[600],
-//                   ),
-//                 ),
-//                 const SizedBox(height: 16),
-//                 GestureDetector(
-//                   onTap: () => context.read<VerifyProfileCubit>().pickImage(type),
-//                   child: Container(
-//                     height: 180,
-//                     width: double.infinity,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(10),
-//                       color: Colors.grey[100],
-//                       border: Border.all(
-//                         color: Colors.grey[300]!,
-//                         width: 1.5,
-//                       ),
-//                     ),
-//                     child: imageFile == null
-//                         ? Column(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [
-//                               Icon(
-//                                 Icons.cloud_upload_outlined,
-//                                 size: 40,
-//                                 color: Colors.grey[400],
-//                               ),
-//                               const SizedBox(height: 8),
-//                               Text(
-//                                 'Tap to upload',
-//                                 style: TextStyle(
-//                                   color: Colors.grey[600],
-//                                   fontSize: 16,
-//                                 ),
-//                               ),
-//                             ],
-//                           )
-//                         : Stack(
-//                             children: [
-//                               ClipRRect(
-//                                 borderRadius: BorderRadius.circular(8),
-//                                 child: Image.file(
-//                                   imageFile,
-//                                   width: double.infinity,
-//                                   height: double.infinity,
-//                                   fit: BoxFit.cover,
-//                                 ),
-//                               ),
-//                               Positioned(
-//                                 top: 8,
-//                                 right: 8,
-//                                 child: GestureDetector(
-//                                   onTap: () => context
-//                                       .read<VerifyProfileCubit>()
-//                                       .removeImage(type),
-//                                   child: Container(
-//                                     padding: const EdgeInsets.all(4),
-//                                     decoration: const BoxDecoration(
-//                                       color: Colors.black54,
-//                                       shape: BoxShape.circle,
-//                                     ),
-//                                     child: const Icon(
-//                                       Icons.close,
-//                                       color: Colors.white,
-//                                       size: 20,
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                   ),
-//                 ),
-//                 if (imageFile != null) ...[
-//                   const SizedBox(height: 8),
-//                   Text(
-//                     'Uploaded: ${imageFile.path.split('/').last}',
-//                     style: TextStyle(
-//                       fontSize: 12,
-//                       color: Colors.green[700],
-//                       fontStyle: FontStyle.italic,
-//                     ),
-//                     maxLines: 1,
-//                     overflow: TextOverflow.ellipsis,
-//                   ),
-//                 ],
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+  @override
+  State<VerfiyProfile> createState() => _VerfiyProfileState();
+}
+
+class _VerfiyProfileState extends State<VerfiyProfile> {
+  bool isDriver =false;
+   
+   @override
+  void initState() {
+    // isDriver = 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('التحقق من الهوية')),
+      body: BlocBuilder<VerifyProfileCubit, void>(
+        builder: (context, _) {
+          final cubit = context.read<VerifyProfileCubit>();
+
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildImageTile(context, 'صورة الهوية الوجه الأمامي',
+                      cubit.frontIdImage, cubit.pickFrontId),
+                  _buildImageTile(context, 'صورة الهوية الوجه الخلفي',
+                      cubit.backIdImage, cubit.pickBackId),
+                  _buildImageTile(context, 'صورة رخصة القيادة',
+                      cubit.driverLicenseImage, cubit.pickDriverLicense),
+                  _buildImageTile(context, 'صورة ميكانيك السيارة',
+                      cubit.mechanicImage, cubit.pickMechanic),
+                  SizedBox(height: 20.h),
+                  MyButton(
+                    onPressed: () {
+                      if (cubit.allImagesSelected(isDriver)) {
+                        cubit.submitImages();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('الرجاء اختيار كل الصور')),
+                        );
+                      }
+                    },
+                    color: MyColors.primary,
+                    height: 50.h,
+                    width: 100.w,
+                    child: const Text("موافق", style: font13normaldgrey),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildImageTile(
+    BuildContext context,
+    String label,
+    File? image,
+    Future<void> Function() onTap,
+  ) {
+    return Column(
+      children: [
+        Text(label),
+        SizedBox(height: 10.h),
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            width: 250.w,
+            height: 250.h,
+            decoration: BoxDecoration(
+              border: Border.all(color: MyColors.primary),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: image != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.file(image, fit: BoxFit.cover),
+                  )
+                : const Icon(Icons.add_a_photo, size: 40),
+          ),
+        ),
+        SizedBox(height: 20.h),
+      ],
+    );
+  }
+}
