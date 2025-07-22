@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
@@ -39,14 +38,14 @@ class _VerfiyProfileState extends State<VerfiyProfile> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _buildImageTile(context, 'صورة الهوية الوجه الأمامي',
-                      cubit.frontIdImage, cubit.pickFrontId),
-                  _buildImageTile(context, 'صورة الهوية الوجه الخلفي',
-                      cubit.backIdImage, cubit.pickBackId),
-                  _buildImageTile(context, 'صورة رخصة القيادة',
-                      cubit.driverLicenseImage, cubit.pickDriverLicense),
-                  _buildImageTile(context, 'صورة ميكانيك السيارة',
-                      cubit.mechanicImage, cubit.pickMechanic),
+                  // _buildImageTile(context, 'صورة الهوية الوجه الأمامي',
+                  //     cubit.frontIdImage, cubit.pickFrontId),
+                  // _buildImageTile(context, 'صورة الهوية الوجه الخلفي',
+                  //     cubit.backIdImage, cubit.pickBackId),
+                  // _buildImageTile(context, 'صورة رخصة القيادة',
+                  //     cubit.driverLicenseImage, cubit.pickDriverLicense),
+                  // _buildImageTile(context, 'صورة ميكانيك السيارة',
+                  //     cubit.mechanicImage, cubit.pickMechanic),
                   SizedBox(height: 20.h),
                   MyButton(
                     onPressed: () {

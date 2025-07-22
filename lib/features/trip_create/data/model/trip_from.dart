@@ -1,7 +1,9 @@
 class TripFrom {
-  String? source;
-  String? dest;
-  List<String>? path;
+  String? startLat;
+  String? endLat;
+  String? startLng;
+  String? endLng;
+  int path;
   String? date;
   int numberSeats;
   double price;
@@ -10,10 +12,14 @@ class TripFrom {
   int bookingType;
   bool reverseTripRoute ;
 
+
+
   TripFrom(
-      {this.source,
-      this.dest,
-      this.path,
+      {this.startLat,
+      this.startLng,
+      this.endLat,
+      this.endLng,
+      this.path=0,
       this.date,
       this.numberSeats = 0,
       this.price = 0,

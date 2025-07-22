@@ -8,18 +8,31 @@ class TripCreateRemoteDataSource {
   TripCreateRemoteDataSource({required this.api});
 
   Future<TripModel> createTrip(
-    String source,
-    String destination,
+    String startLat,
+    String statrtLng,
+    String endLat,
+    String endLng,
     String date,
     int seats,
     String price,
+    String? notes,
+    int routeIndex,
+    String paymentMethod,
+    String bookingType ,
   ) async {
-    final respone = await api.post(ApiEndPoint.rides, data: {
-      ApiKey.pickupAddress: source,
-      ApiKey.destinationAddress: destination,
+    final respone = await api.post(ApiEndPoint.createRide, data: {
+      ApiKey.pickuplat: startLat,
+      ApiKey.pickuplng: statrtLng,
+      ApiKey.destinationlat: endLat,
+      ApiKey.destinationlng: endLng,
       ApiKey.departureTime: date,
       ApiKey.availableSeats: seats,
       ApiKey.pricePerSeat: price,
+      ApiKey.notes: notes,
+      ApiKey.routeIndex: routeIndex,
+      ApiKey.paymentmethod: paymentMethod, 
+      ApiKey.bookingType :bookingType
+
     });
     return TripModel.fromjson(respone);
   }

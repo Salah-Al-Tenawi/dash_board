@@ -19,6 +19,7 @@ class ApiEndPoint {
 
 //  trips endpoint
   static const rides = "$baserUrl/rides";
+  static const createRide = "$rides/create-with-route";
 }
 
 class ApiKey {
@@ -26,12 +27,11 @@ class ApiKey {
   static const authorization = "Authorization";
   static const data = "data";
   static const success = "success";
-  static const message = "message"; 
-  
+  static const message = "message";
+
   static const error = "error";
   static const token = "access_token";
   static const contentType = "Content-Type";
-
 
   // User Info
   static const userId = "user_id";
@@ -78,13 +78,25 @@ class ApiKey {
   static const commenter = "commenter";
   static const createdAt = "created_at";
 
-  // rides
+  // rides crate 
   static const pickupAddress = "pickup_address";
   static const destinationAddress = "destination_address";
   static const departureTime = "departure_time";
   static const availableSeats = "available_seats";
   static const seats = "seats";
   static const pricePerSeat = "price_per_seat";
+  static const pickuplat = "pickup_lat";
+  static const pickuplng = "pickup_lng";
+  static const destinationlat = "destination_lat";
+  static const destinationlng = "destination_lng";
+  static const notes = "notes";
+  static const routeIndex = "route_index";
+  static const paymentmethod = "payment_method";  
+static const bookingType = "booking_type";  
+
+
+  
+
 
   // maps
   static const coordinates = "coordinates";

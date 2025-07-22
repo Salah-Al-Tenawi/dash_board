@@ -1,5 +1,7 @@
 
 
+import 'package:sharecars/features/maps/push_ride_map.dart';
+
 class RouteName {
   static const test = "/test";
   static const splashView = "/splashView";
@@ -13,7 +15,7 @@ class RouteName {
 static const verfiyUser= "/verfiyUser" ;
   
 // map
-  static const maps = "/maps"; 
+  static const pushRideMap = "/pushRideMap"; 
   
 
   //trip  create
