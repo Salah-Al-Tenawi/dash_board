@@ -55,7 +55,7 @@ class _TripDidYouBackTextAndButtonsState
           MyButton(
             onPressed: () {
               _swapSourceAndDestination();
-              Get.toNamed(RouteName.tripSelectSourceAndDistOnMap,
+              Get.toNamed(RouteName.tripSelectDateAndSeats,
                   arguments: widget.tripFrom);
             },
             color: MyColors.primary,

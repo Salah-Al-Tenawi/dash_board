@@ -7,7 +7,6 @@ import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/functions/input_valid.dart';
-import 'package:sharecars/core/utils/widgets/loading_widget_size_150.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_from.dart';
 import 'package:sharecars/features/trip_create/presantion/manger/cubit/push_ride_cubit.dart';
 
