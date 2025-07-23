@@ -14,6 +14,7 @@ class TripFrom {
   dynamic distance;
   dynamic duration;
   String cashType;
+  String notes;
 
   TripFrom(
       {this.startLat,
@@ -29,6 +30,7 @@ class TripFrom {
       this.reverseTripRoute = false,
       this.bookingType = "Direct",
       this.distance,
-      this.duration , 
-      this.cashType ="cash"});
+      this.duration,
+      this.cashType = "cash" ,
+      this.notes =""});
 }

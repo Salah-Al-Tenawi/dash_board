@@ -1,5 +1,6 @@
 import 'package:sharecars/core/api/api_consumer.dart';
 import 'package:sharecars/core/api/api_end_points.dart';
+import 'package:sharecars/core/utils/functions/get_token.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_model.dart';
 
 class TripCreateRemoteDataSource {
@@ -14,13 +15,15 @@ class TripCreateRemoteDataSource {
     String endLng,
     String date,
     int seats,
-    String price,
+    int price,
     String? notes,
     int routeIndex,
     String paymentMethod,
-    String bookingType ,
+    String bookingType,
   ) async {
-    final respone = await api.post(ApiEndPoint.createRide, data: {
+    final respone = await api.post(ApiEndPoint.createRide, header: {
+      ApiKey.authorization: "Bearer ${mytoken()}"
+    }, data: {
       ApiKey.pickuplat: startLat,
       ApiKey.pickuplng: statrtLng,
       ApiKey.destinationlat: endLat,
@@ -30,9 +33,8 @@ class TripCreateRemoteDataSource {
       ApiKey.pricePerSeat: price,
       ApiKey.notes: notes,
       ApiKey.routeIndex: routeIndex,
-      ApiKey.paymentmethod: paymentMethod, 
-      ApiKey.bookingType :bookingType
-
+      ApiKey.paymentmethod: paymentMethod,
+      ApiKey.bookingType: bookingType
     });
     return TripModel.fromjson(respone);
   }

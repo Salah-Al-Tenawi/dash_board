@@ -10,7 +10,7 @@ abstract class TripCreateRepo {
     String endLng,
     String date,
     int seats,
-    String price,
+    int price,
     String? notes,
     int routeIndex,
     String paymentMethod, 

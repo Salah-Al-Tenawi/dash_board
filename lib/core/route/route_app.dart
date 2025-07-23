@@ -20,6 +20,9 @@ import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
 import 'package:sharecars/features/splash_view/presentaion/view/splash_view.dart';
+import 'package:sharecars/features/trip_create/data/data_source/trip_create_remote_data_source.dart';
+import 'package:sharecars/features/trip_create/data/repo/trip_create_repo_im.dart';
+import 'package:sharecars/features/trip_create/presantion/manger/cubit/push_ride_cubit.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_add_number_phone.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_and_seats.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
@@ -64,21 +67,21 @@ List<GetPage<dynamic>> appRoute = [
                 profileRemoteDateSourceIm:
                     ProfileRemoteDateSourceIm(api: getit.get<DioConSumer>()))),
             child: const Profile(),
-          )), 
+          )),
 
-// verfiy user 
+// verfiy user
 // GetPage(name: RouteName.verfiyUser, page: () => BlocProvider(
 //             create: (context) => VerfiyUserCubit(),
 //             child: const VerfiyProfile(),
 //           )) ,
   // map
-GetPage(
-  name: RouteName.pushRideMap,
-  page: () => BlocProvider(
-    create: (_) => MapCubit(),
-    child: const PushRideMap(),
+  GetPage(
+    name: RouteName.pushRideMap,
+    page: () => BlocProvider(
+      create: (_) => MapCubit(),
+      child: const PushRideMap(),
+    ),
   ),
-),
 
   // trips create
   // Todo add bloc provider
@@ -95,8 +98,18 @@ GetPage(
       page: () => const TripSelectPriceAndBookingType()),
 
   GetPage(
-      name: RouteName.tripAddNumberPhone,
-      page: () => const TripAddNumberPhone()),
+    name: RouteName.tripAddNumberPhone,
+    page: () => BlocProvider(
+      create: (context) => PushRideCubit(
+        TripCreateRepoIm(
+          tripCreateRemoteDataSource: TripCreateRemoteDataSource(
+            api: getit.get<DioConSumer>(),
+          ),
+        ),
+      ),
+      child: const TripAddNumberPhone(),
+    ),
+  ),
 
   GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()),
 

@@ -12,7 +12,7 @@ class TripCreateRepoIm extends TripCreateRepo {
   @override
   Future<Either<Filuar, TripModel>> createTrip(String startLat,
   String startLng ,String endLat ,String endLng ,
-       String date, int seats, String price ,
+       String date, int seats, int price ,
     String? notes,
     int routeIndex,
     String paymentMethod, String bookingType) async {
