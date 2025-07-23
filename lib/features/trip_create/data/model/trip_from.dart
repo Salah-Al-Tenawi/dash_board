@@ -6,25 +6,29 @@ class TripFrom {
   int path;
   String? date;
   int numberSeats;
-  double price;
+  int price;
   double recomandedPrice;
   String? numberPhone;
-  int bookingType;
-  bool reverseTripRoute ;
-
-
+  String bookingType;
+  bool reverseTripRoute;
+  dynamic distance;
+  dynamic duration;
+  String cashType;
 
   TripFrom(
       {this.startLat,
       this.startLng,
       this.endLat,
       this.endLng,
-      this.path=0,
+      this.path = 0,
       this.date,
       this.numberSeats = 0,
       this.price = 0,
       this.recomandedPrice = 0,
-      this.numberPhone, 
-      this.reverseTripRoute =false,
-      this.bookingType = 0});
+      this.numberPhone,
+      this.reverseTripRoute = false,
+      this.bookingType = "Direct",
+      this.distance,
+      this.duration , 
+      this.cashType ="cash"});
 }

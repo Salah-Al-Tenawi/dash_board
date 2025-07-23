@@ -21,14 +21,14 @@ class TripSelectDateAndSeats extends StatefulWidget {
 }
 
 class TripSelectAndSeatsState extends State<TripSelectDateAndSeats> {
-  late final TripFrom tripFrom;
+  late TripFrom tripFrom;
   String? formattedDate;
   String? formattedTime;
 
   @override
   void initState() {
     super.initState();
-    tripFrom = Get.arguments;
+    tripFrom = Get.arguments as TripFrom;
   }
 
   Future<void> _selectDatetime(BuildContext context) async {
@@ -63,6 +63,7 @@ class TripSelectAndSeatsState extends State<TripSelectDateAndSeats> {
             MyButton(
               onPressed: () async {
                 await _selectDatetime(context);
+                setState(() {});
               },
               width: 100.w,
               height: 30.h,

@@ -155,6 +155,8 @@ class _PushRideMapState extends State<PushRideMap> {
     tripFrom.startLng = "${state.start!.longitude}";
     tripFrom.endLat = "${state.end!.latitude}";
     tripFrom.endLng = "${state.end!.longitude}";
+    tripFrom.distance = distance;
+    tripFrom.duration = duration;
 
     return Positioned(
       top: 20,

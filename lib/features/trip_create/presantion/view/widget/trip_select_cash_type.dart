@@ -6,36 +6,36 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/features/trip_create/data/model/trip_from.dart';
 
-class TripSelectBookingType extends StatefulWidget {
+class TripSelectCashType extends StatefulWidget {
   final TripFrom tripFrom;
 
-  const TripSelectBookingType({
+  const TripSelectCashType({
     super.key,
     required this.tripFrom,
   });
 
   @override
-  State<TripSelectBookingType> createState() => _TripSelectBookingTypeState();
+  State<TripSelectCashType> createState() => TripSelectCashTypeTypeState();
 }
 
-class _TripSelectBookingTypeState extends State<TripSelectBookingType> {
-  String _bookeingType = "Direct";
+class TripSelectCashTypeTypeState extends State<TripSelectCashType> {
+  String _cashType = "cash";
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 30.h, bottom: 40),
+      padding: EdgeInsets.only(top: 30.h, bottom: 5.h),
       child: ToggleButtons(
-        isSelected: [_bookeingType == "Direct", _bookeingType == "Request"],
+        isSelected: [_cashType == "cash", _cashType == "e-pay"],
         onPressed: (index) {
           setState(() {
             if (index == 0) {
-              _bookeingType = "Direct";
-              widget.tripFrom.bookingType = _bookeingType;
+              _cashType = "cash";
+              widget.tripFrom.cashType = _cashType;
             } else {
-              _bookeingType = "Request";
+              _cashType = "e-pay";
 
-              widget.tripFrom.bookingType = _bookeingType;
+              widget.tripFrom.cashType = _cashType;
             }
           });
         },
@@ -50,9 +50,9 @@ class _TripSelectBookingTypeState extends State<TripSelectBookingType> {
             padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: Column(
               children: [
-                const FaIcon(FontAwesomeIcons.userGroup, size: 30),
+                const FaIcon(FontAwesomeIcons.moneyBillWave, size: 30),
                 SizedBox(height: 5.h),
-                Text("أي شخص", style: TextStyle(fontSize: 12.sp)),
+                Text("كاش", style: TextStyle(fontSize: 12.sp)),
               ],
             ),
           ),
@@ -60,9 +60,9 @@ class _TripSelectBookingTypeState extends State<TripSelectBookingType> {
             padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: Column(
               children: [
-                const FaIcon(FontAwesomeIcons.userCheck, size: 30),
+                const FaIcon(FontAwesomeIcons.creditCard, size: 30),
                 SizedBox(height: 5.h),
-                Text("بعد الموافقة", style: TextStyle(fontSize: 12.sp)),
+                Text("الكتروني", style: TextStyle(fontSize: 12.sp)),
               ],
             ),
           ),
