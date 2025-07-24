@@ -24,20 +24,16 @@ class _ProfileState extends State<Profile> {
   void initState() {
     super.initState();
     _profileCubit = context.read<ProfileCubit>();
-    final userId = 31;
-    // final userId = Get.arguments as int;
+    // final userId = 31;
+    final userId = Get.arguments as int;
     _loadProfileFuture = _fetchProfileData(userId);
   }
 
   Future<ProfileEntity> _fetchProfileData(int userId) async {
     final currentUserid = myid();
     if (userId == currentUserid) {
-      print(
-          "========================================================show my profile");
       return await _profileCubit.showMyProfile();
     } else {
-      print(
-          "========================================================show other profile");
       return await _profileCubit.showOtherProfile(userId);
     }
   }

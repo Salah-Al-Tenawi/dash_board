@@ -20,9 +20,9 @@ class ProfileCar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (car == null && mode != ProfileMode.myEdit) {
-      return const SizedBox(); // لا نعرض شيئًا إن لم تكن هناك سيارة وكان الوضع "عرض"
-    }
+    // if (car == null && mode != ProfileMode.myEdit) {
+    //   return const SizedBox();
+    // }
 
     switch (mode) {
       case ProfileMode.otherView:

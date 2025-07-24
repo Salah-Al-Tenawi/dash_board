@@ -14,6 +14,7 @@ import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/get_profile_image.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_verification_icon.dart';
+
 class ProfileImageAndName extends StatelessWidget {
   final ProfileEntity? profileEntitYEdit;
   final String? imageurl;
@@ -47,39 +48,50 @@ class ProfileImageAndName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = () {
-      if (mode == ProfileMode.myEdit) {
-        return getProfileImage(context, profileEntitYEdit?.profilePhoto);
-      } else {
-        if (imageurl == null) {
-          return const AssetImage(ImagesUrl.profileImage);
-        }
-        return NetworkImage(imageurl!) as ImageProvider;
-      }
-    }();
-
-    final avatar = CircleAvatar(
-      backgroundColor: MyColors.primary,
-      maxRadius: 45,
-      backgroundImage: imageProvider,
-    );
-
     return Row(
       children: [
         Align(
           alignment: Alignment.topLeft,
           child: mode == ProfileMode.myEdit
-              ? MyButton(
-                  splashcolor: Colors.white,
-                  onPressed: () => _onPickImage(context),
-                  child: avatar,
+              ? BlocBuilder<ProfileCubit, ProfileState>(
+                  buildWhen: (previous, current) =>
+                      current is ProfileLoadedState,
+                  builder: (context, state) {
+                    final cubit = context.read<ProfileCubit>();
+
+                    final imageProvider = () {
+                      if (cubit.userPhoto != null) {
+                        return FileImage(File(cubit.userPhoto!.path));
+                      }
+                      return getProfileImage(
+                          context, profileEntitYEdit?.profilePhoto);
+                    }();
+
+                    final avatar = CircleAvatar(
+                      backgroundColor: MyColors.primary,
+                      maxRadius: 45,
+                      backgroundImage: imageProvider,
+                    );
+
+                    return MyButton(
+                      splashcolor: Colors.white,
+                      onPressed: () => _onPickImage(context),
+                      child: avatar,
+                    );
+                  },
                 )
               : MyButton(
                   splashcolor: Colors.white,
                   onPressed: () {
                     openImage(imageurl ?? ImagesUrl.profileImage);
                   },
-                  child: avatar,
+                  child: CircleAvatar(
+                    backgroundColor: MyColors.primary,
+                    maxRadius: 45,
+                    backgroundImage: imageurl == null
+                        ? const AssetImage(ImagesUrl.profileImage)
+                        : NetworkImage(imageurl!) as ImageProvider,
+                  ),
                 ),
         ),
         const ProfileVerificationIcon(),

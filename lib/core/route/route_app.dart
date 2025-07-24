@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:sharecars/core/api/dio_consumer.dart';
 import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/service/locator_ser.dart';
+import 'package:sharecars/features/home/preantion/manger/cubit/home_nav_cubit_cubit.dart';
 import 'package:sharecars/features/maps/presantion/manger/push_ride_map/map_cubit.dart';
 import 'package:sharecars/features/profiles/data/date_source/profile_remote_date_source.dart';
 import 'package:sharecars/features/splash_view/presentaion/manger/cubit/splash_view_cubit.dart';
@@ -115,5 +116,13 @@ List<GetPage<dynamic>> appRoute = [
 
   // home
 
-  GetPage(name: RouteName.home, page: () => const Home())
-];
+  GetPage(
+  name: RouteName.home,
+  page: () => MultiBlocProvider(
+    providers: [
+      BlocProvider<HomeNavCubit>(create: (_) => HomeNavCubit()),
+      // BlocProvider<AnotherCubit>(create: (_) => AnotherCubit()), // إن احتجت المزيد
+    ],
+    child: const Home(),
+  ),
+),];

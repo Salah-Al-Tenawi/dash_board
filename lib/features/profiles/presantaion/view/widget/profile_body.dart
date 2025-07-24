@@ -28,15 +28,8 @@ class _ProfileBodyState extends State<ProfileBody> {
   TextEditingController? controllerEditAboutMe;
   ProfileEntity? _profileCopyWithforEdit;
 
-  @override
-  void dispose() {
-    controllerEditAboutMe?.dispose();
-    super.dispose();
-  }
-
   void _initEditState(ProfileEntity profile) {
     if (_profileCopyWithforEdit == null) {
-      // نأجل التهيئة خارج عملية البناء
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         setState(() {
@@ -106,8 +99,13 @@ class _ProfileBodyState extends State<ProfileBody> {
                     ProfileHintline(
                       hintLine: profile.description,
                       controllerAboutme: controllerEditAboutMe,
-                      profileCopyWithEdit: _profileCopyWithforEdit,
                       mode: mode,
+                      onDescriptionChanged: (value) {
+                        setState(() {
+                          _profileCopyWithforEdit = _profileCopyWithforEdit
+                              ?.copyWith(description: value);
+                        });
+                      },
                     ),
                     ProfileCar(
                       car: profile.car,
@@ -135,5 +133,11 @@ class _ProfileBodyState extends State<ProfileBody> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    controllerEditAboutMe?.dispose();
+    super.dispose();
   }
 }

@@ -19,6 +19,7 @@ class ProfileSaveButton extends StatelessWidget {
           borderRadius: true,
           width: 80.w,
           onPressed: () {
+            print(profileEntityWithEdit!.description);
             context.read<ProfileCubit>().saveMyProfile(profileEntityWithEdit);
           },
           child: const Text(

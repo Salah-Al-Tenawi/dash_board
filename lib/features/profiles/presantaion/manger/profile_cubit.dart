@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,11 +5,9 @@ import 'package:sharecars/core/utils/functions/boot_to_int.dart';
 import 'package:sharecars/core/utils/functions/get_userid.dart';
 import 'package:sharecars/features/profiles/data/model/enum/image_mode.dart';
 import 'package:sharecars/features/profiles/data/model/enum/profile_mode.dart';
-
 import 'package:sharecars/features/profiles/data/repo/profile_repo_im.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
-
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
@@ -65,7 +61,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  void saveMyProfile(ProfileEntity ?newProfile) async {
+  void saveMyProfile(ProfileEntity? newProfile) async {
     final current = state;
     if (current is! ProfileLoadedState) return;
     emit(const ProfileLoadingState());
@@ -94,7 +90,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     });
   }
 
-  pickImage(XFile image, ProfileImagePicMode type) {
+  void pickImage(XFile image, ProfileImagePicMode type) {
     switch (type) {
       case ProfileImagePicMode.user:
         userPhoto = image;
@@ -103,6 +99,14 @@ class ProfileCubit extends Cubit<ProfileState> {
         carPhoto = image;
         break;
     }
-  }
 
+    final current = state;
+    if (current is ProfileLoadedState) {
+      emit(const ProfileLoadingState());
+      emit(ProfileLoadedState(
+        mode: current.mode,
+        profileEntity: current.profileEntity!,
+      ));
+    }
+  }
 }

@@ -12,6 +12,7 @@ import 'package:sharecars/features/profiles/presantaion/view/widget/car_seats_in
 import 'package:sharecars/features/profiles/presantaion/view/widget/car_switch_smoking.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/profile_car_image_picker.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/radio_switch_tile.dart';
+
 class ProfileCarInfoEdit extends StatefulWidget {
   final CarEntity? carWithEdit;
 
@@ -36,7 +37,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
 
     carName = TextEditingController(text: car?.type ?? "");
     colorCar = TextEditingController(text: car?.color ?? "");
-    seatsCar = TextEditingController(text: car?.seats?.toString() ?? "");
+    seatsCar = TextEditingController(text: car?.seats.toString() ?? "");
     hasRadio = car?.hasRadio ?? false;
     allowsSmoking = car?.allowsSmoking ?? false;
     carImage = car?.image;
@@ -53,9 +54,9 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
   @override
   Widget build(BuildContext context) {
     final car = widget.carWithEdit;
-    if (car == null) {
-      return const Text("لا توجد بيانات سيارة بعد.");
-    }
+    // if (car == null) {
+    //   return const Text("لا توجد بيانات سيارة بعد.");
+    // }
 
     return Column(
       children: [
@@ -65,14 +66,14 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
         ),
         CarNameInputTile(
           controller: carName,
-          onChanged: (val) => car.type = val,
+          onChanged: (val) => car?.type = val,
         ),
         Row(
           children: [
             Expanded(
               child: CarColorInputTile(
                 controller: colorCar,
-                onChanged: (val) => car.color = val,
+                onChanged: (val) => car?.color = val,
               ),
             ),
             Expanded(
@@ -80,7 +81,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 controller: seatsCar,
                 onChanged: (val) {
                   final parsed = int.tryParse(val);
-                  if (parsed != null) car.seats = parsed;
+                  if (parsed != null) car?.seats = parsed;
                 },
               ),
             ),
@@ -93,7 +94,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: hasRadio,
                 onChanged: (val) => setState(() {
                   hasRadio = val;
-                  car.hasRadio = val;
+                  car?.hasRadio = val;
                 }),
               ),
             ),
@@ -102,7 +103,7 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: allowsSmoking,
                 onChanged: (val) => setState(() {
                   allowsSmoking = val;
-                  car.allowsSmoking = val;
+                  car?.allowsSmoking = val;
                 }),
               ),
             ),
@@ -114,11 +115,14 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
 
   void _onPickImage(BuildContext context) async {
     final picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
     if (!context.mounted) return;
 
     if (pickedFile != null) {
-      context.read<ProfileCubit>().pickImage(pickedFile, ProfileImagePicMode.car);
+      context
+          .read<ProfileCubit>()
+          .pickImage(pickedFile, ProfileImagePicMode.car);
 
       setState(() {
         carImage = pickedFile.path;

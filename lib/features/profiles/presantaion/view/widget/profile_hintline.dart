@@ -12,15 +12,15 @@ import 'package:sharecars/features/profiles/domain/entity/profile_entity.dart';
 class ProfileHintline extends StatelessWidget {
   final String hintLine;
   final TextEditingController? controllerAboutme;
-  ProfileEntity? profileCopyWithEdit;
   final ProfileMode mode;
+  final void Function(String)? onDescriptionChanged;
 
-  ProfileHintline({
+  const ProfileHintline({
     super.key,
     required this.hintLine,
     required this.controllerAboutme,
-    required this.profileCopyWithEdit,
     required this.mode,
+    this.onDescriptionChanged,
   });
 
   @override
@@ -32,12 +32,7 @@ class ProfileHintline extends StatelessWidget {
           title: "نبذة عني",
           validator: (val) => inputvaild(val!, "descrption", null, null),
           controller: controllerAboutme,
-          onChanged: (value) {
-            if (profileCopyWithEdit != null) {
-              profileCopyWithEdit =
-                  profileCopyWithEdit!.copyWith(description: value);
-            }
-          },
+          onChanged: onDescriptionChanged,
           maxLines: null,
           minLines: 3,
           expands: false,
