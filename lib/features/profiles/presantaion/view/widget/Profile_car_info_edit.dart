@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharecars/features/profiles/data/model/enum/image_mode.dart';
 import 'package:sharecars/features/profiles/domain/entity/car_entity.dart';
 import 'package:sharecars/features/profiles/presantaion/manger/profile_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// استورد الويدجتات الفرعية الخاصة بك (CarNameInputTile, CarColorInputTile, ...)
 import 'package:sharecars/features/profiles/presantaion/view/widget/car_color_input_tile.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/car_name_input_tile.dart';
 import 'package:sharecars/features/profiles/presantaion/view/widget/car_seats_input_tile.dart';
@@ -15,8 +17,13 @@ import 'package:sharecars/features/profiles/presantaion/view/widget/radio_switch
 
 class ProfileCarInfoEdit extends StatefulWidget {
   final CarEntity? carWithEdit;
+  final ValueChanged<CarEntity>? onCarChanged; // callback
 
-  const ProfileCarInfoEdit({super.key, required this.carWithEdit});
+  const ProfileCarInfoEdit({
+    super.key,
+    required this.carWithEdit,
+    this.onCarChanged,
+  });
 
   @override
   State<ProfileCarInfoEdit> createState() => _ProfileCarInfoEditState();
@@ -30,17 +37,34 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
   late bool allowsSmoking;
   String? carImage;
 
+  late CarEntity currentCar; // immutable current snapshot
+
   @override
   void initState() {
     super.initState();
-    final car = widget.carWithEdit;
+    currentCar = widget.carWithEdit ?? const CarEntity();
+    carName = TextEditingController(text: currentCar.type ?? "");
+    colorCar = TextEditingController(text: currentCar.color ?? "");
+    seatsCar = TextEditingController(text: currentCar.seats?.toString() ?? "");
+    hasRadio = currentCar.hasRadio;
+    allowsSmoking = currentCar.allowsSmoking;
+    carImage = currentCar.image;
+  }
 
-    carName = TextEditingController(text: car?.type ?? "");
-    colorCar = TextEditingController(text: car?.color ?? "");
-    seatsCar = TextEditingController(text: car?.seats.toString() ?? "");
-    hasRadio = car?.hasRadio ?? false;
-    allowsSmoking = car?.allowsSmoking ?? false;
-    carImage = car?.image;
+  @override
+  void didUpdateWidget(covariant ProfileCarInfoEdit oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.carWithEdit != widget.carWithEdit) {
+      currentCar = widget.carWithEdit ?? const CarEntity();
+      carName.text = currentCar.type ?? "";
+      colorCar.text = currentCar.color ?? "";
+      seatsCar.text = currentCar.seats?.toString() ?? "";
+      setState(() {
+        hasRadio = currentCar.hasRadio;
+        allowsSmoking = currentCar.allowsSmoking;
+        carImage = currentCar.image;
+      });
+    }
   }
 
   @override
@@ -51,13 +75,13 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
     super.dispose();
   }
 
+  void _emitChanged(CarEntity newCar) {
+    currentCar = newCar;
+    widget.onCarChanged?.call(newCar);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final car = widget.carWithEdit;
-    // if (car == null) {
-    //   return const Text("لا توجد بيانات سيارة بعد.");
-    // }
-
     return Column(
       children: [
         ProfileCarImagePicker(
@@ -66,14 +90,21 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
         ),
         CarNameInputTile(
           controller: carName,
-          onChanged: (val) => car?.type = val,
+          onChanged: (val) {
+            final updated = currentCar.copyWith(type: val);
+            _emitChanged(updated);
+            // no need to setState for text field itself; controller updates the UI
+          },
         ),
         Row(
           children: [
             Expanded(
               child: CarColorInputTile(
                 controller: colorCar,
-                onChanged: (val) => car?.color = val,
+                onChanged: (val) {
+                  final updated = currentCar.copyWith(color: val);
+                  _emitChanged(updated);
+                },
               ),
             ),
             Expanded(
@@ -81,7 +112,10 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 controller: seatsCar,
                 onChanged: (val) {
                   final parsed = int.tryParse(val);
-                  if (parsed != null) car?.seats = parsed;
+                  if (parsed != null) {
+                    final updated = currentCar.copyWith(seats: parsed);
+                    _emitChanged(updated);
+                  }
                 },
               ),
             ),
@@ -94,7 +128,8 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: hasRadio,
                 onChanged: (val) => setState(() {
                   hasRadio = val;
-                  car?.hasRadio = val;
+                  final updated = currentCar.copyWith(hasRadio: val);
+                  _emitChanged(updated);
                 }),
               ),
             ),
@@ -103,7 +138,8 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
                 value: allowsSmoking,
                 onChanged: (val) => setState(() {
                   allowsSmoking = val;
-                  car?.allowsSmoking = val;
+                  final updated = currentCar.copyWith(allowsSmoking: val);
+                  _emitChanged(updated);
                 }),
               ),
             ),
@@ -120,14 +156,14 @@ class _ProfileCarInfoEditState extends State<ProfileCarInfoEdit> {
     if (!context.mounted) return;
 
     if (pickedFile != null) {
-      context
-          .read<ProfileCubit>()
-          .pickImage(pickedFile, ProfileImagePicMode.car);
+      // إذا عندك منطق رفع للصورة في Cubit احتفظ به
+      context.read<ProfileCubit>().pickImage(pickedFile, ProfileImagePicMode.car);
 
       setState(() {
         carImage = pickedFile.path;
-        widget.carWithEdit?.image = pickedFile.path;
       });
+      final updated = currentCar.copyWith(image: pickedFile.path);
+      _emitChanged(updated);
     }
   }
 }

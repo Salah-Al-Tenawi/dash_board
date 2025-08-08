@@ -14,10 +14,9 @@ class BottomNavBarWidget extends StatelessWidget {
   const BottomNavBarWidget({super.key, required this.pageController});
 
   final List<IconData> _navIcons = const [
-    Icons.home_rounded,
+    Icons.create,
     Icons.search_rounded,
     Icons.favorite_rounded,
-    Icons.person_rounded,
   ];
 
   final List<Color> _activeColors = const [
@@ -60,9 +59,8 @@ class BottomNavBarWidget extends StatelessWidget {
                 child: SalomonBottomBar(
                   currentIndex: currentIndex,
                   onTap: (index) {
-                    context.read<HomeNavCubit>().changePage(index);
-                    Get.toNamed(RouteName.profile, arguments: myid());
-                    // pageController.jumpToPage(index);
+                    if (index == 3) {}
+                    pageController.jumpToPage(index);
                   },
                   selectedItemColor: _activeColors[currentIndex],
                   unselectedItemColor: Colors.grey[400],

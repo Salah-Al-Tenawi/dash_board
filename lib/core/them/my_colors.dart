@@ -21,6 +21,8 @@ class MyColors {
   static const Color blackColor = Color(0xFF263238);
   static const Color greyTextColor = Color(0xFF95969D);
   static const Color greyTextField = Color(0xFFD9D9D9);
+
+  static var greyTextfildColor;
   
   // Green shades
 }

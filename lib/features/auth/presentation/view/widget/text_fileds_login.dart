@@ -32,7 +32,7 @@ class TextFiledsLogin extends StatelessWidget {
         ),
         SizedBox(height: 20.h),
         CustomTextformfild(
-          validator: (val) => inputvaild(val!, "password", 35, 9),
+          validator: (val) => inputvaild(val!, "password", 35, 8),
           keyboardType: TextInputType.visiblePassword,
           scureText: true,
           icon: const Icon(Icons.lock_clock_outlined),

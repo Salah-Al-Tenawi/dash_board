@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:sharecars/core/api/dio_consumer.dart';
@@ -29,8 +30,9 @@ import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_did_you_back.dart';
+import 'package:sharecars/features/vieryfiy_user/data/data_source/verifit_user_remote_data_source.dart';
 import 'package:sharecars/features/vieryfiy_user/presintion/manger/cubit/verfiy_user_cubit.dart';
-import 'package:sharecars/features/vieryfiy_user/presintion/view/verfiy_profile.dart';
+import 'package:sharecars/features/vieryfiy_user/presintion/view/verfiy_user.dart';
 
 List<GetPage<dynamic>> appRoute = [
   GetPage(
@@ -71,10 +73,14 @@ List<GetPage<dynamic>> appRoute = [
           )),
 
 // verfiy user
-// GetPage(name: RouteName.verfiyUser, page: () => BlocProvider(
-//             create: (context) => VerfiyUserCubit(),
-//             child: const VerfiyProfile(),
-//           )) ,
+  GetPage(
+    name: RouteName.verfiyUser,
+    page: () => BlocProvider(
+      create: (context) => VerifyProfileCubit(
+          VerifitUserRemoteDataSource(api: getit.get<DioConSumer>())),
+      child: const VerfiyUser(),
+    ),
+  ),
   // map
   GetPage(
     name: RouteName.pushRideMap,
@@ -117,12 +123,13 @@ List<GetPage<dynamic>> appRoute = [
   // home
 
   GetPage(
-  name: RouteName.home,
-  page: () => MultiBlocProvider(
-    providers: [
-      BlocProvider<HomeNavCubit>(create: (_) => HomeNavCubit()),
-      // BlocProvider<AnotherCubit>(create: (_) => AnotherCubit()), // إن احتجت المزيد
-    ],
-    child: const Home(),
+    name: RouteName.home,
+    page: () => MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeNavCubit>(create: (_) => HomeNavCubit()),
+        // BlocProvider<AnotherCubit>(create: (_) => AnotherCubit()), // إن احتجت المزيد
+      ],
+      child: const Home(),
+    ),
   ),
-),];
+];
