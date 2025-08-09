@@ -2,21 +2,20 @@ import 'package:sharecars/core/api/api_consumer.dart';
 import 'package:sharecars/core/api/api_end_points.dart';
 
 import 'package:sharecars/core/utils/functions/get_token.dart';
+import 'package:sharecars/features/trip_create/data/model/trip_model.dart';
 
 class TripMeRemoteDataSource {
   final ApiConSumer api;
 
   TripMeRemoteDataSource({required this.api});
 
-// todo return type
-  Future<dynamic> getMyTrip() async {
+  Future<List<TripModel>> getMyTrip() async {
     final response = await api
         .get(ApiEndPoint.rides, header: {ApiKey.authorization: mytoken()});
     return response;
   }
 
-// todo return type
-  Future<dynamic> showOneTrip(int tripId) async {
+  Future<TripModel> showOneTrip(int tripId) async {
     final response = await api.post("${ApiEndPoint.rides}/$tripId",
         header: {ApiKey.authorization: mytoken()});
 
