@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         children: const [
           Center(child: Text("Home Page")),
           Center(child: Text("Search Page")),
-          Center(child: Text("Favorites Page")),
+          
         ],
       ),
       bottomNavigationBar: BottomNavBarWidget(pageController: _pageController),

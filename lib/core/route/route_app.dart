@@ -30,6 +30,11 @@ import 'package:sharecars/features/trip_create/presantion/view/trip_select_date_
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_price_and_booking_type.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_did_you_back.dart';
+import 'package:sharecars/features/trip_me/data/data%20source/trip_me_remote_data_source.dart';
+import 'package:sharecars/features/trip_me/data/repo/trip_me_repo_im.dart';
+import 'package:sharecars/features/trip_me/presantion/manger/cubit/trip_me_cubit.dart';
+import 'package:sharecars/features/trip_me/presantion/view/trip_me_list.dart';
+import 'package:sharecars/features/trip_me/presantion/view/trip_me_one.dart';
 import 'package:sharecars/features/vieryfiy_user/data/data_source/verifit_user_remote_data_source.dart';
 import 'package:sharecars/features/vieryfiy_user/data/repo/verfiy_user_repo.dart';
 import 'package:sharecars/features/vieryfiy_user/presintion/manger/cubit/verfiy_user_cubit.dart';
@@ -122,6 +127,25 @@ List<GetPage<dynamic>> appRoute = [
   ),
 
   GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()),
+ 
+
+
+ // trip me  
+GetPage(
+    name: RouteName.tripMeList,
+    page: () => BlocProvider(
+      create: (context) => getit.get<TripMeCubit>(),
+      child: const TripMeList(),
+    ),
+  ),
+
+GetPage(
+    name: RouteName.tripMeOne,
+    page: () => BlocProvider(
+      create: (context) => getit.get<TripMeCubit>(),
+      child: TripMeOne(),
+    ),
+  ),
 
   // home
 
@@ -134,5 +158,7 @@ List<GetPage<dynamic>> appRoute = [
       ],
       child: const Home(),
     ),
-  ),
+  ), 
+
+  
 ];
