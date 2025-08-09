@@ -10,21 +10,21 @@ class TripMeRemoteDataSource {
   TripMeRemoteDataSource({required this.api});
 
   Future<List<TripModel>> getMyTrip() async {
-    final response = await api
-        .get(ApiEndPoint.rides, header: {ApiKey.authorization: mytoken()});
+    final response = await api.get(ApiEndPoint.rides,
+        header: {ApiKey.authorization: "Bearer ${mytoken()}"});
     return response;
   }
 
   Future<TripModel> showOneTrip(int tripId) async {
     final response = await api.post("${ApiEndPoint.rides}/$tripId",
-        header: {ApiKey.authorization: mytoken()});
+        header: {ApiKey.authorization: "Bearer ${mytoken()}"});
 
     return response;
   }
 
   Future<dynamic> cancelTrip(int tripId) async {
     final response = await api.patch("${ApiEndPoint.rides}/$tripId/cancel",
-        header: {ApiKey.authorization: mytoken()});
+        header: {ApiKey.authorization: "Bearer ${mytoken()}"});
     return response;
   }
 }

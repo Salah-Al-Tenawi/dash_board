@@ -12,11 +12,10 @@ import 'package:sharecars/features/home/preantion/manger/cubit/home_nav_cubit_cu
 class BottomNavBarWidget extends StatelessWidget {
   final PageController pageController;
   const BottomNavBarWidget({super.key, required this.pageController});
-
   final List<IconData> _navIcons = const [
-    Icons.create,
+    Icons.directions_car,
     Icons.search_rounded,
-    Icons.favorite_rounded,
+    Icons.list_alt_rounded,
   ];
 
   final List<Color> _activeColors = const [
@@ -59,7 +58,10 @@ class BottomNavBarWidget extends StatelessWidget {
                 child: SalomonBottomBar(
                   currentIndex: currentIndex,
                   onTap: (index) {
-                    if (index == 3) {}
+                    context
+                        .read<HomeNavCubit>()
+                        .changePage(index); // تحديث الحالة
+
                     pageController.jumpToPage(index);
                   },
                   selectedItemColor: _activeColors[currentIndex],

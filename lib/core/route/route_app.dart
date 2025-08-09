@@ -143,7 +143,7 @@ GetPage(
     name: RouteName.tripMeOne,
     page: () => BlocProvider(
       create: (context) => getit.get<TripMeCubit>(),
-      child: TripMeOne(),
+      child: const TripMeOne(),
     ),
   ),
 
