@@ -9,6 +9,7 @@ class CustomTextformfild extends StatelessWidget {
   final void Function(String)? onFieldSubmitted;
   final String title;
   final Icon? icon;
+  final bool ? fill;
   final Widget? suffix;
   final bool scureText;
   final TextInputType? keyboardType;
@@ -20,6 +21,7 @@ class CustomTextformfild extends StatelessWidget {
   final bool expands;
   final TextInputAction? textInputAction;
   final void Function(String)? onChanged;
+ final Color? fillColor ;
 
 
   const CustomTextformfild({
@@ -39,7 +41,9 @@ class CustomTextformfild extends StatelessWidget {
     this.minLines,
     this.expands = false,
     this.textInputAction,
-    this.hint,
+    this.hint, 
+   this. fill ,
+   this.fillColor
   });
 
   @override
@@ -49,6 +53,7 @@ class CustomTextformfild extends StatelessWidget {
       width: width,
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       child: TextFormField(
+        
         controller: controller,
         validator: validator,
         onChanged: onChanged,
@@ -60,6 +65,7 @@ class CustomTextformfild extends StatelessWidget {
         expands: expands,
         textInputAction: textInputAction,
         decoration: InputDecoration(
+          
           labelText: title,
           labelStyle: const TextStyle(
             fontSize: 14,
@@ -69,7 +75,8 @@ class CustomTextformfild extends StatelessWidget {
           suffix: suffix,
           prefixIcon: icon,
           prefixIconColor: MyColors.primaryBackground,
-          filled: false,
+          filled: fill,
+          fillColor:fillColor ,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
           ),

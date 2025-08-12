@@ -24,7 +24,8 @@ class _TripDidYouBackState extends State<TripDidYouBack> {
   @override
   void initState() {
     super.initState();
-    tripFrom = Get.arguments as TripFrom;
+    // tripFrom = Get.arguments as TripFrom;
+    tripFrom = TripFrom();
   }
 
   @override

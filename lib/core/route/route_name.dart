@@ -12,7 +12,11 @@ class RouteName {
   static const verfiyUser = "/verfiyUser";
 
 // map
-  static const pushRideMap = "/pushRideMap";
+  static const pushRideMap = "/pushRideMap"; 
+static const searchRideMap = "/SearchRideMap"; 
+
+
+  
 
   //trip  create
   static const tripSelectSourceAndDistOnMap = "/TripSelectSourceAndDistOnMap";
@@ -24,4 +28,8 @@ class RouteName {
   // trip me
   static const tripMeList = "/tripMeList";
   static const tripMeOne = "/tripMeone";
+
+  // trip search 
+ static const tripSearch = "/tripSearch";
+
 }

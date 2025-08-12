@@ -20,6 +20,7 @@ class ApiEndPoint {
 //  trips endpoint
   static const rides = "$baserUrl/rides";
   static const createRide = "$rides/create-with-route";
+  static const search = "$rides/search";
 }
 
 class ApiKey {
@@ -50,10 +51,13 @@ class ApiKey {
   static const verificationStatus = "verification_status";
   static const numberOfRides = "number_of_rides";
   static const drivingLicensePic = "driving_license_pic";
-
   static const rating = "rating";
   static const totalRatings = "total_ratings";
   static const averageRating = "average_rating";
+  static const phoneNumber = "phone_number";
+static const otpCode = "otp_code";
+
+  
 
   // Car Info
   static const typeOfCar = "type_of_car";
@@ -78,7 +82,7 @@ class ApiKey {
   static const commenter = "commenter";
   static const createdAt = "created_at";
 
-  // rides crate 
+  // rides crate
   static const pickupAddress = "pickup_address";
   static const destinationAddress = "destination_address";
   static const departureTime = "departure_time";
@@ -91,12 +95,8 @@ class ApiKey {
   static const destinationlng = "destination_lng";
   static const notes = "notes";
   static const routeIndex = "route_index";
-  static const paymentmethod = "payment_method";  
-static const bookingType = "booking_type";  
-
-
-  
-
+  static const paymentmethod = "payment_method";
+  static const bookingType = "booking_type";
 
   // maps
   static const coordinates = "coordinates";
@@ -104,4 +104,9 @@ static const bookingType = "booking_type";
   static const targetCount = "target_count";
   static const shareFactor = "share_factor";
   static const features = "features";
+
+// search trip
+  static const sourceAddress = "source_address";
+  static const departureDate = "departure_date";
+  static const seatsRequired = "seats_required";
 }

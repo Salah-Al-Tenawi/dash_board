@@ -14,6 +14,8 @@ import 'package:sharecars/features/profiles/presantaion/view/profile.dart';
 import 'package:sharecars/features/trip_create/presantion/view/trip_select_source_and_dist_on_map.dart';
 import 'package:sharecars/features/trip_me/presantion/manger/cubit/trip_me_cubit.dart';
 import 'package:sharecars/features/trip_me/presantion/view/trip_me_list.dart';
+import 'package:sharecars/features/trip_search/presantion/manger/cubit/search_cubit.dart';
+import 'package:sharecars/features/trip_search/presantion/view/trip_search.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -36,7 +38,11 @@ class _HomeState extends State<Home> {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           const TripSelectSourceAndDistOnMap(),
-          const Center(child: Text("Search Page")),
+          
+          BlocProvider(
+            create: (context) => SearchCubit(),
+            child: const TripSearch(),
+          ),
           BlocProvider(
             create: (context) => getit.get<TripMeCubit>(),
             child: const TripMeList(),

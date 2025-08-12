@@ -6,6 +6,7 @@ import 'package:sharecars/core/route/route_name.dart';
 import 'package:sharecars/core/service/locator_ser.dart';
 import 'package:sharecars/features/home/preantion/manger/cubit/home_nav_cubit_cubit.dart';
 import 'package:sharecars/features/maps/presantion/manger/push_ride_map/map_cubit.dart';
+import 'package:sharecars/features/maps/presantion/view/search_ride_map.dart';
 import 'package:sharecars/features/profiles/data/date_source/profile_remote_date_source.dart';
 import 'package:sharecars/features/splash_view/presentaion/manger/cubit/splash_view_cubit.dart';
 import 'package:sharecars/features/test/my_test.dart';
@@ -35,6 +36,7 @@ import 'package:sharecars/features/trip_me/data/repo/trip_me_repo_im.dart';
 import 'package:sharecars/features/trip_me/presantion/manger/cubit/trip_me_cubit.dart';
 import 'package:sharecars/features/trip_me/presantion/view/trip_me_list.dart';
 import 'package:sharecars/features/trip_me/presantion/view/trip_me_one.dart';
+import 'package:sharecars/features/trip_search/presantion/view/trip_search.dart';
 import 'package:sharecars/features/vieryfiy_user/data/data_source/verifit_user_remote_data_source.dart';
 import 'package:sharecars/features/vieryfiy_user/data/repo/verfiy_user_repo.dart';
 import 'package:sharecars/features/vieryfiy_user/presintion/manger/cubit/verfiy_user_cubit.dart';
@@ -98,6 +100,13 @@ List<GetPage<dynamic>> appRoute = [
     ),
   ),
 
+GetPage(
+    name: RouteName.searchRideMap,
+    page: () => BlocProvider(
+      create: (_) => MapCubit(),
+      child: const SearchRideMap(),
+    ),
+  ),
   // trips create
   // Todo add bloc provider
   GetPage(
@@ -127,7 +136,11 @@ List<GetPage<dynamic>> appRoute = [
   ),
 
   GetPage(name: RouteName.tripDidYouBack, page: () => const TripDidYouBack()),
- 
+  // trip search 
+
+  GetPage(name: RouteName.tripSearch, page: () => const TripSearch()),
+
+  
 
 
  // trip me  

@@ -40,7 +40,6 @@ class MapCubit extends Cubit<MapState> {
     if (endLocation == null) {
       endLocation = point;
 
-      // ⬅️ نرسل حالة MapLoaded لتحديث العلامة الثانية قبل تحميل الطريق
       emit(MapLoaded(
         routes: [],
         routeInfos: [],
