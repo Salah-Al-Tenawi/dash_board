@@ -1,71 +1,63 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+
 import 'package:sharecars/core/api/api_end_points.dart';
 import 'package:sharecars/core/api/dio_consumer.dart';
 import 'package:sharecars/core/service/hive_services.dart';
-import 'package:sharecars/features/auth/data/model/user_model.dart';
+import 'package:sharecars/features/auth/data/model/admin_model.dart';
 
 abstract class AuthRemoteDataSource {
   final DioConSumer api;
   const AuthRemoteDataSource({
     required this.api,
   });
-
-  Future<UserModel> login(String email, String password);
-  Future<UserModel> singin(String firstName, String lastName, String gender,
-      String email, String address, String password, String verfiyPassword);
-  Future forgetPassword(String email);
-  Future logout();
+  Future<void> getCsrfCookie(); 
+  Future<AdminModel> adminlogin(String email, String password);
+  Future<AdminModel> sycachlogin(String email, String password);
 }
 
 class AuthRemoteDataSourceIM extends AuthRemoteDataSource {
   AuthRemoteDataSourceIM({required super.api});
-
+  
   @override
-  Future<UserModel> login(String email, String password) async {
+  Future<void> getCsrfCookie() async {
+    try {
+      await api.get("http://localhost:8000/sanctum/csrf-cookie");  // خطوة global، تجيب cookie
+    } catch (e) {
+      print('CSRF fetch error: $e');
+      rethrow;
+    }
+  }
+@override
+Future<AdminModel> adminlogin(String email, String password) async {
+  AdminModel? user; // عرّف user هنا
+
+  try {
     final response = await api.post(ApiEndPoint.login,
         data: {ApiKey.email: email, ApiKey.password: password});
-    final user = UserModel.fromjson(response);
-    HiveBoxes.authBox.put(HiveKeys.user, user);
-    return user;
+
+    try {
+      user = AdminModel.fromJson(response);
+      HiveBoxes.authBox.put(HiveKeys.user, user.sessionId);
+    } catch (e) {
+      print('JSON parsing warning: $e');
+      rethrow; 
+    }
+
+    return user!;
+  } catch (e) {
+    print('Login error: $e');
+    rethrow;
   }
+}
+
 
   @override
-  Future<UserModel> singin(
-      String firstName,
-      String lastName,
-      String gender,
-      String email,
-      String address,
-      String password,
-      String verfiyPassword) async {
-    final response = await api.post(ApiEndPoint.singin, data: {
-      ApiKey.firstName: firstName,
-      ApiKey.lastName: lastName,
-      ApiKey.email: email,
-      ApiKey.password: password,
-      ApiKey.passwordConfirm: verfiyPassword,
-      ApiKey.gender: gender,
-      ApiKey.address: address,
-    });
-    final user = UserModel.fromjson(response);
-    HiveBoxes.authBox.put(HiveKeys.user, user);
-    return user;
-  }
+  Future<AdminModel> sycachlogin(String email, String password) async {
+    final response = await api.post(ApiEndPoint.login,
+        data: {ApiKey.email: email, ApiKey.password: password});
+    final admin = AdminModel.fromJson(response);
 
-// to do
-  @override
-  Future<String> logout() async {
-    final response = await api.post(ApiEndPoint.logout, header: {
-      // "Authorization":
-      //     "Bearer ${token from cach}"
-    });
-    return response;
-  }
-
-  @override
-  Future forgetPassword(String email) async {
-    final response =
-        await api.post(ApiEndPoint.forgetPassword, data: {ApiKey.email: email});
-    return response;
+    return admin;
   }
 }

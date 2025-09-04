@@ -1,134 +1,143 @@
-class ApiEndPoint {
-  static const baserUrl = "http://192.168.1.8:8000/api";
-  // static const baserUrl = "http://192.168.118.103:8000/api/";
+// class ApiEndPoint {
+// static const baserUrl = "http://127.0.0.1:8000/admin";
+//   // static const baserUrl = "http://192.168.118.103:8000/api/";
 
-  static const mapsOpenRouteServices =
-      "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
-  static const mapsGraphHopper = "https://graphhopper.com/api/1/route";
-
-  // auth
-  static const login = "$baserUrl/login";
-  static const singin = "$baserUrl/signup";
-  static const logout = "$baserUrl/logout";
-  static const forgetPassword = "$baserUrl/forgot-password";
-  static const resetPassword = "$baserUrl/reset-password";
-  static const profile = "$baserUrl/profile";
-
-  static const verifypassenger = "$profile/verify/passenger";
-  static const verifydriver = "$profile/verify/driver";
-  static const rateUser = "$profile/rate";
-
-  // trips endpoint
-  static const rides = "$baserUrl/rides";
-  static const createRide = "$rides/create-with-route";
-  static const search = "$rides/search";
-
-  // chat
-  static const chat = "$baserUrl/chat";
-  static const startconversation = "$chat/conversations";
-  static const getallconversations = "$chat/conversations";
-  static const message = "$chat/conversations";
-  static const deletmessage = "$chat/messages";
-}
+//   // auth
+//   static const login = "$baserUrl/login";
+//   static const wallets = "$baserUrl/wallets";
+//    static const wallet = "$baserUrl/wallet";
+//    static const report = "$baserUrl/report";
+// }
 
 class ApiKey {
-  // Authorization
-  static const authorization = "Authorization";
-  static const data = "data";
-  static const success = "success";
+  // ----------------- عام -----------------
+  static const status = "status";
   static const message = "message";
+  static const authorization = "authorization";
 
-  static const error = "error";
-  static const token = "access_token";
-  static const contentType = "Content-Type";
+  // ----------------- Login -----------------
+  static const password = "password";
 
-  // User Info
-  static const userId = "user_id";
+  // ----------------- Wallet Charge -----------------
+  static const transactionId = "transaction_id";
+  static const chargedBy = "charged_by";
+  static const wallet = "wallet";
+
+  // ----------------- Wallet Object -----------------
   static const id = "id";
-  static const user = "user";
-  static const fullName = "full_name";
+  static const phoneNumber = "phone_number";
+  static const previousBalance = "previous_balance";
+  static const newBalance = "new_balance";
+  static const owner = "owner";
+  static const balance = "balance";
+  static const walletNumber = "wallet_number";
+
+  // ----------------- Wallet List / Transactions -----------------
+  static const currentPage = "current_page";
+  static const data = "data";
+  static const firstPageUrl = "first_page_url";
+  static const from = "from";
+  static const lastPage = "last_page";
+  static const lastPageUrl = "last_page_url";
+  static const links = "links";
+  static const nextPageUrl = "next_page_url";
+  static const path = "path";
+  static const perPage = "per_page";
+  static const prevPageUrl = "prev_page_url";
+  static const to = "to";
+  static const total = "total";
+
+  // ----------------- Transaction -----------------
+  static const walletId = "wallet_id";
+  static const userId = "user_id";
+  static const type = "type";
+  static const amount = "amount";
+  static const previousBalanceT = "previous_balance";
+  static const newBalanceT = "new_balance";
+  static const description = "description";
+  static const statusT = "status";
+  static const reference = "reference";
+  static const createdAt = "created_at";
+  static const updatedAt = "updated_at";
+
+  // ----------------- User -----------------
   static const firstName = "first_name";
   static const lastName = "last_name";
-  static const address = "address";
   static const email = "email";
-  static const password = "password";
-  static const passwordConfirm = "password_confirmation";
-  static const gender = "gender";
-  static const profilePhoto = "profile_photo";
-  static const description = "description";
-  static const verificationStatus = "verification_status";
-  static const numberOfRides = "number_of_rides";
-  static const drivingLicensePic = "driving_license_pic";
-  static const rating = "rating";
-  static const totalRatings = "total_ratings";
-  static const averageRating = "average_rating";
-  static const phoneNumber = "phone_number";
-  static const otpCode = "otp_code";
 
-  // Car Info
-  static const typeOfCar = "type_of_car";
-  static const colorOfCar = "color_of_car";
-  static const numberOfSeats = "number_of_seats";
-  static const carPic = "car_pic";
-  static const radio = "radio";
-  static const smoking = "smoking";
+  // ----------------- ReportResponse -----------------
+  static const reportData = "report_data";
 
-  // Documents
-  static const documents = "documents";
-  static const faceIdPic = "face_id_pic";
-  static const backIdPic = "back_id_pic";
-  static const licensePic = "driving_license_pic";
-  static const mechanicCardPic = "mechanic_card_pic";
+  // ----------------- ReportData -----------------
+  static const rideStats = "ride_stats";
+  static const financialStats = "financial_stats";
+  static const dateRange = "date_range";
 
-  // Comments
-  static const name = "name";
-  static const comments = "comments";
-  static const comment = "comment";
-  static const commenter = "commenter";
-  static const createdAt = "created_at";
+  // ----------------- RideStats -----------------
+  static const totalRides = "total";
+  static const canceled = "canceled";
+  static const active = "active";
+  static const awaitingConfirmation = "awaiting_confirmation";
+  static const completed = "completed";
 
-  // rides create
-  static const pickupAddress = "pickup_address";
-  static const destinationAddress = "destination_address";
-  static const departureTime = "departure_time";
-  static const availableSeats = "available_seats";
-  static const seats = "seats";
-  static const pricePerSeat = "price_per_seat";
-  static const pickuplat = "pickup_lat";
-  static const pickuplng = "pickup_lng";
-  static const destinationlat = "destination_lat";
-  static const destinationlng = "destination_lng";
-  static const notes = "notes";
-  static const routeIndex = "route_index";
-  static const paymentmethod = "payment_method";
-  static const bookingType = "booking_type";
+  // ----------------- FinancialStats -----------------
+  static const sycash = "sycash";
+  static const adminWallet = "admin_wallet";
+  static const activeRidesAmount = "active_rides_amount";
+  static const debugInfo = "debug_info";
 
-  // maps
-  static const coordinates = "coordinates";
-  static const alternativeRoutes = "alternative_routes";
-  static const targetCount = "target_count";
-  static const shareFactor = "share_factor";
-  static const features = "features";
+  // ----------------- SyCash -----------------
+  static const currentBalanceSy = "current_balance";
+  static const totalRideCreationFees = "total_ride_creation_fees";
 
-  // search trip
-  static const sourceAddress = "source_address";
-  static const departureDate = "departure_date";
-  static const seatsRequired = "seats_required";
+  // ----------------- AdminWallet -----------------
+  static const currentBalanceAdmin = "current_balance";
+  static const totalBookingCollected = "total_booking_collected";
+  static const totalBookingTransferred = "total_booking_transferred";
 
-  // chat
-  static const conversationid = "conversation_id";
-  static const type = "type";
-  static const title = "title";
-  static const otherparticipant = "other_participant";
-  static const lastmessage = "last_message";
-  static const updatedat = "updated_at";
-  static const content = "content";
-  static const metadata = "metadata";
-  static const isedited = "is_edited";
-  static const avatar = "avatar";
-  static const caption = "caption";
-  static const image = "image";
-  static const createdat = "created_at";
-  static const sender = "sender";
-  static const sendername = "sender_name";
+  // ----------------- DebugInfo -----------------
+  static const transferCalculationMethods = "transfer_calculation_methods";
+  static const adminTransactionTypes = "admin_transaction_types";
+
+  // ----------------- TransferCalculationMethods -----------------
+  static const byTransactionType = "by_transaction_type";
+  static const byDescription = "by_description";
+  static const finalUsed = "final_used";
+
+  // ----------------- AdminTransactionTypes -----------------
+  static const adminCredit = "admin_credit";
+
+  // ----------------- AdminCredit -----------------
+  static const count = "count";
+  static const totalAmount = "total_amount";
+
+  // ----------------- DateRange -----------------
+  static const start = "start";
+  static const end = "end";
+}
+
+class ApiEndPoint {
+  static const String baserUrl = 'http://localhost:8000/admin/';
+  
+  // Admin Authentication endpoints
+  static const String login = 'login';
+  static const String logout = 'logout';
+  static const String getAdminInfo = 'info';
+    static const String csrf = 'http://localhost:8000/sanctum/csrf-cookie';
+  // Admin Wallet Management
+  static const String getAllWallets = '/wallets';
+  static const String chargeWallet = 'wallet/charge';
+  static const String getWalletTransactions = 'wallet/'; // append wallet_id + '/transactions'
+  
+  // Admin Dashboard
+  static const String dashboard = 'dashboard';
+  static const String report = 'report';
+  
+  // Admin Verification Management
+  static const String pendingVerifications = 'verifications/pending';
+  static const String approveVerification = 'verifications/'; // append userId + '/approve'
+  static const String rejectVerification = 'verifications/'; // append userId + '/reject'
+  
+  // Debug endpoint
+  static const String sessionDebug = 'session-debug';
 }

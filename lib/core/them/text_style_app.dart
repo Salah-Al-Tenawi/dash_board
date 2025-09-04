@@ -1,67 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sharecars/core/them/my_colors.dart';
 
-const font16blacknormal = TextStyle(fontSize: 16);
+/// 📌 نصوص صغيرة (لون أبيض)
+TextStyle font10White = TextStyle(
+  fontSize: 3.sp,
+  color: Colors.white,
+);
 
-const TextStyle font14normalblue =
-    TextStyle(fontSize: 14, color: MyColors.primary);
-const TextStyle font10boldRamadi = TextStyle(
-    fontSize: 10, fontWeight: FontWeight.bold, color: MyColors.primaryText);
+TextStyle font12White = TextStyle(
+  fontSize: 4.sp,
+  color: Colors.white,
+);
 
-const TextStyle font12boldRamadi = TextStyle(
-    fontSize: 12, fontWeight: FontWeight.bold, color: MyColors.primaryText);
+TextStyle font14White = TextStyle(
+  fontSize: 5.sp,
+  color: Colors.white,
+);
 
-const TextStyle font12boldsky = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.bold,
-    color: MyColors.primaryBackground);
-const TextStyle font15BoldRamadi = TextStyle(
-    fontSize: 15, fontWeight: FontWeight.bold, color: MyColors.primaryText);
 
-const TextStyle font13boldNewRamadi = TextStyle(
-  fontSize: 13,
+
+/// 📌 نصوص متوسطة (لون أبيض + بولد)
+TextStyle font18WhiteBold = TextStyle(
+  fontSize: 6.sp,
   fontWeight: FontWeight.bold,
-  color: MyColors.primaryText,
+  color: Colors.white,
 );
 
-const TextStyle font10NormalGrey = TextStyle(
-  fontSize: 10,
-  color: Colors.grey,
-);
-
-const TextStyle font11NormalGrey = TextStyle(
-  fontSize: 11,
-  color: Colors.grey,
-);
-const TextStyle font13boldbluedark = TextStyle(
-    fontSize: 13, fontWeight: FontWeight.bold, color: MyColors.bluedark);
-
-const TextStyle font12boldnewramadi = TextStyle(
-    fontSize: 12, fontWeight: FontWeight.bold, color: MyColors.primaryText);
-
-const TextStyle fontdefualtGreyText = TextStyle(color: MyColors.greyTextColor);
-const TextStyle font13boldGreyText = TextStyle(
-    color: MyColors.greyTextColor, fontSize: 13, fontWeight: FontWeight.bold);
-const TextStyle font13boldwhite =
-    TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold);
-const TextStyle font14boldblueblack = TextStyle(
-    fontSize: 14, fontWeight: FontWeight.bold, color: MyColors.bluedark);
-const TextStyle font20normalsky =
-    TextStyle(fontSize: 50, color: MyColors.primary);
-
-const TextStyle font25boldgreen =
-    TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25);
-
-const font18boldramdi = TextStyle(
-  fontSize: 18,
+TextStyle font20WhiteBold = TextStyle(
+  fontSize: 7.sp,
   fontWeight: FontWeight.bold,
-  color: MyColors.primaryText,
+  color: Colors.white,
 );
 
-const font13normaldgrey = TextStyle(
-  fontSize: 14,
-  color: Colors.grey,
+/// 📌 نصوص كبيرة (لون Primary)
+TextStyle font22Primary = TextStyle(
+  fontSize: 15.sp,
+  fontWeight: FontWeight.bold,
+  color: MyColors.primary,
 );
 
-const font13NormalGrayText = TextStyle(
-    fontSize: 13, fontWeight: FontWeight.normal, color: MyColors.greyTextField);
+TextStyle font25Primary = TextStyle(
+  fontSize: 17.sp,
+  fontWeight: FontWeight.bold,
+  color: MyColors.primary,
+);
+
+TextStyle font30Primary = TextStyle(
+  fontSize: 18.sp,
+  fontWeight: FontWeight.bold,
+  color: MyColors.primary,
+);

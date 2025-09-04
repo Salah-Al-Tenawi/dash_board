@@ -9,7 +9,10 @@ import 'package:sharecars/core/them/my_colors.dart';
 import 'package:sharecars/core/them/text_style_app.dart';
 import 'package:sharecars/core/utils/functions/show_my_snackbar.dart';
 import 'package:sharecars/core/utils/widgets/my_button.dart';
+
 import 'package:sharecars/features/auth/presentation/manger/login_cubit/login_cubit.dart';
+import 'package:sharecars/features/auth/presentation/manger/sycach_cubit/sycach_cubit.dart';
+
 
 class ColumnButtonsLogin extends StatelessWidget {
   final TextEditingController email;
@@ -25,78 +28,84 @@ class ColumnButtonsLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
-        if (state is LoginSuccess) {
-          Get.offAllNamed(RouteName.home);
-        } else if (state is LoginNavigateToSignup) {
-          Get.toNamed(RouteName.singin);
-        } else if (state is LoginNavigationToForgetPassword) {
-          Get.toNamed(RouteName.forgetpassword);
-        } else if (state is LoginError) {
-          showMySnackBar(context, state.message,
-              duration: const Duration(seconds: 3));
-        }
-      },
-      builder: (context, state) {
-        return state is LoginLoading
-            ? LottieBuilder.asset(
-                ImagesUrl.loadinglottie,
-                height: 100.h,
-                width: 100.w,
-              )
-            : Column(
-                children: [
-                  MyButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        context.read<LoginCubit>().login(
-                              email.text.trim(),
-                              password.text.trim(),
-                            );
-                      }
-                    },
-                    borderRadius: true,
-                    color: MyColors.primaryText,
-                    width: 140.w,
-                    child: const Text(
-                      "انطلق",
-                      style: TextStyle(color: MyColors.greyTextField),
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double buttonWidth = width > 600 ? 70.w : 140.w;
+    double buttonHeight = height > 200 ? 60.h : 40.h;
+
+    return Column(
+      children: [
+        BlocConsumer<SycashLoginCubit, SycashLoginState>(
+          listener: (context, state) {
+            if (state is SycashLoginError) {
+              showMySnackBar(context, state.message);
+            }
+          },
+          builder: (context, state) {
+            bool isLoading = state is SycashLoginLoading;
+            return isLoading
+                ? Center(
+                    child: LottieBuilder.asset(
+                      ImagesUrl.loadinglottie,
+                      height: 130.h,
+                      width: 130.w,
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MyButton(
-                        onPressed: () {
-                          context.read<LoginCubit>().emitgotoSingin();
-                        },
-                        child:
-                            const Text("إنشاء حساب", style: font14normalblue),
-                      ),
-                      const Text("ليس لديك حساب بالفعل ؟"),
-                    ],
-                  ),
-                  SizedBox(height: 30.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(".  .  .  .  .  .        ",
-                          style: TextStyle(color: MyColors.blueColor)),
-                      InkWell(
-                        onTap: () {},
-                        child: const CircleAvatar(
-                          child:
-                              Image(image: AssetImage(ImagesUrl.imagegoogle)),
-                        ),
-                      ),
-                      const Text("       .  .  .  .  .  .  .",
-                          style: TextStyle(color: MyColors.blueColor)),
-                    ],
-                  ),
-                ],
-              );
-      },
+                  )
+                : const SizedBox.shrink();
+          },
+        ),
+      BlocConsumer<AdminLoginCubit, AdminLoginState>(
+  listener: (context, state) {
+    if (state is AdminLoginSuccess) {
+      Get.offAllNamed(RouteName.walletListPage);
+    } else if (state is AdminLoginError) {
+      showMySnackBar(context, state.message);
+    }
+  },
+  builder: (context, state) {
+    bool isLoading = state is AdminLoginLoading;
+
+    return isLoading
+        ? Center(
+            child: LottieBuilder.asset(
+              ImagesUrl.loadinglottie, 
+              height: 130.h,
+              width: 130.w,
+            ),
+          )
+        : MyButton(
+            onPressed: () async {
+              if (formKey.currentState!.validate()) {
+                final sycashCubit = context.read<SycashLoginCubit>();
+                final adminCubit = context.read<AdminLoginCubit>();
+
+                // تسجيل Sycash أولًا
+                await sycashCubit.login(
+                  "sycash-sim@gmail.com",
+                  "sycash123456",
+                );
+    await adminCubit.fetchCsrf();
+                // تسجيل Admin
+                await adminCubit.login(
+                  email.text.trim(),
+                  password.text.trim(),
+                );
+              
+              
+              }
+            },
+            borderRadius: true,
+            color: MyColors.primary,
+            width: buttonWidth,
+            height: buttonHeight,
+            child: Text(
+              "انطلق",
+              style: font12White,
+            ),
+          );
+  },
+),
+      ],
     );
   }
 }

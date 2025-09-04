@@ -1,23 +1,20 @@
 import 'package:sharecars/core/service/hive_services.dart';
-import 'package:sharecars/features/auth/data/model/user_model.dart';
+import 'package:sharecars/features/auth/data/model/admin_model.dart';
+
 
 abstract class AuthLocalDataSource {
-  UserModel? featchUser();
+
   String? featchToken();
   Future clearUser();
 }
 
 class AuthLocalDataSourceIm extends AuthLocalDataSource {
-  @override
-  UserModel? featchUser() {
-    final user = HiveBoxes.authBox.get(HiveKeys.user) as UserModel?;
-    return user;
-  }
+
 
   @override
   String? featchToken() {
-    final user = HiveBoxes.authBox.get(HiveKeys.user) as UserModel?;
-    return user?.token;
+    final user = HiveBoxes.authBox.get(HiveKeys.user) as AdminModel?;
+    return user?.sessionId;
   }
 
   

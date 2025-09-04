@@ -10,8 +10,7 @@ import 'package:sharecars/core/service/locator_ser.dart';
 import 'package:sharecars/core/them/them_app.dart';
 
 void main() async {
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+ 
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   locatorService();
@@ -30,7 +29,7 @@ class ShareCars extends StatelessWidget {
       child: GetMaterialApp(
         title: "state mangment with cubit and navigation by getx",
         // initialRoute: RouteName.tripDidYouBack,
-        initialRoute: RouteName.chatListScreen,
+        initialRoute: RouteName.login,
         getPages: appRoute,
         theme: ThemApp.lightThem,
         debugShowCheckedModeBanner: false,

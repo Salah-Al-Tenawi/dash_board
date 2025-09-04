@@ -5,10 +5,12 @@ class MyColors {
   static const Color primaryBackground = Color(0xFFaec0c2);
   static const Color primaryText = Color(0xFF3d444b);
   static const Color secondary = Color(0xff505a63);
-  static const Color primary = Color(0xFF098698);
+  static const Color primary = Color(0xFF253C5B);
   static const Color secondaryText = Color(0xFFd9d4d1);
   static const Color secondaryBackground = Color(0xFFbab1ad); 
-  static const Color accent = Color(0xFFff7043);
+  static const Color accent = Color(0xFFED8B10);
+    static const Color white = Color(0xFFFFFFFF);     
+  static const Color black = Color(0xFF000000); 
 
   
 //  secondary colors 

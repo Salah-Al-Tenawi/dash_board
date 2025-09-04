@@ -2,7 +2,7 @@ abstract class ApiConSumer {
   Future<dynamic> get(String path,
       {dynamic data,
       Map<String, dynamic>? queryParameters,
-      Map<String, dynamic> header});
+      Map<String, dynamic> headers});
   Future<dynamic> post(String path,
       {dynamic data,
       Map<String, dynamic>? queryParameters,
