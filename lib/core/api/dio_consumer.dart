@@ -10,7 +10,7 @@ class DioConSumer extends ApiConSumer {
   DioConSumer() {
     dio = Dio();
     dio.options.baseUrl = ApiEndPoint.baserUrl;
-    dio.options.extra["withCredentials"] = true;
+    // dio.options.extra["withCredentials"] = true;
     dio.interceptors.add(ApiInterCeptor());
     dio.interceptors.add(LogInterceptor(
         request: true,

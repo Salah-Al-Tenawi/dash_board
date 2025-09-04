@@ -27,20 +27,15 @@ class WalletRemoteDataSourceIM extends WalletRemoteDataSource {
     print("reapon...........");
     final response = await api.get(
         "${ApiEndPoint.getWalletTransactions}/$walletid/transactions",
-         headers: {ApiKey.authorization: "Bearer ${mytoken()}"}
-     
-        );
+        headers: {ApiKey.authorization: "Bearer ${mytoken()}"});
     print("=========================================");
     return WalletTransactionsModel.fromJson(response);
   }
 
   @override
   Future<WalletListResponse> getallwallet() async {
-    final response = await api.get(
-      ApiEndPoint.getAllWallets,
-      //  headers: {ApiKey.authorization: "Bearer ${mytoken()}"
-      // }
-    );
+    final response = await api.get(ApiEndPoint.getAllWallets,
+        );
     print(response);
     return WalletListResponse.fromJson(response);
   }

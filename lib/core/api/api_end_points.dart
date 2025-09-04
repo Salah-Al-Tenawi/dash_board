@@ -1,6 +1,6 @@
 // class ApiEndPoint {
 // static const baserUrl = "http://127.0.0.1:8000/admin";
-//   // static const baserUrl = "http://192.168.118.103:8000/api/";
+  // static const baserUrl = "http://192.168.118.103:8000/api/";
 
 //   // auth
 //   static const login = "$baserUrl/login";
