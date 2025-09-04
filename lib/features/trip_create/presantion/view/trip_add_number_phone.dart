@@ -20,8 +20,10 @@ class TripAddNumberPhone extends StatefulWidget {
 class _TripAddNumberPhoneState extends State<TripAddNumberPhone> {
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   late TripFrom tripFrom;
 
+  bool _isValid = false;
   @override
   void initState() {
     super.initState();

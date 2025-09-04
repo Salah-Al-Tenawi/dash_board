@@ -1,5 +1,6 @@
 class ApiEndPoint {
-  static const baserUrl = "http://192.168.43.81:8000/api";
+  static const baserUrl = "http://192.168.1.8:8000/api";
+  // static const baserUrl = "http://192.168.118.103:8000/api/";
 
   static const mapsOpenRouteServices =
       "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
@@ -17,10 +18,17 @@ class ApiEndPoint {
   static const verifydriver = "$profile/verify/driver";
   static const rateUser = "$profile/rate";
 
-//  trips endpoint
+  // trips endpoint
   static const rides = "$baserUrl/rides";
   static const createRide = "$rides/create-with-route";
   static const search = "$rides/search";
+
+  // chat
+  static const chat = "$baserUrl/chat";
+  static const startconversation = "$chat/conversations";
+  static const getallconversations = "$chat/conversations";
+  static const message = "$chat/conversations";
+  static const deletmessage = "$chat/messages";
 }
 
 class ApiKey {
@@ -55,9 +63,7 @@ class ApiKey {
   static const totalRatings = "total_ratings";
   static const averageRating = "average_rating";
   static const phoneNumber = "phone_number";
-static const otpCode = "otp_code";
-
-  
+  static const otpCode = "otp_code";
 
   // Car Info
   static const typeOfCar = "type_of_car";
@@ -75,14 +81,13 @@ static const otpCode = "otp_code";
   static const mechanicCardPic = "mechanic_card_pic";
 
   // Comments
-
   static const name = "name";
   static const comments = "comments";
   static const comment = "comment";
   static const commenter = "commenter";
   static const createdAt = "created_at";
 
-  // rides crate
+  // rides create
   static const pickupAddress = "pickup_address";
   static const destinationAddress = "destination_address";
   static const departureTime = "departure_time";
@@ -105,8 +110,25 @@ static const otpCode = "otp_code";
   static const shareFactor = "share_factor";
   static const features = "features";
 
-// search trip
+  // search trip
   static const sourceAddress = "source_address";
   static const departureDate = "departure_date";
   static const seatsRequired = "seats_required";
+
+  // chat
+  static const conversationid = "conversation_id";
+  static const type = "type";
+  static const title = "title";
+  static const otherparticipant = "other_participant";
+  static const lastmessage = "last_message";
+  static const updatedat = "updated_at";
+  static const content = "content";
+  static const metadata = "metadata";
+  static const isedited = "is_edited";
+  static const avatar = "avatar";
+  static const caption = "caption";
+  static const image = "image";
+  static const createdat = "created_at";
+  static const sender = "sender";
+  static const sendername = "sender_name";
 }

@@ -1,4 +1,4 @@
-import 'package:sharecars/features/maps/push_ride_map.dart';
+
 
 class RouteName {
   static const test = "/test";
@@ -7,15 +7,11 @@ class RouteName {
   static const login = "/login";
   static const forgetpassword = "/forgetpassword";
   static const profile = "/profile";
+
   static const updateprofile = "/updateprofile";
   static const home = "/home";
-  static const verfiyUser = "/verfiyUser";
-
 // map
-  static const pushRideMap = "/pushRideMap"; 
-static const searchRideMap = "/SearchRideMap"; 
-
-
+  static const maps = "/maps"; 
   
 
   //trip  create
@@ -24,12 +20,9 @@ static const searchRideMap = "/SearchRideMap";
   static const tripSelectPriceAndBookingType = "/tripSelectPriceAndBookingType";
   static const tripAddNumberPhone = "/tripAddNumberPhone";
   static const tripDidYouBack = "/TripDidYouBack";
-
-  // trip me
-  static const tripMeList = "/tripMeList";
-  static const tripMeOne = "/tripMeone";
-
-  // trip search 
- static const tripSearch = "/tripSearch";
+//chat
+static const chatListScreen = "/ChatListScreen";
+static const chatScreen = "/ChatScreen";
 
 }
+  
